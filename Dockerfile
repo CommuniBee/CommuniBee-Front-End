@@ -1,6 +1,5 @@
 FROM node:10-alpine as builder
 WORKDIR /usr/src/app
-RUN npm i -g @angular/cli
 COPY package.json package.json
 RUN npm install
 COPY . .
