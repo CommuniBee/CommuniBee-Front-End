@@ -1,3 +1,20 @@
+@import "../../../variables";
+
+@media only screen and (max-width: $tablet) {
+  .carousel-inner .carousel-item .background-img {
+    background-size: auto 100%;
+    background-position: 45% center;
+  }
+
+  .carousel .overlay-body {
+    padding: 25px 30px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
 .carousel-item .background-img {
   height: calc(100vh - 77.16px);
   width: 100%;
@@ -9,5 +26,8 @@
   width: 100%;
   position: absolute;
   z-index: 2;
+  padding: 50px 100px;
+  direction: rtl;
+  text-align: right;
 }
 
