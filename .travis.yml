@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+- 10
+services:
+  - docker
+install: npm install
+
+stages:
+  - lint
+  - name: build docker image
+    if: branch != master || type != push
+  - name: deploy docker image
+    if: branch = master && type = push
+
+jobs:
+  include:
+    - stage: lint
+      script: npm run lint
+
+    - stage: build docker image
+      script: docker build -t communibee/communibee-front-end .
+
+    - stage: deploy docker image
+      script:
+        - docker build -t communibee/communibee-front-end .
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker push communibee/communibee-front-end
