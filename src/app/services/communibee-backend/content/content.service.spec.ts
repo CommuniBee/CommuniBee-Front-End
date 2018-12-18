@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ContentService } from './contents.service';
+import { ContentService } from './content.service';
 
 describe('ContentsService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BeckendModelService } from '../basic-model.service';
-import { ErrorHandlerService } from '../../error-handler/error-handler.service';
+import { BackendModelService } from '../basic-model.service';
 import { BeckendHttpService } from '../beckend-http.service';
 import { VolunteeringRequest, VolunteeringRequestModel } from './volunteering-request';
 
@@ -9,9 +8,9 @@ const path = '/volunteering-requests';
 @Injectable({
   providedIn: 'root',
 })
-export class VolunteeringRequestsService extends BeckendModelService<VolunteeringRequest, VolunteeringRequestModel> {
+export class VolunteeringRequestsService extends BackendModelService<VolunteeringRequest, VolunteeringRequestModel> {
 
-  constructor(private communiHttp: BeckendHttpService, private errorHandlerService: ErrorHandlerService) {
-    super(path, communiHttp, errorHandlerService);
+  constructor(private communiHttp: BeckendHttpService) {
+    super(path, communiHttp);
   }
 }

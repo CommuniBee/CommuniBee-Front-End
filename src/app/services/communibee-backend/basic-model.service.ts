@@ -1,7 +1,7 @@
 import { BeckendHttpService } from './beckend-http.service';
 import { ErrorHandlerService } from '../error-handler/error-handler.service';
 
-export abstract class BeckendModelService<BasicModel, BackendModel extends BasicModel> {
+export abstract class BackendModelService<BasicModel, BackendModel extends BasicModel> {
 
   static getUrlWithId(path: string, id: string): string {
     return `${path}/${id}`;
@@ -21,7 +21,7 @@ export abstract class BeckendModelService<BasicModel, BackendModel extends Basic
 
   async getById(id: string): Promise<BackendModel> {
     try {
-      return await this.beckendHttpService.get(BeckendModelService.getUrlWithId(this.path, id));
+      return await this.beckendHttpService.get(BackendModelService.getUrlWithId(this.path, id));
     } catch (e) {
       ErrorHandlerService.handleError(e);
     }
@@ -37,7 +37,7 @@ export abstract class BeckendModelService<BasicModel, BackendModel extends Basic
 
   async update(id: string, toUpdate: BasicModel): Promise<BackendModel> {
     try {
-      return await this.beckendHttpService.put(BeckendModelService.getUrlWithId(this.path, id), toUpdate);
+      return await this.beckendHttpService.put(BackendModelService.getUrlWithId(this.path, id), toUpdate);
     } catch (e) {
       ErrorHandlerService.handleError(e);
     }
@@ -45,7 +45,7 @@ export abstract class BeckendModelService<BasicModel, BackendModel extends Basic
 
   async delete(id: string): Promise<BackendModel> {
     try {
-      return await this.beckendHttpService.delete(BeckendModelService.getUrlWithId(this.path, id));
+      return await this.beckendHttpService.delete(BackendModelService.getUrlWithId(this.path, id));
     } catch (e) {
       ErrorHandlerService.handleError(e);
     }

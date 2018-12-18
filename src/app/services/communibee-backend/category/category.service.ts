@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { BeckendModelService } from '../basic-model.service';
+import { BackendModelService } from '../basic-model.service';
 import { Category, CategoryModel } from './category';
-import { ErrorHandlerService } from '../../error-handler/error-handler.service';
 import { BeckendHttpService } from '../beckend-http.service';
 
 const path = 'categories';
+
 @Injectable({
   providedIn: 'root',
 })
-export class CategoryService extends BeckendModelService<Category, CategoryModel> {
+export class CategoryService extends BackendModelService<Category, CategoryModel> {
 
-  constructor(private communiHttp: BeckendHttpService, private errorHandlerService: ErrorHandlerService) {
-    super(path, communiHttp, errorHandlerService);
+  constructor(private communiHttp: BeckendHttpService) {
+    super(path, communiHttp);
   }
 }
