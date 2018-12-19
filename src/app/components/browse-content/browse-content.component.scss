@@ -1,0 +1,17 @@
+.breadcrumb-item.text-uppercase a{
+  color: white;
+}
+
+.breadcrumb-item.text-uppercase::before{
+  color: white;
+  margin-right: 0;
+  margin-left: 0.4375rem;
+  top: 2px;
+  position: relative;
+}
+
+
+.breadcrumb-item.text-uppercase{
+  padding-left: 0.3125rem;
+}
+
