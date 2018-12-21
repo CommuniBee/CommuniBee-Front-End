@@ -38,10 +38,15 @@ html {
   src: url(https://fonts.googleapis.com/css?family=Rubik);
 }
 
+a {
+  font-family: "FbOgen", Verdana, Tahoma;
+  font-weight: 100;
+}
+
 a.nav-link {
   font-family: 'FbOgen';
-  font-weight: 900;
-  font-size: 1em !important;
+  font-weight: 500;
+  font-size: 1.25em !important;
 }
 
 .breadcrumb-item {
