@@ -73,3 +73,11 @@ p.h1, p.h2, p.h3, p.h4, p.h5 {
   font-family: "FbOgen", Verdana, Tahoma;
 }
 
+/* RTL rules*/
+.rtl {
+  direction: rtl;
+  text-align: right;
+}
+.rtl input {
+  direction: rtl;
+}
