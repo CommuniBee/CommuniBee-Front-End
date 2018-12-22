@@ -10,6 +10,7 @@ import { BodyComponent } from './components/body/body.component';
 import { HomeComponent } from './components/home/home.component';
 import { ContactModalComponent } from './components/contact-modal/contact-modal.component';
 import { BrowseContentComponent } from './components/browse-content/browse-content.component';
+import { BrowseOpportunitiesComponent } from './browse-opportunities/browse-opportunities.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { BrowseContentComponent } from './components/browse-content/browse-conte
     BodyComponent,
     HomeComponent,
     ContactModalComponent,
-    BrowseContentComponent
+    BrowseContentComponent,
+    BrowseOpportunitiesComponent
   ],
   imports: [
     BrowserModule,
