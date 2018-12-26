@@ -1,0 +1,25 @@
+@import "../../../variables";
+
+@media only screen and (max-width: $tablet) {
+  .navbar-collapse {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.26);
+    margin-top: 10px;
+    transition: margin-top 0.35s, height 0.35s ease;
+    border-radius: 8px;
+  }
+
+  .navbar-collapse.collapsed {
+    margin-top:0px;
+    transition: margin-top 0.35s ease, height 0.35s ease;
+  }
+}
+.fab.fa-facebook-f, .fab.fa-twitter, .fab.fa-instagram {
+  top: 1px;
+  position: relative;
+}
+
+.nav-link {
+  padding-top: 6px;
+  padding-bottom: 4px;
+}
