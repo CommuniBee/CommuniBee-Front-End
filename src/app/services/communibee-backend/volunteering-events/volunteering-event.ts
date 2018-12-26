@@ -17,17 +17,15 @@ export interface VolunteeringRequestOfferBase {
     to: Date;
   };
   notes: string[];
+  createdByUserId: string;
 }
 
-export interface VoulunteeringEvent {
+export interface VolunteeringEvent {
   request: VolunteeringRequestOfferBase;
   offer: VolunteeringRequestOfferBase;
   date: Date;
-  userInitiated: {
-    name: string;
-    reloe: string[];
-  };
+  createdByUserId: string;
 }
 
-export interface VoulunteeringEventModel extends BackendModel, VoulunteeringEvent {
+export interface VolunteeringEventModel extends BackendModel, VolunteeringEvent {
 }

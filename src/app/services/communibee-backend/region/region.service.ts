@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ErrorHandlerService } from '../../error-handler/error-handler.service';
-import { BeckendHttpService } from '../beckend-http.service';
+import { BackendHttpService } from '../backend-http.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,13 +8,13 @@ import { BeckendHttpService } from '../beckend-http.service';
 export class RegionService {
   private readonly path: string;
 
-  constructor(private beckendHttpService: BeckendHttpService) {
+  constructor(private backendHttpService: BackendHttpService) {
     this.path = 'regions';
   }
 
   async getAll(): Promise<string[]> {
     try {
-      return await this.beckendHttpService.get(this.path);
+      return await this.backendHttpService.get(this.path);
     } catch (e) {
       ErrorHandlerService.handleError(e);
     }

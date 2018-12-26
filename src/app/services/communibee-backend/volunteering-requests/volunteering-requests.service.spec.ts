@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { VolunteeringRequestsService } from './volunteering-requests.service';
 
-describe('VolunteeringEventsService', () => {
+describe('VolunteeringRequestsService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {

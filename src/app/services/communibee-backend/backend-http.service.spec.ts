@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BeckendHttpService } from './beckend-http.service';
+import { BackendHttpService } from './backend-http.service';
 
-describe('BeckendHttpService', () => {
+describe('BackendHttpService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: BeckendHttpService = TestBed.get(BeckendHttpService);
+    const service: BackendHttpService = TestBed.get(BackendHttpService);
     expect(service).toBeTruthy();
   });
 });

@@ -6,7 +6,7 @@ import { getCommunibeeApiUrl } from '../../../configuration';
 @Injectable({
   providedIn: 'root',
 })
-export class BeckendHttpService {
+export class BackendHttpService {
   url: string;
 
   constructor(private http: HttpClient) {

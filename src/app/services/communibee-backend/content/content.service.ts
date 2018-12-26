@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BackendModelService } from '../basic-model.service';
 import { Content, ContentModel } from './content';
-import { BeckendHttpService } from '../beckend-http.service';
+import { BackendHttpService } from '../backend-http.service';
 
 const path = 'contents';
 
@@ -10,7 +10,7 @@ const path = 'contents';
 })
 export class ContentService extends BackendModelService<Content, ContentModel> {
 
-  constructor(private communiHttp: BeckendHttpService) {
-    super(path, communiHttp);
+  constructor(private backendHttpService: BackendHttpService) {
+    super(path, backendHttpService);
   }
 }

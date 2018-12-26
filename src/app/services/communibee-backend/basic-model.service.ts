@@ -1,4 +1,4 @@
-import { BeckendHttpService } from './beckend-http.service';
+import { BackendHttpService } from './backend-http.service';
 import { ErrorHandlerService } from '../error-handler/error-handler.service';
 
 export abstract class BackendModelService<BasicModel, BackendModel extends BasicModel> {
@@ -8,12 +8,12 @@ export abstract class BackendModelService<BasicModel, BackendModel extends Basic
   }
 
   protected constructor(protected path: string,
-                        protected beckendHttpService: BeckendHttpService) {
+                        protected backendHttp: BackendHttpService) {
   }
 
   async getAll(): Promise<BackendModel[]> {
     try {
-      return await this.beckendHttpService.get(this.path);
+      return await this.backendHttp.get(this.path);
     } catch (e) {
       ErrorHandlerService.handleError(e);
     }
@@ -21,7 +21,7 @@ export abstract class BackendModelService<BasicModel, BackendModel extends Basic
 
   async getById(id: string): Promise<BackendModel> {
     try {
-      return await this.beckendHttpService.get(BackendModelService.getUrlWithId(this.path, id));
+      return await this.backendHttp.get(BackendModelService.getUrlWithId(this.path, id));
     } catch (e) {
       ErrorHandlerService.handleError(e);
     }
@@ -29,7 +29,7 @@ export abstract class BackendModelService<BasicModel, BackendModel extends Basic
 
   async create(toCreate: BasicModel): Promise<BackendModel> {
     try {
-      return await this.beckendHttpService.post(this.path, toCreate);
+      return await this.backendHttp.post(this.path, toCreate);
     } catch (e) {
       ErrorHandlerService.handleError(e);
     }
@@ -37,7 +37,7 @@ export abstract class BackendModelService<BasicModel, BackendModel extends Basic
 
   async update(id: string, toUpdate: BasicModel): Promise<BackendModel> {
     try {
-      return await this.beckendHttpService.put(BackendModelService.getUrlWithId(this.path, id), toUpdate);
+      return await this.backendHttp.put(BackendModelService.getUrlWithId(this.path, id), toUpdate);
     } catch (e) {
       ErrorHandlerService.handleError(e);
     }
@@ -45,7 +45,7 @@ export abstract class BackendModelService<BasicModel, BackendModel extends Basic
 
   async delete(id: string): Promise<BackendModel> {
     try {
-      return await this.beckendHttpService.delete(BackendModelService.getUrlWithId(this.path, id));
+      return await this.backendHttp.delete(BackendModelService.getUrlWithId(this.path, id));
     } catch (e) {
       ErrorHandlerService.handleError(e);
     }

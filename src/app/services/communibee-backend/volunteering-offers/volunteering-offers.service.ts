@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BackendModelService } from '../basic-model.service';
-import { BeckendHttpService } from '../beckend-http.service';
+import { BackendHttpService } from '../backend-http.service';
 import { VolunteeringOffer, VolunteeringOfferModel } from './volunteering-offer';
 
 const path = 'volunteering-offers';
@@ -10,7 +10,7 @@ const path = 'volunteering-offers';
 })
 export class VolunteeringOffersService extends BackendModelService<VolunteeringOffer, VolunteeringOfferModel> {
 
-  constructor(private communiHttp: BeckendHttpService) {
-    super(path, communiHttp);
+  constructor(private backendHttpService: BackendHttpService) {
+    super(path, backendHttpService);
   }
 }
