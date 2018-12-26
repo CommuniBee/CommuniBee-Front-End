@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+html {
+  height: 100vh;
+}
+
 @font-face {
   font-family: "AlenbiSans";
   src: url(assets/fonts/AlenbiSans-Regular.woff);
@@ -33,9 +38,20 @@
   src: url(https://fonts.googleapis.com/css?family=Rubik);
 }
 
+a {
+  font-family: "FbOgen", Verdana, Tahoma;
+  font-weight: 100;
+}
+
 a.nav-link {
   font-family: 'FbOgen';
-  font-weight: 900;
+  font-weight: 500;
+  font-size: 1.25em !important;
+}
+
+.breadcrumb-item {
+  font-family: 'FbOgen';
+  font-weight: bold;
   font-size: 1em !important;
 }
 
@@ -57,3 +73,11 @@ p.h1, p.h2, p.h3, p.h4, p.h5 {
   font-family: "FbOgen", Verdana, Tahoma;
 }
 
+/* RTL rules*/
+.rtl {
+  direction: rtl;
+  text-align: right;
+}
+.rtl input {
+  direction: rtl;
+}

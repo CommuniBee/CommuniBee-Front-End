@@ -1,0 +1,40 @@
+.breadcrumb-item.text-uppercase a{
+  color: white;
+}
+
+.breadcrumb-item.text-uppercase::before{
+  color: white;
+  margin-right: 0;
+  margin-left: 0.4375rem;
+  top: 2px;
+  position: relative;
+}
+
+
+.breadcrumb-item.text-uppercase{
+  padding-left: 0.3125rem;
+}
+
+.card-body .badge {
+  margin-left: 6px;
+  margin-bottom: 6px;
+}
+
+.card-body {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.card-footer {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.divider-4.yellow {
+  margin-bottom: 1rem;
+}
+
+.divider-4.yellow::before {
+  background-color: #F1C40F;
+}
+

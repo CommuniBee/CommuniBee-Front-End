@@ -16,13 +16,13 @@
 }
 
 .carousel-item .background-img {
-  height: calc(100vh - 77.16px);
+  min-height: calc(100vh - 77.16px - 86px);
   width: 100%;
   background-size: 100% auto;
   background-position: center;
 }
 .overlay-body {
-  height: calc(100vh - 77.16px);
+  height: calc(100vh - 77.16px - 86px);
   width: 100%;
   position: absolute;
   z-index: 2;
