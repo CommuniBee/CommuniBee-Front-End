@@ -5,6 +5,7 @@ import {BrowseContentComponent} from './components/browse-content/browse-content
 import {BrowseVolunteersComponent} from './components/browse-volunteers/browse-volunteers.component';
 import {BrowseOpportunitiesComponent} from './components/browse-opportunities/browse-opportunities.component';
 import {RegisterComponent} from './components/register/register.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'browse/volunteers', component: BrowseVolunteersComponent },
   { path: 'browse/opportunities', component: BrowseOpportunitiesComponent },
   { path: 'browse/register', component: RegisterComponent },
+  { path: 'dashboard', component: DashboardComponent }
 ];
 
 @NgModule({

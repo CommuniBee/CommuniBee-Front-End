@@ -13,6 +13,7 @@ import { BrowseContentComponent } from './components/browse-content/browse-conte
 import { BrowseOpportunitiesComponent } from './components/browse-opportunities/browse-opportunities.component';
 import { BrowseVolunteersComponent } from './components/browse-volunteers/browse-volunteers.component';
 import { RegisterComponent } from './components/register/register.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { RegisterComponent } from './components/register/register.component';
     BrowseContentComponent,
     BrowseOpportunitiesComponent,
     BrowseVolunteersComponent,
-    RegisterComponent
+    RegisterComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
