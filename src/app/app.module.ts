@@ -12,6 +12,7 @@ import { ContactModalComponent } from './components/contact-modal/contact-modal.
 import { BrowseContentComponent } from './components/browse-content/browse-content.component';
 import { BrowseOpportunitiesComponent } from './components/browse-opportunities/browse-opportunities.component';
 import { BrowseVolunteersComponent } from './components/browse-volunteers/browse-volunteers.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { BrowseVolunteersComponent } from './components/browse-volunteers/browse
     ContactModalComponent,
     BrowseContentComponent,
     BrowseOpportunitiesComponent,
-    BrowseVolunteersComponent
+    BrowseVolunteersComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
