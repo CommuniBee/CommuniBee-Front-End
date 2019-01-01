@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 import Stepper from 'bs-stepper';
 declare var $;
 
@@ -10,7 +11,7 @@ declare var $;
 })
 export class RegisterComponent implements OnInit {
   stepper: any;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     $(document).ready(() => {
@@ -19,8 +20,12 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  nextPage() {
-    this.stepper.next();
+  nextPage(isLastStep: boolean = false) {
+    if (isLastStep) {
+      this.router.navigateByUrl('/dashboard');
+    } else {
+      this.stepper.next();
+    }
   }
 
 }
