@@ -81,3 +81,18 @@ p.h1, p.h2, p.h3, p.h4, p.h5 {
 .rtl input {
   direction: rtl;
 }
+
+/* RTL Table fix */
+table.rtl thead th:first-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0.1875rem;
+  border-bottom-right-radius: 0.1875rem;
+}
+
+table.rtl thead th:last-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0.1875rem;
+  border-bottom-left-radius: 0.1875rem;
+}
