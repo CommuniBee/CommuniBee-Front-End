@@ -14,6 +14,8 @@ import { BrowseOpportunitiesComponent } from './components/browse-opportunities/
 import { BrowseVolunteersComponent } from './components/browse-volunteers/browse-volunteers.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AddVolunteeringOpportunityComponent } from './components/add-volunteering-opportunity/add-volunteering-opportunity.component';
+import { AddVolunteersComponent } from './components/add-volunteers/add-volunteers.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     BrowseOpportunitiesComponent,
     BrowseVolunteersComponent,
     RegisterComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddVolunteeringOpportunityComponent,
+    AddVolunteersComponent
   ],
   imports: [
     BrowserModule,
