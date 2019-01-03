@@ -1,0 +1,11 @@
+.comp-underlay {
+  background-image: url("/assets/imgs/d01df4038d231e4c1a935ebceca305b1.jpg");
+  background-size: cover;
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  z-index: -1;
+}
+
+tbody {
+  background: #00000005;
+}

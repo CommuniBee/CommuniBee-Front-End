@@ -1,109 +1,287 @@
-
-<div class="container" style="text-align: right;">
-  <div class="row justify-content-center mt-3">
-    <div class="col-sm-6 col-lg-4 col-md-6">
-      <div class="card border-0 shadow bg-dark text-center">
-        <img class="card-img" src="assets/images/card-price-table-bg-02.jpg" style="height: 120px;object-fit: cover;" alt="Card image">
-        <div class="card-img-overlay d-flex align-items-center">
-          <div class="w-100 p-2">
-            <a href="#" class="btn btn-gray-shadow btn-outline-light btn-round btn-lg mb-0" style="font-size: 1.8em;">
-              הוסף מתנדבים
-              <i class="fas fa-user-plus ml-1" style="position: relative;top: 5px; font-size: 1.3em;"></i>
-            </a>
+<div class="comp-container" style="min-height: 100%; display: flow-root;">
+  <div class="alert rtl alert-warning alert-icon alert-dismissible fade show" style="margin: 10px;" role="alert">
+    <i class="far fa-exclamation-circle" style="font-size: 1.4em"></i>
+    <span style="font-size: 1.2em"><strong>התאמה חדשה!</strong> מצאנו לך מקום התנדבות מותאם עבורך.</span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true"></span>
+    </button>
+  </div>
+  <div class="container" style="text-align: right;">
+    <div class="row justify-content-center mt-3">
+      <div class="col-sm-6 col-lg-4 col-md-6">
+        <div class="card border-0 shadow bg-dark text-center">
+          <img class="card-img" src="assets/images/card-price-table-bg-02.jpg" style="height: 120px;object-fit: cover;"
+               alt="Card image">
+          <div class="card-img-overlay d-flex align-items-center">
+            <div class="w-100 p-2">
+              <a href="#" class="btn btn-gray-shadow btn-outline-light btn-round btn-lg mb-0" style="font-size: 1.8em;">
+                הוסף מתנדבים
+                <i class="fas fa-user-plus ml-1" style="position: relative;top: 5px; font-size: 1.3em;"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-sm-none d-md-none col-lg-1"></div>
+      <div class="col-sm-6 col-lg-4 col-md-6">
+        <div class="card border-0 shadow bg-dark text-center">
+          <img class="card-img" src="assets/images/card-price-table-bg-01.jpg"
+               style="height: 120px;object-fit: cover;     object-position: 100% 45%;" alt="Card image">
+          <div class="card-img-overlay d-flex align-items-center">
+            <div class="w-100 p-2">
+              <a href="#" class="btn btn-gray-shadow btn-outline-light btn-round btn-lg mb-0" style="font-size: 1.8em;">
+                הוסף התנדבות
+                <i class="fal fa-plus ml-1" style="position: relative;top: 5px; font-size: 1.3em;"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="d-sm-none d-md-none col-lg-1"></div>
-    <div class="col-sm-6 col-lg-4 col-md-6">
-      <div class="card border-0 shadow bg-dark text-center">
-        <img class="card-img" src="assets/images/card-price-table-bg-01.jpg" style="height: 120px;object-fit: cover;     object-position: 100% 45%;" alt="Card image">
-        <div class="card-img-overlay d-flex align-items-center">
-          <div class="w-100 p-2">
-            <a href="#" class="btn btn-gray-shadow btn-outline-light btn-round btn-lg mb-0" style="font-size: 1.8em;">
-              הוסף התנדבות
-              <i class="fal fa-plus ml-1" style="position: relative;top: 5px; font-size: 1.3em;"></i>
-            </a>
-          </div>
-        </div>
+
+    <div class="row justify-content-center mt-3">
+      <div class="col rtl">
+        <h2 style="display: inline;">
+          <i class="fas fa-fire text-danger"></i>
+          התאמות אחרונות
+        </h2>
+        <small class="mr-2">מקומות שנמצאו מתאים במיוחד עבורך</small>
+        <table class="table rtl table-hover">
+          <thead class="thead">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">גוף</th>
+            <th scope="col">מידע</th>
+            <th scope="col">פעולות</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>שם גוף 1</td>
+            <td>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-book ml-1"></i>
+                תוכן
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-clock ml-1"></i>
+                תאריכים
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-mobile-alt ml-1"></i>
+                איש קשר
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-map-marker-alt ml-1"></i>
+                מיקום
+              </span>
+            </td>
+            <td>
+              <button type="button" class="btn btn-dark btn-sm btn-round shadow-none mb-0 ml-2">
+                <i class="fas fa-print ml-1 mr-0"></i>
+                הדפס
+              </button>
+              <button type="button" class="btn btn-danger btn-sm btn-round shadow-none mb-0 ml-2">
+                <i class="fas fa-trash-alt ml-1 mr-0"></i>
+                מחק
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>שם גוף 2</td>
+            <td>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-book ml-1"></i>
+                תוכן
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-clock ml-1"></i>
+                תאריכים
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-mobile-alt ml-1"></i>
+                איש קשר
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-map-marker-alt ml-1"></i>
+                מיקום
+              </span>
+            </td>
+            <td>
+              <button type="button" class="btn btn-dark btn-sm btn-round shadow-none mb-0 ml-2">
+                <i class="fas fa-print ml-1 mr-0"></i>
+                הדפס
+              </button>
+              <button type="button" class="btn btn-danger btn-sm btn-round shadow-none mb-0 ml-2">
+                <i class="fas fa-trash-alt ml-1 mr-0"></i>
+                מחק
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>שם גוף 3</td>
+            <td>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-book ml-1"></i>
+                תוכן
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-clock ml-1"></i>
+                תאריכים
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-mobile-alt ml-1"></i>
+                איש קשר
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-map-marker-alt ml-1"></i>
+                מיקום
+              </span>
+            </td>
+            <td>
+              <button type="button" class="btn btn-dark btn-sm btn-round shadow-none mb-0 ml-2">
+                <i class="fas fa-print ml-1 mr-0"></i>
+                הדפס
+              </button>
+              <button type="button" class="btn btn-danger btn-sm btn-round shadow-none mb-0 ml-2">
+                <i class="fas fa-trash-alt ml-1 mr-0"></i>
+                מחק
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row justify-content-center mt-3">
+      <div class="col rtl">
+        <h2 style="display: inline;">
+          <i class="fas fa-history"></i>
+          הסטוריית אירועים
+        </h2>
+        <small class="mr-2">ארועי התנדבות שהושלמו</small>
+        <table class="table rtl table-sm table-hover" dir="rtl">
+          <thead class="thead">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">גוף</th>
+            <th scope="col">מידע</th>
+            <th scope="col">תאריך</th>
+            <th scope="col">דירוג</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>שם גוף 1</td>
+            <td>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-book ml-1"></i>
+                תוכן
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-mobile-alt ml-1"></i>
+                איש קשר
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-map-marker-alt ml-1"></i>
+                מיקום
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-map-marker-alt ml-1"></i>
+                דירוג
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-map-marker-alt ml-1"></i>
+                הערות
+              </span>
+            </td>
+            <td>21/12/2018</td>
+            <td style="color: #f4c113; text-align: center;">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>שם גוף 2</td>
+            <td>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-book ml-1"></i>
+                תוכן
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-mobile-alt ml-1"></i>
+                איש קשר
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-map-marker-alt ml-1"></i>
+                מיקום
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-map-marker-alt ml-1"></i>
+                דירוג
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-map-marker-alt ml-1"></i>
+                הערות
+              </span>
+            </td>
+            <td>21/12/2018</td>
+            <td style="color: #f4c113; text-align: center;">
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>שם גוף 3</td>
+            <td>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-book ml-1"></i>
+                תוכן
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-mobile-alt ml-1"></i>
+                איש קשר
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-map-marker-alt ml-1"></i>
+                מיקום
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-map-marker-alt ml-1"></i>
+                דירוג
+              </span>
+              <span style="cursor: pointer;" class="badge badge-dark ml-1">
+                <i class="fas fa-map-marker-alt ml-1"></i>
+                הערות
+              </span>
+            </td>
+            <td>21/12/2018</td>
+            <td style="color: #f4c113; text-align: center;">
+              <i class="fas fa-star-half-alt"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-
-  <div class="row justify-content-center mt-3">
-    <div class="col">
-      <h3>
-        התאמות אחרונות
-      </h3>
-      <table class="table rtl">
-        <thead class="thead-dark">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="row justify-content-center mt-3">
-    <div class="col">
-      <h3>
-        הסטוריית אירועים
-      </h3>
-      <table class="table rtl" dir="rtl">
-        <thead class="thead-dark">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <!--<div class="comp-underlay" style="min-height: 100%; display: flow-root;">-->
+  <!--</div>-->
 </div>
-
