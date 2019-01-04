@@ -1,3 +1,174 @@
-<p>
-  add-volunteering-opportunity works!
-</p>
+<div class="container">
+  <div class="row rtl justify-content-center mt-2">
+    <div class="col-lg-8">
+      <h2>
+        התנדבות חדשה
+      </h2>
+    </div>
+  </div>
+
+  <div class="row rtl justify-content-center">
+    <div class="col-lg-8">
+      <form>
+        <div class="input-group mb-3">
+          <h4 class="secondary-header mt-2 mb-0">
+            שם ההתנדבות
+          </h4>
+          <div class="input-group-inner">
+            <div class="input-group-prepend">
+              <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
+                class="far fa-font"></i></span>
+            </div>
+            <input type="text" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault"
+                   placeholder="הזן שם התנדבות">
+            <div class="input-focus-bg"></div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <h4 class="secondary-header mt-2 mb-0">
+            שם המקום/ארגון
+          </h4>
+          <div class="input-group-inner">
+            <div class="input-group-prepend">
+              <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
+                class="far fa-building"></i></span>
+            </div>
+            <input type="text" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault"
+                   placeholder="הזן שם מקום">
+            <div class="input-focus-bg"></div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <h4 class="secondary-header mt-2 mb-0">
+            תיאור ההתנדבות
+          </h4>
+          <div class="input-group-inner">
+            <div class="input-group-prepend">
+              <span class="input-group-text input-group-icon" style="height: 33px;" id="inputGroupIconDefault"><i
+                class="far fa-question-circle"></i></span>
+            </div>
+            <textarea class="form-control mt-1" id="TextareaDefault" placeholder="הזן תיאור ההתנדבות" rows="3"></textarea>
+
+            <div class="input-focus-bg"></div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <h4 class="secondary-header mt-2 mb-0">
+            תוכן
+          </h4>
+          <div class="input-group-inner">
+            <input type="text" class="form-control" placeholder="ללא תוכן" aria-label="Search" aria-describedby="iputGroupSearchDefault">
+            <div class="input-group-append">
+              <button class="btn btn-primary mb-0 shadow-none" style="font-size: 1.2em;" type="button" id="iputGroupSearchDefault">
+                חפש תוכן
+                <i class="fas fa-books"></i>
+              </button>
+            </div>
+            <div class="input-focus-bg"></div>
+          </div>
+        </div>
+
+        <h4 class="secondary-header mt-2 mb-0">
+          ימים אפשריים
+        </h4>
+        <div class="input-group mb-3">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck1">
+            <label class="custom-control-label" for="customCheck1">ראשון</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck2">
+            <label class="custom-control-label" for="customCheck2">שני</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck3">
+            <label class="custom-control-label" for="customCheck3">שלישי</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck4">
+            <label class="custom-control-label" for="customCheck4">רביעי</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck5">
+            <label class="custom-control-label" for="customCheck5">חמישי</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck6">
+            <label class="custom-control-label" for="customCheck6">שישי</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck7">
+            <label class="custom-control-label" for="customCheck7">שבת</label>
+          </div>
+        </div>
+
+        <h4 class="secondary-header mt-2 mb-0">
+          שעות אפשריות
+        </h4>
+        <div class="input-group mb-3">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck11">
+            <label class="custom-control-label" for="customCheck11">
+              <i class="fas fa-sunrise"></i>
+              בוקר
+            </label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck12">
+            <label class="custom-control-label" for="customCheck12">
+              <i class="fas fa-sun"></i>
+              צהריים
+            </label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck13">
+            <label class="custom-control-label" for="customCheck13">
+              <i class="fas fa-moon"></i>
+              ערב
+            </label>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <h4 class="secondary-header mt-2 mb-0">
+            כתובת
+          </h4>
+          <div class="input-group-inner">
+            <input type="text" class="form-control" placeholder="הזן כתובת או דקור נקודה במפה" aria-label="Search" aria-describedby="iputGroupSearchDefault">
+            <div class="input-group-append">
+              <button class="btn btn-primary mb-0 shadow-none" style="font-size: 1.2em;" type="button" id="iputGroupSearchDefault">
+                פתח מפה
+                <i class="fas fa-map-marker-alt"></i>
+              </button>
+            </div>
+            <div class="input-focus-bg"></div>
+          </div>
+        </div>
+
+        <h4 class="secondary-header mt-2 mb-0">
+          איזור בארץ
+        </h4>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="customRadio1">צפון</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="customRadio2">מרכז</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="customRadio3">דרום</label>
+        </div>
+
+        <div routerLink="/dashboard" class="form-group" style="justify-content: center; display: flex;">
+          <button type="submit" style="font-size: 1.3em;" class="btn btn-outline-primary shadow-none">הוסף</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

@@ -88,6 +88,11 @@ p.h1, p.h2, p.h3, p.h4, p.h5 {
   direction: rtl;
 }
 
+.secondary-header {
+  font-weight: lighter;
+  color: #485357;
+}
+
 /* RTL Table fix */
 table.rtl thead th:first-child {
   border-top-left-radius: 0;
@@ -111,4 +116,26 @@ table.rtl thead th:last-child {
 .alert.rtl > button:last-child {
   right: inherit;
   left: 0;
+}
+
+//RTL input icon fix
+.rtl .input-group-icon {
+  margin-right: 4px;
+}
+
+.rtl .input-group-append {
+  margin-left: 4px;
+}
+.rtl .custom-control-label::after {
+  left: 0;
+  right: -1.5rem;
+}
+
+.rtl .custom-control-label::before {
+  left: 0;
+  right: -1.5rem;
+}
+
+.rtl .custom-control.custom-radio, .rtl .custom-control.custom-checkbox {
+  margin-right: 1.5rem;
 }
