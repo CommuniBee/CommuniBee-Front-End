@@ -24,11 +24,11 @@ export class AuthService {
     this.expiresAt = 0;
   }
 
-  get getAccessToken(): string {
+  public getAccessToken(): string {
     return this.accessToken;
   }
 
-  get getIdToken(): string {
+  public getIdToken(): string {
     return this.idToken;
   }
 
