@@ -26,7 +26,7 @@
       <div class="bs-stepper-content">
         <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
           <div class="container" style="display: flex; justify-content: center;">
-            <button (click)="nextPage()" type="button" class="btn btn-warning btn-lg mt-3" style="font-size: 1.4em; display: flex; align-items: center;">
+            <button (click)="launchAuth0()" type="button" class="btn btn-warning btn-lg mt-3" style="font-size: 1.4em; display: flex; align-items: center;">
               <i class="fas fa-lock ml-3" style="font-size: 2em "></i>
               התחבר עם
               &nbsp;
@@ -42,7 +42,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text input-group-icon mr-1" id="inputGroupIconDefault"><i class="far fa-user-circle"></i></span>
                   </div>
-                  <input type="text" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault" placeholder="שם">
+                  <input id="name" type="text" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault" placeholder="שם">
                   <div class="input-focus-bg"></div>
                 </div>
               </div>
@@ -51,20 +51,9 @@
               <div class="input-group mb-3">
                 <div class="input-group-inner">
                   <div class="input-group-prepend">
-                    <span class="input-group-text input-group-icon mr-1" id="inputGroupIconDefault"><i class="far fa-building"></i></span>
+                    <span class="input-group-text input-group-icon mr-1" id="inputGroupIconDefault"><i class="far fa-at"></i></span>
                   </div>
-                  <input type="text" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault" placeholder="ארגון">
-                  <div class="input-focus-bg"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="input-group mb-3">
-                <div class="input-group-inner">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text input-group-icon mr-1" id="inputGroupIconDefault"><i class="far fa-mobile"></i></span>
-                  </div>
-                  <input type="text" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault" placeholder="טלפון">
+                  <input id="email" type="text" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault" placeholder="אימייל" [value]="this.auth.getIdTokenPayload().email">
                   <div class="input-focus-bg"></div>
                 </div>
               </div>
@@ -89,7 +78,7 @@
               <input type="checkbox" class="custom-control-input" id="customCheck1">
               <label class="custom-control-label mt-3" for="customCheck1">אני מאשר/ת את תנאי השימוש</label>
             </div>
-            <button (click)="nextPage(true)" type="button" class="btn btn-warning mt-3">הרשם</button>
+            <button (click)="register()" type="button" class="btn btn-warning mt-3">הרשם</button>
           </div>
         </div>
       </div>

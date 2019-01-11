@@ -5,16 +5,20 @@
 export const environment = {
   production: false,
   auth0: {
-    clientId: 'QYeOypEJmHtXWi5NLxjXkuvn6ry0e8vy',
+    clientId: 'hvT4lcjQiMt84WdPlP2Qw1cu16Dp26d1',
     domain: 'asafkaravani.auth0.com',
-    redirectUri: 'http://localhost:4200/login',
+    redirectUri: 'http://localhost:4200/register?auth0_callback=true',
+    loginRedirectUri: 'http://localhost:4200/dashboard',
+  },
+  api: {
+    url: 'http://localhost:3000'
   }
 };
 
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
+ *`
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
