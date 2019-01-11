@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'browse/content', component: BrowseContentComponent },
   { path: 'browse/volunteers', component: BrowseVolunteersComponent },
   { path: 'browse/opportunities', component: BrowseOpportunitiesComponent },
-  { path: 'browse/register', component: RegisterComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'opportunities/add', component: AddVolunteeringOpportunityComponent },
   { path: 'volunteers/add', component: AddVolunteersComponent }

@@ -5,9 +5,9 @@
 export const environment = {
   production: false,
   auth0: {
-    clientId: '',
-    domain: '',
-    redirectUri: '',
+    clientId: 'QYeOypEJmHtXWi5NLxjXkuvn6ry0e8vy',
+    domain: 'asafkaravani.auth0.com',
+    redirectUri: 'http://localhost:4200/login',
   }
 };
 
