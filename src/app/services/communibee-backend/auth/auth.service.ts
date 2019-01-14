@@ -46,6 +46,12 @@ export class AuthService {
     this.auth0.authorize();
   }
 
+  public register(): void {
+    this.auth0.authorize({
+      redirectUri: environment.auth0.registerRedirectUri
+    });
+  }
+
   public handleAuthentication(): void {
     this.auth0.parseHash((err, authResult) => {
       console.log(authResult);
