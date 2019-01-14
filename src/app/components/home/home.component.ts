@@ -15,8 +15,8 @@ export class HomeComponent implements OnInit {
 
   getJoinUsPath() {
     const DASHBOARD_PATH = '/dashboard';
-    const HOME_PATH = '/';
-    return this.auth.isLoggedIn() ? DASHBOARD_PATH : HOME_PATH;
+    const REGISTER_PATH = '/register';
+    return this.auth.isLoggedIn() ? DASHBOARD_PATH : REGISTER_PATH;
   }
 
 }
