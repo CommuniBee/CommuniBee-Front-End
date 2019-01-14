@@ -3,7 +3,6 @@ import {BackendModelService} from '../basic-model.service';
 import {User, UserModel} from './user';
 import {BackendHttpService} from '../backend-http.service';
 import {ErrorHandlerService} from '../../error-handler/error-handler.service';
-import BackendModel from '../backend-model';
 
 const path = 'users';
 
@@ -16,9 +15,9 @@ export class UserService extends BackendModelService<User, UserModel> {
     super(path, backendHttpService);
   }
 
-  async getBySubId(subId: string): Promise<BackendModel> {
+  async getLoggedUser(): Promise<User> {
     try {
-      return await this.backendHttp.get(`${this.path}/subscriber/${subId}`);
+      return await this.backendHttp.get(`${this.path}/subscriber/me`);
     } catch (e) {
       ErrorHandlerService.handleError(e);
     }
