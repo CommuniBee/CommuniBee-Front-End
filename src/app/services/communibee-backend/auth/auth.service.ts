@@ -38,6 +38,14 @@ export class AuthService {
     return this.idTokenPayload;
   }
 
+  public getLocalUser(): User {
+    return this.localUser;
+  }
+
+  public isLoggedIn(): boolean {
+    return !!this.localUser.email;
+  }
+
   public getIdToken(): string {
     return this.idToken;
   }
@@ -75,8 +83,9 @@ export class AuthService {
     this.accessToken = authResult.accessToken;
     this.idToken = authResult.idToken;
     this.idTokenPayload = authResult.idTokenPayload;
-    this.users.getBySubId(this.idTokenPayload.sub).then(res => {
-      console.log(res);
+    console.log('idToken', this.idToken);
+    this.users.getLoggedUser().then(loggedUserData => {
+      this.localUser = loggedUserData;
     });
   }
 
@@ -99,6 +108,7 @@ export class AuthService {
     this.idToken = '';
     this.idTokenPayload = {};
     this.expiresAt = 0;
+    this.localUser = {};
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem('isLoggedIn');
     // Go back to the home route
