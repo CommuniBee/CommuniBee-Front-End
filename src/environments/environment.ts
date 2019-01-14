@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   auth0: {
-    clientId: 'hvT4lcjQiMt84WdPlP2Qw1cu16Dp26d1',
+    clientId: 'QYeOypEJmHtXWi5NLxjXkuvn6ry0e8vy',
     domain: 'asafkaravani.auth0.com',
     redirectUri: 'http://localhost:4200/register?auth0_callback=true',
     loginRedirectUri: 'http://localhost:4200/dashboard',
