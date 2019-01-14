@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
   }
 
   launchAuth0() {
-    this.auth.login();
+    this.auth.register();
   }
 
   register() {
