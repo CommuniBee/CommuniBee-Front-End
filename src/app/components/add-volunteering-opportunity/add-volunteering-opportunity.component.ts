@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-add-volunteering-opportunity',
@@ -6,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-volunteering-opportunity.component.scss']
 })
 export class AddVolunteeringOpportunityComponent implements OnInit {
+  form : FormGroup = this.fb.group({
 
-  constructor() { }
+  });
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
   }

@@ -9,7 +9,7 @@
 
   <div class="row rtl justify-content-center">
     <div class="col-lg-8">
-      <form>
+      <form [formGroup]="form">
         <div class="input-group mb-3">
           <h4 class="secondary-header mt-2 mb-0">
             שם ההתנדבות
@@ -19,23 +19,8 @@
               <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
                 class="far fa-font"></i></span>
             </div>
-            <input type="text" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault"
+            <input type="text" formControlName="title" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault"
                    placeholder="הזן שם התנדבות">
-            <div class="input-focus-bg"></div>
-          </div>
-        </div>
-
-        <div class="input-group mb-3">
-          <h4 class="secondary-header mt-2 mb-0">
-            שם המקום/ארגון
-          </h4>
-          <div class="input-group-inner">
-            <div class="input-group-prepend">
-              <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
-                class="far fa-building"></i></span>
-            </div>
-            <input type="text" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault"
-                   placeholder="הזן שם מקום">
             <div class="input-focus-bg"></div>
           </div>
         </div>
@@ -49,7 +34,7 @@
               <span class="input-group-text input-group-icon" style="height: 33px;" id="inputGroupIconDefault"><i
                 class="far fa-question-circle"></i></span>
             </div>
-            <textarea class="form-control mt-1" id="TextareaDefault" placeholder="הזן תיאור ההתנדבות" rows="3"></textarea>
+            <textarea formControlName="about" class="form-control mt-1" id="TextareaDefault" placeholder="הזן תיאור ההתנדבות" rows="3"></textarea>
 
             <div class="input-focus-bg"></div>
           </div>
@@ -74,7 +59,7 @@
         <h4 class="secondary-header mt-2 mb-0">
           ימים אפשריים
         </h4>
-        <div class="input-group mb-3">
+        <div class="input-group mb-3" formGroupName="days">
           <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="customCheck1">
             <label class="custom-control-label" for="customCheck1">ראשון</label>
