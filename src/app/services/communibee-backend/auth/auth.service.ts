@@ -62,7 +62,6 @@ export class AuthService {
 
   public handleAuthentication(): void {
     this.auth0.parseHash((err, authResult) => {
-      console.log(authResult);
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         this.localLogin(authResult);
@@ -83,7 +82,6 @@ export class AuthService {
     this.accessToken = authResult.accessToken;
     this.idToken = authResult.idToken;
     this.idTokenPayload = authResult.idTokenPayload;
-    console.log('idToken', this.idToken);
     this.users.getLoggedUser().then(loggedUserData => {
       this.localUser = loggedUserData;
     });
@@ -91,9 +89,7 @@ export class AuthService {
 
   public renewTokens(): void {
     this.auth0.checkSession({}, (err, authResult) => {
-      console.log('post checkSession', authResult);
       if (authResult && authResult.accessToken && authResult.idToken) {
-        console.log('checkSession', authResult);
         this.localLogin(authResult);
       } else if (err) {
         console.error('Could not renew token, logging out', err);

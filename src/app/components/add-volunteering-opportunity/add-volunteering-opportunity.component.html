@@ -9,10 +9,10 @@
 
   <div class="row rtl justify-content-center">
     <div class="col-lg-8">
-      <form [formGroup]="form">
+      <form [formGroup]="form" (submit)="sendData()">
         <div class="input-group mb-3">
           <h4 class="secondary-header mt-2 mb-0">
-            שם ההתנדבות
+            שם ההתנדבות *
           </h4>
           <div class="input-group-inner">
             <div class="input-group-prepend">
@@ -27,7 +27,7 @@
 
         <div class="input-group mb-3">
           <h4 class="secondary-header mt-2 mb-0">
-            תיאור ההתנדבות
+            תיאור ההתנדבות *
           </h4>
           <div class="input-group-inner">
             <div class="input-group-prepend">
@@ -40,14 +40,61 @@
           </div>
         </div>
 
+        <h4 class="secondary-header mt-2 mb-0">
+          איש קשר *
+        </h4>
+        <div class="row rtl justify-content-center" formGroupName="poc">
+          <div class="col-lg-4">
+            <div class="input-group mb-3">
+              <div class="input-group-inner">
+                <div class="input-group-prepend">
+              <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
+                class="far fa-user"></i></span>
+                </div>
+                <input type="text" formControlName="name" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault"
+                       placeholder="שם מלא">
+                <div class="input-focus-bg"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="input-group mb-3">
+              <div class="input-group-inner">
+                <div class="input-group-prepend">
+              <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
+                class="far fa-phone"></i></span>
+                </div>
+                <input type="text" formControlName="phone" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault"
+                       placeholder="טלפון">
+                <div class="input-focus-bg"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="input-group mb-3">
+              <div class="input-group-inner">
+                <div class="input-group-prepend">
+              <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
+                class="far fa-at"></i></span>
+                </div>
+                <input type="text" formControlName="email" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault"
+                       placeholder="אימייל">
+                <div class="input-focus-bg"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
         <div class="input-group mb-3">
           <h4 class="secondary-header mt-2 mb-0">
             תוכן
           </h4>
           <div class="input-group-inner">
-            <input type="text" class="form-control" placeholder="ללא תוכן" aria-label="Search" aria-describedby="iputGroupSearchDefault">
+            <input formControlName="content" type="text" class="form-control" placeholder="ללא תוכן" aria-label="Search" aria-describedby="iputGroupSearchDefault">
             <div class="input-group-append">
-              <button class="btn btn-primary mb-0 shadow-none" style="font-size: 1.2em;" type="button" id="iputGroupSearchDefault">
+              <button class="btn btn-primary disabled mb-0 shadow-none" style="font-size: 1.2em;" type="button" id="inputGroupSearchDefault">
                 חפש תוכן
                 <i class="fas fa-books"></i>
               </button>
@@ -61,70 +108,43 @@
         </h4>
         <div class="input-group mb-3" formGroupName="days">
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="customCheck1">
+            <input formControlName="1" type="checkbox" class="custom-control-input" id="customCheck1">
             <label class="custom-control-label" for="customCheck1">ראשון</label>
           </div>
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="customCheck2">
+            <input formControlName="3" type="checkbox" class="custom-control-input" id="customCheck2">
             <label class="custom-control-label" for="customCheck2">שני</label>
           </div>
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="customCheck3">
+            <input formControlName="3" type="checkbox" class="custom-control-input" id="customCheck3">
             <label class="custom-control-label" for="customCheck3">שלישי</label>
           </div>
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="customCheck4">
+            <input formControlName="4" type="checkbox" class="custom-control-input" id="customCheck4">
             <label class="custom-control-label" for="customCheck4">רביעי</label>
           </div>
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="customCheck5">
+            <input formControlName="5" type="checkbox" class="custom-control-input" id="customCheck5">
             <label class="custom-control-label" for="customCheck5">חמישי</label>
           </div>
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="customCheck6">
+            <input formControlName="6" type="checkbox" class="custom-control-input" id="customCheck6">
             <label class="custom-control-label" for="customCheck6">שישי</label>
           </div>
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="customCheck7">
+            <input formControlName="7" type="checkbox" class="custom-control-input" id="customCheck7">
             <label class="custom-control-label" for="customCheck7">שבת</label>
-          </div>
-        </div>
-
-        <h4 class="secondary-header mt-2 mb-0">
-          שעות אפשריות
-        </h4>
-        <div class="input-group mb-3">
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="customCheck11">
-            <label class="custom-control-label" for="customCheck11">
-              <i class="fas fa-sunrise"></i>
-              בוקר
-            </label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="customCheck12">
-            <label class="custom-control-label" for="customCheck12">
-              <i class="fas fa-sun"></i>
-              צהריים
-            </label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="customCheck13">
-            <label class="custom-control-label" for="customCheck13">
-              <i class="fas fa-moon"></i>
-              ערב
-            </label>
           </div>
         </div>
 
         <div class="input-group mb-3">
           <h4 class="secondary-header mt-2 mb-0">
-            כתובת
+            כתובת *
           </h4>
           <div class="input-group-inner">
-            <input type="text" class="form-control" placeholder="הזן כתובת או דקור נקודה במפה" aria-label="Search" aria-describedby="iputGroupSearchDefault">
+            <input formControlName="address" type="text" class="form-control" placeholder="הזן כתובת או דקור נקודה במפה" aria-label="Search" aria-describedby="iputGroupSearchDefault">
             <div class="input-group-append">
-              <button class="btn btn-primary mb-0 shadow-none" style="font-size: 1.2em;" type="button" id="iputGroupSearchDefault">
+              <button class="btn btn-primary disabled mb-0 shadow-none" style="font-size: 1.2em;" type="button" id="iputGroupSearchDefault">
                 פתח מפה
                 <i class="fas fa-map-marker-alt"></i>
               </button>
@@ -134,22 +154,24 @@
         </div>
 
         <h4 class="secondary-header mt-2 mb-0">
-          איזור בארץ
+          איזור בארץ *
         </h4>
         <div class="custom-control custom-radio">
-          <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+          <input formControlName="region" type="radio" id="customRadio1" value="צפון" name="region" class="custom-control-input">
           <label class="custom-control-label" for="customRadio1">צפון</label>
         </div>
         <div class="custom-control custom-radio">
-          <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+          <input formControlName="region" type="radio" id="customRadio2" value="מרכז" name="region" class="custom-control-input">
           <label class="custom-control-label" for="customRadio2">מרכז</label>
         </div>
         <div class="custom-control custom-radio">
-          <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+          <input formControlName="region" type="radio" id="customRadio3" value="דרום" name="region" class="custom-control-input">
           <label class="custom-control-label" for="customRadio3">דרום</label>
         </div>
 
-        <div routerLink="/dashboard" class="form-group" style="justify-content: center; display: flex;">
+        <p class="text-danger text-center" *ngIf="!form.valid">אנא מלאו את כל הפרטים הנדרשים (מסומן ב-*).</p>
+
+        <div class="form-group" style="justify-content: center; display: flex;">
           <button type="submit" style="font-size: 1.3em;" class="btn btn-outline-primary shadow-none">הוסף</button>
         </div>
 

@@ -40,7 +40,6 @@ export class RegisterComponent implements OnInit {
 
   subscribeToParams() {
     this.route.queryParams.subscribe(params => {
-      console.log(params);
       this.is_auth0_callback = params['auth0_callback'] === 'true';
       }
     );
