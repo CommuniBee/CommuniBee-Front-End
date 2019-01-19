@@ -90,13 +90,13 @@
 
         <div class="input-group mb-3">
           <h4 class="secondary-header mt-2 mb-0">
-            תכנים להעברה
+            תוכן להעברה
           </h4>
           <div class="input-group-inner">
-            <input type="text" formControlName="availableContent" class="form-control" placeholder="הזן תכנים" aria-label="Search" aria-describedby="iputGroupSearchDefault">
+              <input type="text" formControlName="availableContent" readonly class="form-control" placeholder="הזן תכנים" aria-label="Search" aria-describedby="iputGroupSearchDefault">
             <div class="input-group-append">
-              <button class="btn btn-primary mb-0 shadow-none" style="font-size: 1.2em;" type="button" id="iputGroupSearchDefault">
-                חפש תכנים
+              <button (click)="openContentModal()" class="btn btn-primary mb-0 shadow-none" style="font-size: 1.2em;" type="button" id="iputGroupSearchDefault">
+                העלה תוכן
                 <i class="fas fa-books"></i>
               </button>
             </div>
@@ -142,7 +142,7 @@
         <h4 class="secondary-header mt-2 mb-0">
           איזורים בארץ
         </h4>
-        <div formArrayName="regions" mclass="input-group mb-3" style="display: flex;">
+        <div formArrayName="regions" class="input-group mb-3" style="display: flex;">
           <div class="custom-control custom-checkbox"
                *ngFor="let region of regions; let i=index">
             <input type="checkbox" [formControlName]="i" class="custom-control-input" id="regionCheck{{i}}">
@@ -152,11 +152,48 @@
           </div>
         </div>
 
-        <div class="form-group" style="justify-content: center; display: flex;">
-          <button type="submit" style="font-size: 1.3em;" class="btn btn-outline-primary shadow-none">הוסף</button>
+        <p class="text-danger text-center mt-3" *ngIf="!myForm.valid">אנא מלאו את כל הפרטים הנדרשים (מסומן ב-*).</p>
+
+        <div class="form-group" [ngClass]="{'mt-3': myForm.valid}" style="justify-content: center; display: flex;">
+          <button [disabled]="!myForm.valid || !content._id" type="submit" style="font-size: 1.3em;" [ngClass]="{'btn-outline-primary': myForm.valid, 'btn-outline-danger': !myForm.valid}" class="btn shadow-none">הוסף</button>
         </div>
 
       </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalContentUpload" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center px-5 rtl">
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"></span>
+        </button>
+
+        <img class="mt-2 mb-4" src="../assets/images/modal-info-icon.png" alt="Information">
+
+        <h4 class="section-title-4 text-center font-weight-800 text-uppercase mb-4 pb-1">
+          העלה תוכן
+          <div class="title-divider-round"></div>
+        </h4>
+
+        <input type="name" class="form-control mb-3" id="contentTitle" aria-describedby="inputDefault" placeholder="כותרת">
+
+        <select id="contentCategory" class="custom-select mb-3">
+          <option selected>בחר קטגוריה</option>
+          <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
+        </select>
+
+        <div class="custom-file mb-3">
+          <input type="file" class="custom-file-input" id="fileBrowser" (change)="onFileChange($event)">
+          <label id="fileBrowserLabel" class="custom-file-label" for="fileBrowser">בחר קובץ...</label>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center pt-2 pb-5 rtl">
+        <button (click)="uploadContent()" type="button" style="font-size: 1.3em;" class="btn btn-primary mb-2 shadow-none" data-dismiss="modal">העלה</button>
+      </div>
     </div>
   </div>
 </div>
