@@ -1,17 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {RegionService} from '../../services/communibee-backend/region/region.service';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/communibee-backend/auth/auth.service';
 import {VolunteeringOffersService} from '../../services/communibee-backend/volunteering-offers/volunteering-offers.service';
-import {VolunteeringRequest} from '../../services/communibee-backend/volunteering-requests/volunteering-request';
 import {VolunteeringOffer} from '../../services/communibee-backend/volunteering-offers/volunteering-offer';
-import fileDownload from 'js-file-download';
 import {ArrBuff} from '../../services/utils/arr-buff.service';
-import { BSON } from 'bsonfy';
 import {CategoryService} from '../../services/communibee-backend/category/category.service';
-import {Category, CategoryModel} from '../../services/communibee-backend/category/category';
-import {Content, ContentModel} from '../../services/communibee-backend/content/content';
+import {CategoryModel} from '../../services/communibee-backend/category/category';
+import {ContentModel} from '../../services/communibee-backend/content/content';
 import {ContentService} from '../../services/communibee-backend/content/content.service';
 
 declare var $;
