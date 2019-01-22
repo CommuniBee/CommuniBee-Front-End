@@ -42,10 +42,6 @@ export class AuthService {
     return this.localUser;
   }
 
-  public isLoggedIn(): boolean {
-    return !!this.localUser.email;
-  }
-
   public getIdToken(): string {
     return this.idToken;
   }
@@ -82,9 +78,6 @@ export class AuthService {
     this.accessToken = authResult.accessToken;
     this.idToken = authResult.idToken;
     this.idTokenPayload = authResult.idTokenPayload;
-    this.users.getLoggedUser().then(loggedUserData => {
-      this.localUser = loggedUserData;
-    });
   }
 
   public renewTokens(): void {

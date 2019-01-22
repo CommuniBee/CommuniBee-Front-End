@@ -22,7 +22,7 @@ export class NavComponent implements OnInit {
   getHomePath() {
     const DASHBOARD_PATH = '/dashboard';
     const HOME_PATH = '/';
-    return this.auth.isLoggedIn() ? DASHBOARD_PATH : HOME_PATH;
+    return this.auth.isAuthenticated() ? DASHBOARD_PATH : HOME_PATH;
   }
 
 }
