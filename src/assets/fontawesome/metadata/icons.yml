@@ -8937,7 +8937,7 @@ exclamation:
     terms:
       - alert
       - danger
-      - error
+      - fileError
       - important
       - notice
       - notification
@@ -8959,7 +8959,7 @@ exclamation-circle:
     terms:
       - alert
       - danger
-      - error
+      - fileError
       - important
       - notice
       - notification
@@ -8980,7 +8980,7 @@ exclamation-square:
     terms:
       - alert
       - danger
-      - error
+      - fileError
       - important
       - notice
       - notification
@@ -9003,7 +9003,7 @@ exclamation-triangle:
     terms:
       - alert
       - danger
-      - error
+      - fileError
       - important
       - notice
       - notification
@@ -22065,7 +22065,7 @@ spider-black-widow:
       - dangerous
       - deadly
       - eight
-      - error
+      - fileError
       - halloween
       - holiday
   styles:
@@ -24062,7 +24062,7 @@ times:
     terms:
       - close
       - cross
-      - error
+      - fileError
       - exit
       - incorrect
       - notice

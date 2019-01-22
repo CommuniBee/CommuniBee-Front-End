@@ -1,38 +1,39 @@
-import {Component, OnInit} from '@angular/core';
-import {RegionService} from '../../services/communibee-backend/region/region.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {AuthService} from '../../services/communibee-backend/auth/auth.service';
-import {VolunteeringOffersService} from '../../services/communibee-backend/volunteering-offers/volunteering-offers.service';
-import {VolunteeringOffer} from '../../services/communibee-backend/volunteering-offers/volunteering-offer';
-import {ArrBuff} from '../../services/utils/arr-buff.service';
-import {CategoryService} from '../../services/communibee-backend/category/category.service';
-import {CategoryModel} from '../../services/communibee-backend/category/category';
-import {ContentModel} from '../../services/communibee-backend/content/content';
-import {ContentService} from '../../services/communibee-backend/content/content.service';
+import { Component, OnInit } from '@angular/core';
+import { RegionService } from '../../services/communibee-backend/region/region.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/communibee-backend/auth/auth.service';
+import { VolunteeringOffersService } from '../../services/communibee-backend/volunteering-offers/volunteering-offers.service';
+import { VolunteeringOffer } from '../../services/communibee-backend/volunteering-offers/volunteering-offer';
+import { ArrBuff } from '../../services/utils/arr-buff.service';
+import { CategoryService } from '../../services/communibee-backend/category/category.service';
+import { CategoryModel } from '../../services/communibee-backend/category/category';
+import { ContentModel } from '../../services/communibee-backend/content/content';
+import { ContentService } from '../../services/communibee-backend/content/content.service';
 
 declare var $;
 
 @Component({
   selector: 'app-add-volunteers',
   templateUrl: './add-volunteers.component.html',
-  styleUrls: ['./add-volunteers.component.scss']
+  styleUrls: ['./add-volunteers.component.scss'],
 })
 export class AddVolunteersComponent implements OnInit {
   public myForm: FormGroup;
   regions: string[] = [] as any;
   categories: CategoryModel[] = [] as any;
   content: ContentModel = {} as any;
+  fileError = '';
 
   constructor(private regionsSrv: RegionService,
               private fb: FormBuilder,
               private vltrOffer: VolunteeringOffersService,
               private auth: AuthService,
-              private rotuer: Router,
+              private router: Router,
               private categoriesSrv: CategoryService,
               private contentSrv: ContentService) {
     this.initForm();
-    categoriesSrv.getAll().then( categories_res => {
+    categoriesSrv.getAll().then(categories_res => {
       this.categories = categories_res;
     });
   }
@@ -51,7 +52,7 @@ export class AddVolunteersComponent implements OnInit {
       poc: this.fb.group({
         name: ['', Validators.required],
         phone: ['', Validators.required],
-        email: ['', Validators.required]
+        email: ['', Validators.required],
       }),
       numberOfVolunteers: ['', Validators.required],
       availableContent: [''],
@@ -62,12 +63,11 @@ export class AddVolunteersComponent implements OnInit {
         4: [false],
         5: [false],
         6: [false],
-        7: [false]
+        7: [false],
       }),
       regions: this.fb.array(this.regions.map(region => this.fb.control(false))),
     });
   }
-
 
   sendData() {
     const formValues = this.myForm.value;
@@ -75,10 +75,10 @@ export class AddVolunteersComponent implements OnInit {
 
     console.log(volunteeringOffer);
 
-    this.vltrOffer.create(volunteeringOffer).then( volunteeringOfferDocument => {
+    this.vltrOffer.create(volunteeringOffer).then(volunteeringOfferDocument => {
       console.log(volunteeringOfferDocument);
       if (volunteeringOfferDocument) {
-        this.rotuer.navigateByUrl('/dashboard');
+        this.router.navigateByUrl('/dashboard');
       }
     });
   }
@@ -110,13 +110,27 @@ export class AddVolunteersComponent implements OnInit {
 
   daysCheckboxsToArray(days): [number] {
     const availableWeekdays: [number] = [] as any;
-    if (days['1']) { availableWeekdays.push(1); }
-    if (days['2']) { availableWeekdays.push(2); }
-    if (days['3']) { availableWeekdays.push(3); }
-    if (days['4']) { availableWeekdays.push(4); }
-    if (days['5']) { availableWeekdays.push(5); }
-    if (days['6']) { availableWeekdays.push(6); }
-    if (days['7']) { availableWeekdays.push(7); }
+    if (days['1']) {
+      availableWeekdays.push(1);
+    }
+    if (days['2']) {
+      availableWeekdays.push(2);
+    }
+    if (days['3']) {
+      availableWeekdays.push(3);
+    }
+    if (days['4']) {
+      availableWeekdays.push(4);
+    }
+    if (days['5']) {
+      availableWeekdays.push(5);
+    }
+    if (days['6']) {
+      availableWeekdays.push(6);
+    }
+    if (days['7']) {
+      availableWeekdays.push(7);
+    }
 
     return availableWeekdays;
   }
@@ -126,32 +140,39 @@ export class AddVolunteersComponent implements OnInit {
   }
 
   onFileChange(event) {
-    const reader = new FileReader();
+    const fileSize = event.srcElement.files[0].size;
 
-    if (event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
-      reader.readAsArrayBuffer(file);
+    const maxFileSize = 5e+6; // 5MB
+    if (fileSize > maxFileSize) {
+      this.fileError = 'File size is bigger then 5mb';
+    } else {
+      this.fileError = '';
+      const reader = new FileReader();
+      if (event.target.files && event.target.files.length) {
+        const [file] = event.target.files;
+        reader.readAsArrayBuffer(file);
 
-      reader.onload = () => {
-        $('#fileBrowserLabel').html(file.name);
-        const base64File = ArrBuff.arrayBufferToBase64(reader.result);
+        reader.onload = () => {
+          $('#fileBrowserLabel').html(file.name);
+          const base64File = ArrBuff.arrayBufferToBase64(reader.result);
 
-        this.content.title = $('#contentTitle').val();
-        this.content.file = base64File;
-        this.content.category = $('#contentCategory').val();
-        this.content.fileName = file.name;
+          this.content.title = $('#contentTitle').val();
+          this.content.file = base64File;
+          this.content.category = $('#contentCategory').val();
+          this.content.fileName = file.name;
 
-      };
+        };
+      }
     }
   }
 
   uploadContent() {
     this.myForm.patchValue({
-      availableContent: `${this.content.title}`
+      availableContent: `${this.content.title}`,
     });
 
     console.log(this.content);
-    this.contentSrv.create(this.content).then( contentRes => {
+    this.contentSrv.create(this.content).then(contentRes => {
       console.log(contentRes);
       this.content = contentRes;
     });
