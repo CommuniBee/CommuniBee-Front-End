@@ -67,7 +67,7 @@ export class AddVolunteeringOpportunityComponent implements OnInit {
     volunteeringRequest.contact.email = formValues.poc.email;
     volunteeringRequest.location = formValues.address;
     volunteeringRequest.region = formValues.region;
-    volunteeringRequest.createdByUserId = (this.auth.getLocalUser()as any)._id;
+    volunteeringRequest.createdByUserId = this.auth.getLocalUserId();
 
     return volunteeringRequest;
   }
