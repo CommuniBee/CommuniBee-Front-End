@@ -12,11 +12,4 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  getJoinUsPath() {
-    const DASHBOARD_PATH = '/dashboard';
-    const REGISTER_PATH = '/register';
-    return this.auth.isAuthenticated() ? DASHBOARD_PATH : REGISTER_PATH;
-  }
-
 }
