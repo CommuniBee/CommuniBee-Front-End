@@ -14,11 +14,6 @@ export class NavComponent implements OnInit {
   ngOnInit() {
   }
 
-  getLocalUserName(): string {
-    const localUser: User = this.auth.getLocalUser();
-    return (localUser && localUser.name) ? localUser.name : 'NO_NAME_ERROR';
-  }
-
   getHomePath() {
     const DASHBOARD_PATH = '/dashboard';
     const HOME_PATH = '/';

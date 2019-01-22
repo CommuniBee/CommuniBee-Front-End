@@ -12,7 +12,6 @@ export class AuthService {
   private idTokenPayload: TokenPayload;
   private accessToken: string;
   private expiresAt: number;
-  private localUser: User;
 
   auth0 = new auth0.WebAuth({
     clientID: environment.auth0.clientId,
@@ -26,7 +25,6 @@ export class AuthService {
     this.idToken = '';
     this.accessToken = '';
     this.expiresAt = 0;
-    this.localUser = {};
   }
 
   public getAccessToken(): string {
@@ -37,8 +35,8 @@ export class AuthService {
     return this.idTokenPayload;
   }
 
-  public getLocalUser(): User {
-    return this.localUser;
+  public getLocalUserId(): string {
+    return this.idTokenPayload.sub;
   }
 
   public getIdToken(): string {
@@ -57,14 +55,14 @@ export class AuthService {
 
   public handleAuthentication(): void {
     this.auth0.parseHash((err, authResult) => {
+      console.log(authResult);
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         this.localLogin(authResult);
-        console.log('Login succeeded.');
+        console.log('Login succeeded');
       } else if (err) {
         this.router.navigate(['/']);
-        console.log('Login Failed.');
-        console.log(err);
+        console.log('Login Failed');
       }
     });
   }
@@ -84,7 +82,7 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.localLogin(authResult);
       } else if (err) {
-        console.error('Could not renew token, logging out', err);
+        console.error('Could not renew token, logging out');
         this.logout();
       }
     });
@@ -96,7 +94,6 @@ export class AuthService {
     this.idToken = '';
     this.idTokenPayload = {};
     this.expiresAt = 0;
-    this.localUser = {};
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem('isLoggedIn');
     // Go back to the home route

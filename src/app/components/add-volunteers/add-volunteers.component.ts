@@ -33,7 +33,6 @@ export class AddVolunteersComponent implements OnInit {
               private contentSrv: ContentService) {
     this.initForm();
     categoriesSrv.getAll().then( categories_res => {
-      console.log(categories_res);
       this.categories = categories_res;
     });
   }
@@ -103,7 +102,7 @@ export class AddVolunteersComponent implements OnInit {
     volunteeringOffer.availableContent = formValues.availableContent;
     volunteeringOffer.availableWeekdays = this.daysCheckboxsToArray(formValues.days);
     volunteeringOffer.regions = this.regionCheckboxsToRegionArray(formValues.regions);
-    volunteeringOffer.createdByUserId = (this.auth.getLocalUser()as any)._id;
+    volunteeringOffer.createdByUserId = this.auth.getLocalUserId();
     volunteeringOffer.availableContent = this.content._id;
 
     return volunteeringOffer;
