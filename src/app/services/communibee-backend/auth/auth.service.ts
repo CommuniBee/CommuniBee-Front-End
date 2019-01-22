@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import * as auth0 from 'auth0-js';
 import { environment } from '../../../../environments/environment';
 import {TokenPayload} from './token-payload';
-import {UserService} from '../user/user.service';
 import {User} from '../user/user';
 
 @Injectable()
@@ -23,7 +22,7 @@ export class AuthService {
     scope: 'openid email profile',
   });
 
-  constructor(private router: Router, private users: UserService) {
+  constructor(private router: Router) {
     this.idToken = '';
     this.accessToken = '';
     this.expiresAt = 0;
