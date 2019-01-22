@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
 
   constructor(public authService: AuthService) {
     authService.handleAuthentication();
+    authService.scheduleRenewal();
   }
 
   ngOnInit() {
