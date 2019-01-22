@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {VolunteeringRequestsService} from '../../services/communibee-backend/volunteering-requests/volunteering-requests.service';
-import {VolunteeringRequest} from '../../services/communibee-backend/volunteering-requests/volunteering-request';
-import {AuthService} from '../../services/communibee-backend/auth/auth.service';
-import {Router} from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { VolunteeringRequestsService } from '../../services/communibee-backend/volunteering-requests/volunteering-requests.service';
+import { VolunteeringRequest } from '../../services/communibee-backend/volunteering-requests/volunteering-request';
+import { AuthService } from '../../services/communibee-backend/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-volunteering-opportunity',
@@ -13,7 +13,7 @@ import {Router} from '@angular/router';
 export class AddVolunteeringOpportunityComponent implements OnInit {
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder, private vltrReq: VolunteeringRequestsService, private auth: AuthService, private rotuer: Router) {
+  constructor(private fb: FormBuilder, private vltrReq: VolunteeringRequestsService, private auth: AuthService, private router: Router) {
     this.form = this.fb.group({
       title: ['', Validators.required],
       about: ['', Validators.required],
@@ -49,7 +49,7 @@ export class AddVolunteeringOpportunityComponent implements OnInit {
 
     this.vltrReq.create(volunteeringRequest).then( volunteeringRequestDocument => {
       if (volunteeringRequestDocument) {
-        this.rotuer.navigateByUrl('/dashboard');
+        this.router.navigateByUrl('/dashboard');
       }
     });
   }

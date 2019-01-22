@@ -44,7 +44,8 @@ export class NavComponent implements OnInit {
 
   onFileChange(event) {
     const fileSize = event.srcElement.files[0].size;
-    if (fileSize > 5e+6) {
+    const maxFileSize = 5e+6; // 5MB
+    if (fileSize > maxFileSize) {
       this.fileError = 'File size is bigger then 5mb';
     } else {
       this.fileError = '';

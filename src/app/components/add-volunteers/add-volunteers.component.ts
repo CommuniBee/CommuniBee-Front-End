@@ -29,7 +29,7 @@ export class AddVolunteersComponent implements OnInit {
               private fb: FormBuilder,
               private vltrOffer: VolunteeringOffersService,
               private auth: AuthService,
-              private rotuer: Router,
+              private router: Router,
               private categoriesSrv: CategoryService,
               private contentSrv: ContentService) {
     this.initForm();
@@ -79,7 +79,7 @@ export class AddVolunteersComponent implements OnInit {
     this.vltrOffer.create(volunteeringOffer).then(volunteeringOfferDocument => {
       console.log(volunteeringOfferDocument);
       if (volunteeringOfferDocument) {
-        this.rotuer.navigateByUrl('/dashboard');
+        this.router.navigateByUrl('/dashboard');
       }
     });
   }
@@ -142,7 +142,9 @@ export class AddVolunteersComponent implements OnInit {
 
   onFileChange(event) {
     const fileSize = event.srcElement.files[0].size;
-    if (fileSize > 5e+6) {
+
+    const maxFileSize = 5e+6; // 5MB
+    if (fileSize > maxFileSize) {
       this.fileError = 'File size is bigger then 5mb';
     } else {
       this.fileError = '';
