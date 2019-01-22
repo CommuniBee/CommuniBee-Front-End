@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +13,13 @@ import { ContactModalComponent } from './components/contact-modal/contact-modal.
 import { BrowseContentComponent } from './components/browse-content/browse-content.component';
 import { BrowseOpportunitiesComponent } from './components/browse-opportunities/browse-opportunities.component';
 import { BrowseVolunteersComponent } from './components/browse-volunteers/browse-volunteers.component';
+import { RegisterComponent } from './components/register/register.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AddVolunteeringOpportunityComponent } from './components/add-volunteering-opportunity/add-volunteering-opportunity.component';
+import { AddVolunteersComponent } from './components/add-volunteers/add-volunteers.component';
+import { AuthInterceptorService } from './services/auth-interceptor/auth-interceptor.service';
+import { AuthService } from './services/communibee-backend/auth/auth.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,14 +32,23 @@ import { BrowseVolunteersComponent } from './components/browse-volunteers/browse
     ContactModalComponent,
     BrowseContentComponent,
     BrowseOpportunitiesComponent,
-    BrowseVolunteersComponent
+    BrowseVolunteersComponent,
+    RegisterComponent,
+    DashboardComponent,
+    AddVolunteeringOpportunityComponent,
+    AddVolunteersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

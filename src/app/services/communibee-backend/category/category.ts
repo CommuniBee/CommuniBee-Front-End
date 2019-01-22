@@ -1,7 +1,7 @@
 import BackendModel from '../backend-model';
 
 export interface Category {
-  displayName: string;
+  name: string;
 }
 
 export interface CategoryModel extends BackendModel, Category {

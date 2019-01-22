@@ -1,0 +1,199 @@
+<div class="container">
+  <div class="row rtl justify-content-center mt-2">
+    <div class="col-lg-8 mt-3">
+      <h2>
+        מתנדבים חדשים
+      </h2>
+      <div class="divider-4"></div>
+
+    </div>
+  </div>
+
+  <div class="row rtl justify-content-center">
+    <div class="col-lg-8">
+      <form [formGroup]="myForm" (submit)="sendData()">
+        <div class="input-group mb-3">
+          <h4 class="secondary-header mt-2 mb-0">
+            שם ארגון *
+          </h4>
+          <div class="input-group-inner">
+            <div class="input-group-prepend">
+              <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
+                class="far fa-user-circle"></i></span>
+            </div>
+            <input type="text" formControlName="title" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault"
+                   placeholder="הזן שם מקום">
+            <div class="input-focus-bg"></div>
+          </div>
+        </div>
+
+        <h4 class="secondary-header mt-2 mb-0">
+          איש קשר *
+        </h4>
+        <div class="row rtl justify-content-center" formGroupName="poc">
+          <div class="col-lg-4">
+            <div class="input-group mb-3">
+              <div class="input-group-inner">
+                <div class="input-group-prepend">
+              <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
+                class="far fa-user"></i></span>
+                </div>
+                <input type="text" formControlName="name" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault"
+                       placeholder="שם מלא">
+                <div class="input-focus-bg"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="input-group mb-3">
+              <div class="input-group-inner">
+                <div class="input-group-prepend">
+              <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
+                class="far fa-phone"></i></span>
+                </div>
+                <input type="text" formControlName="phone" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault"
+                       placeholder="טלפון">
+                <div class="input-focus-bg"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="input-group mb-3">
+              <div class="input-group-inner">
+                <div class="input-group-prepend">
+              <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
+                class="far fa-at"></i></span>
+                </div>
+                <input type="text" formControlName="email" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault"
+                       placeholder="אימייל">
+                <div class="input-focus-bg"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="input-group mb-3">
+          <h4 class="secondary-header mt-2 mb-0">
+            כמות מתנדבים *
+          </h4>
+          <div class="input-group-inner">
+            <div class="input-group-prepend">
+              <span class="input-group-text input-group-icon" id="inputGroup2"><i
+                class="far fa-users-class"></i></span>
+            </div>
+            <input type="number" formControlName="numberOfVolunteers" class="form-control" aria-label="Username" aria-describedby="inputGroup2"
+                   placeholder="הזן כמות מתנדבים">
+            <div class="input-focus-bg"></div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <h4 class="secondary-header mt-2 mb-0">
+            תוכן להעברה
+          </h4>
+          <div class="input-group-inner">
+              <input type="text" formControlName="availableContent" readonly class="form-control" placeholder="הזן תכנים" aria-label="Search" aria-describedby="iputGroupSearchDefault">
+            <div class="input-group-append">
+              <button (click)="openContentModal()" class="btn btn-primary mb-0 shadow-none" style="font-size: 1.2em;" type="button" id="iputGroupSearchDefault">
+                העלה תוכן
+                <i class="fas fa-books"></i>
+              </button>
+            </div>
+            <div class="input-focus-bg"></div>
+          </div>
+        </div>
+
+        <h4 class="secondary-header mt-2 mb-0">
+          ימים אפשריים
+        </h4>
+        <div class="input-group mb-3" formGroupName="days">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" formControlName="1" class="custom-control-input" id="customCheck1">
+            <label class="custom-control-label" for="customCheck1">ראשון</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" formControlName="2" class="custom-control-input" id="customCheck2">
+            <label class="custom-control-label" for="customCheck2">שני</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" formControlName="3" class="custom-control-input" id="customCheck3">
+            <label class="custom-control-label" for="customCheck3">שלישי</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" formControlName="4" class="custom-control-input" id="customCheck4">
+            <label class="custom-control-label" for="customCheck4">רביעי</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" formControlName="5" class="custom-control-input" id="customCheck5">
+            <label class="custom-control-label" for="customCheck5">חמישי</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" formControlName="6" class="custom-control-input" id="customCheck6">
+            <label class="custom-control-label" for="customCheck6">שישי</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" formControlName="7" class="custom-control-input" id="customCheck7">
+            <label class="custom-control-label" for="customCheck7">שבת</label>
+          </div>
+        </div>
+
+
+        <h4 class="secondary-header mt-2 mb-0">
+          איזורים בארץ
+        </h4>
+        <div formArrayName="regions" class="input-group mb-3" style="display: flex;">
+          <div class="custom-control custom-checkbox"
+               *ngFor="let region of regions; let i=index">
+            <input type="checkbox" [formControlName]="i" class="custom-control-input" id="regionCheck{{i}}">
+            <label class="custom-control-label" for="regionCheck{{i}}">
+              {{region}}
+            </label>
+          </div>
+        </div>
+
+        <p class="text-danger text-center mt-3" *ngIf="!myForm.valid">אנא מלאו את כל הפרטים הנדרשים (מסומן ב-*).</p>
+
+        <div class="form-group" [ngClass]="{'mt-3': myForm.valid}" style="justify-content: center; display: flex;">
+          <button [disabled]="!myForm.valid || !content._id" type="submit" style="font-size: 1.3em;" [ngClass]="{'btn-outline-primary': myForm.valid, 'btn-outline-danger': !myForm.valid}" class="btn shadow-none">הוסף</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalContentUpload" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center px-5 rtl">
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"></span>
+        </button>
+
+        <img class="mt-2 mb-4" src="../assets/images/modal-info-icon.png" alt="Information">
+
+        <h4 class="section-title-4 text-center font-weight-800 text-uppercase mb-4 pb-1">
+          העלה תוכן
+          <div class="title-divider-round"></div>
+        </h4>
+
+        <input type="name" class="form-control mb-3" id="contentTitle" aria-describedby="inputDefault" placeholder="כותרת">
+
+        <select id="contentCategory" class="custom-select mb-3">
+          <option selected>בחר קטגוריה</option>
+          <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
+        </select>
+
+        <div class="custom-file mb-3">
+          <input type="file" class="custom-file-input" id="fileBrowser" (change)="onFileChange($event)">
+          <label id="fileBrowserLabel" class="custom-file-label" for="fileBrowser">בחר קובץ...</label>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center pt-2 pb-5 rtl">
+        <button (click)="uploadContent()" type="button" style="font-size: 1.3em;" class="btn btn-primary mb-2 shadow-none" data-dismiss="modal">העלה</button>
+      </div>
+    </div>
+  </div>
+</div>

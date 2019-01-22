@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../../services/communibee-backend/auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
+  }
+
+  getJoinUsPath() {
+    const DASHBOARD_PATH = '/dashboard';
+    const REGISTER_PATH = '/register';
+    return this.auth.isLoggedIn() ? DASHBOARD_PATH : REGISTER_PATH;
   }
 
 }

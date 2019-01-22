@@ -1,0 +1,86 @@
+  <div class="container">
+    <div class="bs-stepper mt-3" style="direction: rtl; text-align: right">
+      <div class="bs-stepper-header" role="tablist">
+        <!-- your steps here -->
+        <div class="step" data-target="#logins-part">
+          <button type="button" class="btn btn-link step-trigger mb-0" role="tab" aria-controls="logins-part" id="logins-part-trigger">
+            <span class="bs-stepper-circle" style="line-height: 33px;">1</span>
+            <span class="bs-stepper-label mr-3">יצירת משתמש</span>
+          </button>
+        </div>
+        <div class="line"></div>
+        <div class="step" data-target="#information-part">
+          <button type="button" class="btn btn-link step-trigger mb-0" role="tab" aria-controls="information-part" id="information-part-trigger">
+            <span class="bs-stepper-circle" style="line-height: 33px;">2</span>
+            <span class="bs-stepper-label mr-3">מידע נוסף</span>
+          </button>
+        </div>
+        <div class="line"></div>
+        <div class="step" data-target="#terms">
+          <button type="button" class="btn btn-link step-trigger mb-0" role="tab" aria-controls="information-part" id="terms-part-trigger">
+            <span class="bs-stepper-circle" style="line-height: 33px;">3</span>
+            <span class="bs-stepper-label mr-3">תנאי שימוש</span>
+          </button>
+        </div>
+      </div>
+      <div class="bs-stepper-content">
+        <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
+          <div class="container" style="display: flex; justify-content: center;">
+            <button (click)="launchAuth0()" type="button" class="btn btn-warning btn-lg mt-3" style="font-size: 1.4em; display: flex; align-items: center;">
+              <i class="fas fa-lock ml-3" style="font-size: 2em "></i>
+              התחבר עם
+              &nbsp;
+              <span style="font-family: Calibri">Auth0</span>
+            </button>
+          </div>
+        </div>
+        <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
+          <div class="row">
+            <div class="col">
+              <div class="input-group mb-3">
+                <div class="input-group-inner">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text input-group-icon mr-1" id="inputGroupIconDefault"><i class="far fa-user-circle"></i></span>
+                  </div>
+                  <input id="name" type="text" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault" placeholder="שם">
+                  <div class="input-focus-bg"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="input-group mb-3">
+                <div class="input-group-inner">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text input-group-icon mr-1" id="inputGroupIconDefault"><i class="far fa-at"></i></span>
+                  </div>
+                  <input id="email" type="text" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault" placeholder="אימייל" [value]="this.auth.getIdTokenPayload().email">
+                  <div class="input-focus-bg"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container" style="display: flex; justify-content: center;">
+            <button (click)="nextPage()" type="button" class="btn btn-warning">המשך</button>
+          </div>
+        </div>
+        <div id="terms" class="content" role="tabpanel" aria-labelledby="terms-part-trigger">
+          <div class="container" style="display: flex; align-items: center; flex-direction: column;">
+            <textarea class="form-control form-round" id="TextareaRounded" rows="3" style="min-height: 280px;">
+              הגולש מצהיר, כי בגין כל פעולה ו/או מעשה ו/או מחדל שנעשה ו/או יעשה בניגוד להוראות הסכם זה, יהא רשאי אתר MasterGate לנקוט בכל האמצעים העומדים לרשותו עפ"י דין, וכל זאת לפי שיקול דעתו הבלעדי.
+
+כתוצאה משינויים דינאמיים באתר, יתכנו אידיוקים ו/או טעויות בתכני האתר. במקרה כזה הנך נדרש ליצור עמנו קשר לבירור סופי של הפרטים המפורטים באתר, לרבות, אך לא רק, מחירי המוצרים, השירותים, תנאי השירות והתשלום.
+
+על אתר MasterGate לא תחול כל אחריות לנזקים שייגרמו ללקוח מכל סיבה שהיא, לרבות הנובעים מעיכובים בשליחת המידע ו/או הגעת המידע ו/או הגעת המידע שלא ליעדו ו/או כשל פנימי ואו טעויות הלקוח ו/או שימוש לא נכון בשירותי האתר ו/או שימוש לא חוקי בשירותי האתר ו/או שימוש בזכויות יוצרים בניגוד לדין ו/או תביעות צד ג' בגין הפרות הסעיפים הנ"ל ו/או הפרות תנאי השימוש ותקנון האתר ו/או הפרות תנאי הצהרת הפרטיות.
+
+הלקוח מצהיר, כי הוא מודע, בשל אופייה של רשת האינטרנט, כי שירותים הניתנים באמצעות האינטרנט אינם חפים מתקלות ושיבושים למיניהם, לרבות אי התאמות ו/או שלמות קבצים ו/או זמינות השרתים ו/או מחיקות קבצים, ולפיכך על אתר MasterGate לא תחול אחריות כלשהי בגין נזק ישיר ו/או נזק עקיף ו/או כל סוג נזק אחר הנובעים או הקשורים בכל דרך שהיא בשימוש באתר ו/או בביצועי האתר ו/או ברכישת המוצרים ו/או בעיכובים שנגרמו מכל סיבה שהיא באספקת המוצרים ו/או באי אספקתם של שירותים ו/או שירותים נלווים שניתנו באמצעות האתר ו/או כל שירות אחר שניתנו באמצעות האתר ו/או באמצעות צד ג' אשר מקושרים לאתר.
+            </textarea>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck1">
+              <label class="custom-control-label mt-3" for="customCheck1">אני מאשר/ת את תנאי השימוש</label>
+            </div>
+            <button (click)="register()" type="button" class="btn btn-warning mt-3">הרשם</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
