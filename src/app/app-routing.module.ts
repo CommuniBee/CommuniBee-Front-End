@@ -4,7 +4,6 @@ import {HomeComponent} from './components/home/home.component';
 import {BrowseContentComponent} from './components/browse-content/browse-content.component';
 import {BrowseVolunteersComponent} from './components/browse-volunteers/browse-volunteers.component';
 import {BrowseOpportunitiesComponent} from './components/browse-opportunities/browse-opportunities.component';
-import {RegisterComponent} from './components/register/register.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {AddVolunteeringOpportunityComponent} from './components/add-volunteering-opportunity/add-volunteering-opportunity.component';
 import {AddVolunteersComponent} from './components/add-volunteers/add-volunteers.component';
@@ -14,7 +13,6 @@ const routes: Routes = [
   { path: 'browse/content', component: BrowseContentComponent },
   { path: 'browse/volunteers', component: BrowseVolunteersComponent },
   { path: 'browse/opportunities', component: BrowseOpportunitiesComponent },
-  { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'opportunities/add', component: AddVolunteeringOpportunityComponent },
   { path: 'volunteers/add', component: AddVolunteersComponent }
