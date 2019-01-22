@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import * as auth0 from 'auth0-js';
 import { environment } from '../../../../environments/environment';
 import {TokenPayload} from './token-payload';
-import {UserService} from '../user/user.service';
 import {User} from '../user/user';
 
 @Injectable()
@@ -13,7 +12,6 @@ export class AuthService {
   private idTokenPayload: TokenPayload;
   private accessToken: string;
   private expiresAt: number;
-  private localUser: User;
 
   auth0 = new auth0.WebAuth({
     clientID: environment.auth0.clientId,
@@ -23,11 +21,10 @@ export class AuthService {
     scope: 'openid email profile',
   });
 
-  constructor(private router: Router, private users: UserService) {
+  constructor(private router: Router) {
     this.idToken = '';
     this.accessToken = '';
     this.expiresAt = 0;
-    this.localUser = {};
   }
 
   public getAccessToken(): string {
@@ -38,12 +35,8 @@ export class AuthService {
     return this.idTokenPayload;
   }
 
-  public getLocalUser(): User {
-    return this.localUser;
-  }
-
-  public isLoggedIn(): boolean {
-    return !!this.localUser.email;
+  public getLocalUserId(): string {
+    return this.idTokenPayload.sub;
   }
 
   public getIdToken(): string {
@@ -62,14 +55,14 @@ export class AuthService {
 
   public handleAuthentication(): void {
     this.auth0.parseHash((err, authResult) => {
+      console.log(authResult);
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         this.localLogin(authResult);
-        console.log('Login succeeded.');
+        console.log('Login succeeded');
       } else if (err) {
         this.router.navigate(['/']);
-        console.log('Login Failed.');
-        console.log(err);
+        console.log('Login Failed');
       }
     });
   }
@@ -82,9 +75,6 @@ export class AuthService {
     this.accessToken = authResult.accessToken;
     this.idToken = authResult.idToken;
     this.idTokenPayload = authResult.idTokenPayload;
-    this.users.getLoggedUser().then(loggedUserData => {
-      this.localUser = loggedUserData;
-    });
   }
 
   public renewTokens(): void {
@@ -92,7 +82,7 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.localLogin(authResult);
       } else if (err) {
-        console.error('Could not renew token, logging out', err);
+        console.error('Could not renew token, logging out');
         this.logout();
       }
     });
@@ -104,7 +94,6 @@ export class AuthService {
     this.idToken = '';
     this.idTokenPayload = {};
     this.expiresAt = 0;
-    this.localUser = {};
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem('isLoggedIn');
     // Go back to the home route

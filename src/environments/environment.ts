@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   auth0: {
-    clientId: 'QYeOypEJmHtXWi5NLxjXkuvn6ry0e8vy',
-    domain: 'asafkaravani.auth0.com',
+    clientId: 'tZimRnXJVsgNl4zeTTpFoGl4-GV5q_ls',
+    domain: 'communibee.auth0.com',
     redirectUri: 'http://localhost:4200/dashboard',
     registerRedirectUri: 'http://localhost:4200/register?auth0_callback=true',
   },
