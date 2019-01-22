@@ -89,8 +89,7 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.localLogin(authResult);
       } else if (err) {
-        console.error('Could not renew token, logging out');
-        console.error(err);
+        console.error('Could not renew token, logging out', err);
         this.logout();
       }
     });
