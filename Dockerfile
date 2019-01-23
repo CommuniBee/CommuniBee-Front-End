@@ -6,6 +6,10 @@ COPY . .
 RUN npm run build
 
 FROM nginx:alpine
+
+COPY default.conf /etc/nginx/conf.d/
+COPY dockerfile-cmd.sh /
+
 COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
 EXPOSE 80 443
-CMD [ "nginx", "-g", "daemon off;" ]
+CMD [ "sh", "dockerfile-cmd.sh" ]

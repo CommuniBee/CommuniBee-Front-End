@@ -1,0 +1,10 @@
+applications:
+- name: communibee
+  disk_quota: 1G
+  docker:
+    image: communibee/communibee-front-end
+  instances: 1
+  memory: 1G
+  routes:
+  - route: communibee.mybluemix.net
+  stack: cflinuxfs2
