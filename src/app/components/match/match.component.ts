@@ -12,8 +12,11 @@ import {VolunteeringRequest} from '../../services/communibee-backend/volunteerin
 })
 export class MatchComponent implements OnInit {
 
-  volunteeringOffers: VolunteeringOffer[] = [];
   volunteeringRequests: VolunteeringRequest[] = [];
+  volunteeringOffers: VolunteeringOffer[] = [];
+
+  selectedRequest: VolunteeringRequest;
+  selectedOffer: VolunteeringOffer;
 
   constructor(private volunteeringRequestsService: VolunteeringRequestsService,
               private volunteeringOffersService: VolunteeringOffersService,
@@ -22,6 +25,14 @@ export class MatchComponent implements OnInit {
   ngOnInit() {
     this.volunteeringRequestsService.getAll().then(requests => { this.volunteeringRequests = requests; });
     this.volunteeringOffersService.getAll().then(offers => { this.volunteeringOffers = offers; });
+  }
+
+  onSelectRequest(request: VolunteeringRequest): void {
+    this.selectedRequest = request;
+  }
+
+  onSelectOffer(offer: VolunteeringOffer): void {
+    this.selectedOffer = offer;
   }
 
 }

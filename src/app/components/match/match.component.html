@@ -18,7 +18,9 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let request of volunteeringRequests">
+          <tr *ngFor="let request of volunteeringRequests"
+              [class.selected]="request === selectedRequest"
+              (click)="onSelectRequest(request)">
             <td>{{request.title}}</td>
             <td>{{request.numberOfVolunteers}}</td>
             <td>{{request.contact | styleContact}}</td>
@@ -48,7 +50,9 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let offer of volunteeringOffers">
+          <tr *ngFor="let offer of volunteeringOffers"
+              [class.selected]="offer === selectedOffer"
+              (click)="onSelectOffer(offer)">
             <td>{{offer.title}}</td>
             <td>{{offer.numberOfVolunteers}}</td>
             <td>{{offer.contact | styleContact}}</td>
@@ -59,5 +63,14 @@
         </table>
       </div>
     </div>
+
+    <div class="row justify-content-center mt-3">
+      <div class="col rtl">
+        <h2 style="display: inline;">
+          תיאום התנדבות
+        </h2>
+      </div>
+    </div>
+
   </div>
 </div>
