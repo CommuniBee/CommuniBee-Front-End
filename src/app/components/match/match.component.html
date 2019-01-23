@@ -40,43 +40,20 @@
         <table class="table rtl table-sm table-hover" dir="rtl">
           <thead class="thead">
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">גוף</th>
-            <th scope="col">מידע</th>
-            <th scope="col">תאריך</th>
-            <th scope="col">דירוג</th>
+            <th scope="col">שם</th>
+            <th scope="col">מספר מתנדבים</th>
+            <th scope="col">איש קשר</th>
+            <th scope="col">ימות השבוע</th>
+            <th scope="col">איזורים</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>שם גוף 1</td>
-            <td>
-              <span style="cursor: pointer;" class="badge badge-dark ml-1">
-                <i class="fas fa-book ml-1"></i>
-                תוכן
-              </span>
-              <span style="cursor: pointer;" class="badge badge-dark ml-1">
-                <i class="fas fa-mobile-alt ml-1"></i>
-                איש קשר
-              </span>
-              <span style="cursor: pointer;" class="badge badge-dark ml-1">
-                <i class="fas fa-map-marker-alt ml-1"></i>
-                מיקום
-              </span>
-              <span style="cursor: pointer;" class="badge badge-dark ml-1">
-                <i class="fas fa-comment-alt ml-1"></i>
-                הערות
-              </span>
-            </td>
-            <td>21/12/2018</td>
-            <td style="color: #f4c113; text-align: center;">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </td>
+          <tr *ngFor="let offer of volunteeringOffers">
+            <td>{{offer.title}}</td>
+            <td>{{offer.numberOfVolunteers}}</td>
+            <td>{{offer.contact | styleContact}}</td>
+            <td>{{offer.availableWeekdays | weekdayNames | join: ', '}}</td>
+            <td>{{offer.regions | join: ', '}}</td>
           </tr>
           </tbody>
         </table>
