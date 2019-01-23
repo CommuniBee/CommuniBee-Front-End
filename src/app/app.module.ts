@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgArrayPipesModule } from 'angular-pipes';
+import {NgbDatepickerModule, NgbTimepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BaseComponent } from './components/base/base.component';
@@ -49,6 +50,8 @@ import { WeekdayNamesPipe } from './pipes/weekday-names.pipe';
     FormsModule,
     ReactiveFormsModule,
     NgArrayPipesModule,
+    NgbDatepickerModule,
+    NgbTimepickerModule,
   ],
   providers: [
     AuthService,

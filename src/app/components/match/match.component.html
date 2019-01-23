@@ -69,6 +69,38 @@
         <h2 style="display: inline;">
           תיאום התנדבות
         </h2>
+
+        <form [formGroup]="matchForm" (submit)="sendData()">
+          <div class="input-group mb-3">
+            <h4 class="secondary-header mt-2 mb-0">
+              תאריך
+            </h4>
+            <div class="input-group-inner">
+              <ngb-datepicker (select)="onDateSelect($event)"></ngb-datepicker>
+            </div>
+
+          </div>
+
+          <div class="input-group mb-3">
+            <h4 class="secondary-header mt-2 mb-0">
+              שעה
+            </h4>
+            <div class="input-group-inner">
+              <ngb-timepicker [(ngModel)]="time"
+                              [ngModelOptions]="{ standalone: true }"
+                              (ngModelChange)="onTimeChange($event)"
+                              [spinners]="false"
+                              [size]="small"></ngb-timepicker>
+            </div>
+          </div>
+
+
+          <button [disabled]="!matchForm.valid" type="submit" style="font-size: 1.3em;"
+                  [ngClass]="{'btn-outline-primary': matchForm.valid, 'btn-outline-danger': !matchForm.valid}"
+                  class="btn shadow-none">תאם
+          </button>
+
+        </form>
       </div>
     </div>
 

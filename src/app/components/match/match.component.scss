@@ -1,3 +1,7 @@
 .selected {
   background-color: #d1d7da !important;
 }
+
+ngb-datepicker, ngb-timepicker {
+  direction: ltr;
+}

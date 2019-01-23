@@ -52,9 +52,9 @@ export class AddVolunteersComponent implements OnInit {
       poc: this.fb.group({
         name: ['', Validators.required],
         phone: ['', Validators.required],
-        email: ['', Validators.required],
+        email: ['', Validators.email],
       }),
-      numberOfVolunteers: ['', Validators.required],
+      numberOfVolunteers: ['', Validators.min(1)],
       availableContent: [''],
       days: this.fb.group({
         1: [false],
