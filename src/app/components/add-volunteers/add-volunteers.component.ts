@@ -108,29 +108,15 @@ export class AddVolunteersComponent implements OnInit {
     return volunteeringOffer;
   }
 
-  daysCheckboxsToArray(days): [number] {
-    const availableWeekdays: [number] = [] as any;
-    if (days['1']) {
-      availableWeekdays.push(1);
-    }
-    if (days['2']) {
-      availableWeekdays.push(2);
-    }
-    if (days['3']) {
-      availableWeekdays.push(3);
-    }
-    if (days['4']) {
-      availableWeekdays.push(4);
-    }
-    if (days['5']) {
-      availableWeekdays.push(5);
-    }
-    if (days['6']) {
-      availableWeekdays.push(6);
-    }
-    if (days['7']) {
-      availableWeekdays.push(7);
-    }
+  daysCheckboxsToArray(days): number[] {
+    const availableWeekdays: number[] = [];
+    if (days['1']) { availableWeekdays.push(0); }
+    if (days['2']) { availableWeekdays.push(1); }
+    if (days['3']) { availableWeekdays.push(2); }
+    if (days['4']) { availableWeekdays.push(3); }
+    if (days['5']) { availableWeekdays.push(4); }
+    if (days['6']) { availableWeekdays.push(5); }
+    if (days['7']) { availableWeekdays.push(6); }
 
     return availableWeekdays;
   }

@@ -21,12 +21,11 @@
           <tr *ngFor="let request of volunteeringRequests">
             <td>{{request.title}}</td>
             <td>{{request.numberOfVolunteers}}</td>
-            <td>{{request.contact}}</td>
-            <td>{{request.availableWeekdays}}</td>
+            <td>{{request.contact | styleContact}}</td>
+            <td>{{request.availableWeekdays | weekdayNames | join: ', '}}</td>
             <td>{{request.location}}</td>
             <td>{{request.numberOfOccurrences}}</td>
             <td>{{request.region}}</td>
-
           </tr>
           </tbody>
         </table>

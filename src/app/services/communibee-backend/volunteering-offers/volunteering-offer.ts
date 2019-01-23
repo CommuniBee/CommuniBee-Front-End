@@ -1,7 +1,7 @@
 import BackendModel from '../backend-model';
-import {VolunteeringBase} from '../common-models/volunteering-base';
+import {VolunteeringRequestOfferBase} from '../common-models/volunteering-request-offer-base';
 
-export interface VolunteeringOffer extends VolunteeringBase {
+export interface VolunteeringOffer extends VolunteeringRequestOfferBase {
   regions?: [string];
   availableContent?: any;
 }

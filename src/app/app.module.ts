@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-
+import { NgArrayPipesModule } from 'angular-pipes';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BaseComponent } from './components/base/base.component';
@@ -20,6 +20,8 @@ import { AuthInterceptorService } from './services/auth-interceptor/auth-interce
 import { AuthService } from './services/communibee-backend/auth/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatchComponent } from './components/match/match.component';
+import { StyleContactPipe } from './pipes/style-contact.pipe';
+import { WeekdayNamesPipe } from './pipes/weekday-names.pipe';
 
 @NgModule({
   declarations: [
@@ -37,13 +39,16 @@ import { MatchComponent } from './components/match/match.component';
     AddVolunteeringOpportunityComponent,
     AddVolunteersComponent,
     MatchComponent,
+    StyleContactPipe,
+    WeekdayNamesPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgArrayPipesModule,
   ],
   providers: [
     AuthService,
