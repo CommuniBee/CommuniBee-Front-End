@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {VolunteeringRequestsService} from '../../services/communibee-backend/volunteering-requests/volunteering-requests.service';
-import {VolunteeringOffersService} from '../../services/communibee-backend/volunteering-offers/volunteering-offers.service';
-import {VolunteeringEventsService} from '../../services/communibee-backend/volunteering-events/volunteering-events.service';
-import {VolunteeringOffer} from '../../services/communibee-backend/volunteering-offers/volunteering-offer';
-import {VolunteeringRequest} from '../../services/communibee-backend/volunteering-requests/volunteering-request';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {NgbCalendar, NgbDate, NgbDateStruct, NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
+import { Router} from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { VolunteeringRequestsService } from '../../services/communibee-backend/volunteering-requests/volunteering-requests.service';
+import { VolunteeringOffersService } from '../../services/communibee-backend/volunteering-offers/volunteering-offers.service';
+import { VolunteeringEventsService } from '../../services/communibee-backend/volunteering-events/volunteering-events.service';
+import { VolunteeringOfferModel } from '../../services/communibee-backend/volunteering-offers/volunteering-offer';
+import { VolunteeringRequestModel } from '../../services/communibee-backend/volunteering-requests/volunteering-request';
+import { VolunteeringEvent } from '../../services/communibee-backend/volunteering-events/volunteering-event';
 
 @Component({
   selector: 'app-match',
@@ -20,16 +22,17 @@ export class MatchComponent implements OnInit {
   time = { hour: 0, minute: 0 };
   eventDate: Date = new Date();
 
-  volunteeringRequests: VolunteeringRequest[] = [];
-  volunteeringOffers: VolunteeringOffer[] = [];
-  selectedRequest: VolunteeringRequest;
-  selectedOffer: VolunteeringOffer;
+  volunteeringRequests: VolunteeringRequestModel[] = [];
+  volunteeringOffers: VolunteeringOfferModel[] = [];
+  selectedRequest: VolunteeringRequestModel = { _id: null } as VolunteeringRequestModel;
+  selectedOffer: VolunteeringOfferModel = { _id: null } as VolunteeringOfferModel;
 
   constructor(private volunteeringRequestsService: VolunteeringRequestsService,
               private volunteeringOffersService: VolunteeringOffersService,
               private volunteeringEventsService: VolunteeringEventsService,
               private formBuilder: FormBuilder,
-              private calendar: NgbCalendar) { }
+              private calendar: NgbCalendar,
+              private router: Router) { }
 
   ngOnInit() {
     this.volunteeringRequestsService.getAll().then(requests => { this.volunteeringRequests = requests; });
@@ -46,16 +49,30 @@ export class MatchComponent implements OnInit {
     });
   }
 
-  onSelectRequest(request: VolunteeringRequest): void {
+  onSelectRequest(request: VolunteeringRequestModel): void {
+    console.log(request);
     this.selectedRequest = request;
   }
 
-  onSelectOffer(offer: VolunteeringOffer): void {
+  onSelectOffer(offer: VolunteeringOfferModel): void {
+    console.log(offer);
     this.selectedOffer = offer;
   }
 
   updateEventTime() {
     this.eventDate = new Date(this.date.year, this.date.month - 1, this.date.day, this.time.hour, this.time.minute);
+  }
+
+  sendData() {
+    const event: VolunteeringEvent = this.matchForm.value;
+    console.log(event);
+
+    this.volunteeringEventsService.create(event).then(response => {
+      console.log(response);
+      if (response) {
+        this.router.navigateByUrl('/dashboard');
+      }
+    });
   }
 
 }

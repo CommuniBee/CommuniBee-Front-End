@@ -94,12 +94,14 @@
         </div>
 
         <form [formGroup]="matchForm" (submit)="sendData()">
-          <input type="hidden" formControlName="request" [(ngModel)]="selectedRequest">
-          <input type="hidden" formControlName="offer" [(ngModel)]="selectedOffer">
+          <input type="hidden" formControlName="request" [(ngModel)]="selectedRequest._id">
+          <input type="hidden" formControlName="offer" [(ngModel)]="selectedOffer._id">
           <input type="hidden" formControlName="date" [(ngModel)]="eventDate">
 
           <div class="input-group mb-1 mt-3">
-            <button [disabled]="!matchForm.valid" type="submit" style="font-size: 1.3em;"
+            <button [disabled]="!matchForm.valid"
+                    type="submit"
+                    style="font-size: 1.3em;"
                     [ngClass]="{'btn-outline-primary': matchForm.valid, 'btn-outline-danger': !matchForm.valid}"
                     class="btn shadow-none">תאם
             </button>
