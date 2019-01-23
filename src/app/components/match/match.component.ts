@@ -16,13 +16,14 @@ export class MatchComponent implements OnInit {
 
   matchForm: FormGroup;
   date: NgbDateStruct;
+
   time = { hour: 0, minute: 0 };
+  eventDate: Date = new Date();
 
   volunteeringRequests: VolunteeringRequest[] = [];
   volunteeringOffers: VolunteeringOffer[] = [];
   selectedRequest: VolunteeringRequest;
   selectedOffer: VolunteeringOffer;
-  eventDate: Date;
 
   constructor(private volunteeringRequestsService: VolunteeringRequestsService,
               private volunteeringOffersService: VolunteeringOffersService,
@@ -41,7 +42,7 @@ export class MatchComponent implements OnInit {
     this.matchForm = this.formBuilder.group({
       request: [undefined, Validators.required],
       offer: [undefined, Validators.required],
-      date: [Date.now(), Validators.required],
+      date: [now, Validators.required],
     });
   }
 
@@ -65,8 +66,6 @@ export class MatchComponent implements OnInit {
 
   updateEventTime() {
     this.eventDate = new Date(this.date.year, this.date.month - 1, this.date.day, this.time.hour, this.time.minute);
-    console.log(this.eventDate);
-
   }
 
 }
