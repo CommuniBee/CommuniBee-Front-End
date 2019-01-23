@@ -54,16 +54,6 @@ export class MatchComponent implements OnInit {
     this.selectedOffer = offer;
   }
 
-  onDateSelect(date: NgbDateStruct): void {
-    this.date = date;
-    this.updateEventTime();
-  }
-
-  onTimeChange(time: NgbTimeStruct): void {
-    this.time = time;
-    this.updateEventTime();
-  }
-
   updateEventTime() {
     this.eventDate = new Date(this.date.year, this.date.month - 1, this.date.day, this.time.hour, this.time.minute);
   }
