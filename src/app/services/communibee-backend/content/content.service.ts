@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BackendModelService } from '../basic-model.service';
-import { Content, ContentModel } from './content';
+import { Content, ContentModel, ContentFile } from './content';
 import { BackendHttpService } from '../backend-http.service';
+import { ErrorHandlerService } from '../../error-handler/error-handler.service';
 
 const path = 'contents';
 
@@ -13,4 +14,13 @@ export class ContentService extends BackendModelService<Content, ContentModel> {
   constructor(private backendHttpService: BackendHttpService) {
     super(path, backendHttpService);
   }
+
+  async getFile(contentId: string): Promise<ContentFile> {
+    try {
+      return await this.backendHttp.get(`${path}/${contentId}/file`);
+    } catch (e) {
+      ErrorHandlerService.handleError(e);
+    }
+  }
+
 }

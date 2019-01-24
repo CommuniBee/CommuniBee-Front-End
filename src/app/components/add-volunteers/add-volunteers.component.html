@@ -58,7 +58,7 @@
             </div>
           </div>
           <div class="col-lg-4">
-            <div class="input-group mb-3">
+          <div class="input-group mb-3">
               <div class="input-group-inner">
                 <div class="input-group-prepend">
               <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
@@ -179,20 +179,21 @@
           <div class="title-divider-round"></div>
         </h4>
 
-        <input type="name" class="form-control mb-3" id="contentTitle" aria-describedby="inputDefault" placeholder="כותרת">
+        <input [(ngModel)] = "contentTitle" type="name" class="form-control mb-3"  aria-describedby="inputDefault" placeholder="כותרת" />
+        <textarea [(ngModel)] = "information" maxlength="200" required="true" class="form-control mb-3" id="contentInformation" aria-describedby="inputDefault" placeholder="תיאור של נושא ההתנדבות" ></textarea>
 
-        <select id="contentCategory" class="custom-select mb-3">
+        <select id="contentCategory" class="custom-select mb-3" [(ngModel)] = "contentCategory" >
           <option selected>בחר קטגוריה</option>
           <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
         </select>
 
         <div class="custom-file mb-3">
-          <input type="file" class="custom-file-input" id="fileBrowser" (change)="onFileChange($event)">
+          <input type="file" class="custom-file-input" id="fileBrowser" (change)="onFileChange($event)" />
           <label id="fileBrowserLabel" class="custom-file-label" for="fileBrowser">בחר קובץ...</label>
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center pt-2 pb-5 rtl">
-        <button (click)="uploadContent()" type="button" style="font-size: 1.3em;" class="btn btn-primary mb-2 shadow-none" data-dismiss="modal">העלה</button>
+        <button [disabled]="!isFileSelected" (click)="uploadContent()" type="button" style="font-size: 1.3em;" class="btn btn-primary mb-2 shadow-none" data-dismiss="modal">העלה</button>
       </div>
     </div>
   </div>

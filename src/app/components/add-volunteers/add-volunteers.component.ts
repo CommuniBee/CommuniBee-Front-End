@@ -5,11 +5,11 @@ import {Router} from '@angular/router';
 import {AuthService} from '../../services/communibee-backend/auth/auth.service';
 import {VolunteeringOffersService} from '../../services/communibee-backend/volunteering-offers/volunteering-offers.service';
 import {VolunteeringOffer} from '../../services/communibee-backend/volunteering-offers/volunteering-offer';
-import {ArrBuff} from '../../services/utils/arr-buff.service';
 import {CategoryService} from '../../services/communibee-backend/category/category.service';
 import {CategoryModel} from '../../services/communibee-backend/category/category';
 import {ContentModel} from '../../services/communibee-backend/content/content';
 import {ContentService} from '../../services/communibee-backend/content/content.service';
+import {ArrBuff} from '../../services/utils/arr-buff.service';
 
 declare var $;
 
@@ -23,6 +23,10 @@ export class AddVolunteersComponent implements OnInit {
   regions: string[] = [] as any;
   categories: CategoryModel[] = [] as any;
   content: ContentModel = {} as any;
+  information: string;
+  contentTitle: string;
+  contentCategory: any;
+  isFileSelected = false;
 
   constructor(private regionsSrv: RegionService,
               private fb: FormBuilder,
@@ -133,27 +137,22 @@ export class AddVolunteersComponent implements OnInit {
       reader.readAsArrayBuffer(file);
 
       reader.onload = () => {
-        $('#fileBrowserLabel').html(file.name);
-        const base64File = ArrBuff.arrayBufferToBase64(reader.result);
-
-        this.content.title = $('#contentTitle').val();
-        this.content.file = base64File;
-        this.content.category = $('#contentCategory').val();
+        this.content.file = ArrBuff.arrayBufferToBase64(reader.result);
         this.content.fileName = file.name;
-
+        this.isFileSelected = true;
       };
     }
   }
 
   uploadContent() {
+    this.content.title = this.contentTitle;
+    this.content.category = this.contentCategory;
+    this.content.information = this.information;
     this.myForm.patchValue({
       availableContent: `${this.content.title}`
     });
-
-    console.log(this.content);
     this.contentSrv.create(this.content).then( contentRes => {
-      console.log(contentRes);
-      this.content = contentRes;
+        this.content = contentRes;
     });
   }
 
