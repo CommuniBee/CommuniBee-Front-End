@@ -21,7 +21,8 @@
               <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
                 class="far fa-user-circle"></i></span>
             </div>
-            <input type="text" formControlName="title" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault"
+            <input type="text" formControlName="title" class="form-control" aria-label="Username"
+                   aria-describedby="inputGroupIconDefault"
                    placeholder="הזן שם מקום">
             <div class="input-focus-bg"></div>
           </div>
@@ -38,7 +39,8 @@
               <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
                 class="far fa-user"></i></span>
                 </div>
-                <input type="text" formControlName="name" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault"
+                <input type="text" formControlName="name" class="form-control" aria-label="Username"
+                       aria-describedby="inputGroupIconDefault"
                        placeholder="שם מלא">
                 <div class="input-focus-bg"></div>
               </div>
@@ -51,7 +53,8 @@
               <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
                 class="far fa-phone"></i></span>
                 </div>
-                <input type="text" formControlName="phone" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault"
+                <input type="text" formControlName="phone" class="form-control" aria-label="Username"
+                       aria-describedby="inputGroupIconDefault"
                        placeholder="טלפון">
                 <div class="input-focus-bg"></div>
               </div>
@@ -64,7 +67,8 @@
               <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
                 class="far fa-at"></i></span>
                 </div>
-                <input type="text" formControlName="email" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault"
+                <input type="text" formControlName="email" class="form-control" aria-label="Username"
+                       aria-describedby="inputGroupIconDefault"
                        placeholder="אימייל">
                 <div class="input-focus-bg"></div>
               </div>
@@ -82,7 +86,8 @@
               <span class="input-group-text input-group-icon" id="inputGroup2"><i
                 class="far fa-users-class"></i></span>
             </div>
-            <input type="number" formControlName="numberOfVolunteers" class="form-control" aria-label="Username" aria-describedby="inputGroup2"
+            <input type="number" formControlName="numberOfVolunteers" class="form-control" aria-label="Username"
+                   aria-describedby="inputGroup2"
                    placeholder="הזן כמות מתנדבים">
             <div class="input-focus-bg"></div>
           </div>
@@ -93,9 +98,11 @@
             תוכן להעברה
           </h4>
           <div class="input-group-inner">
-              <input type="text" formControlName="availableContent" readonly class="form-control" placeholder="הזן תכנים" aria-label="Search" aria-describedby="iputGroupSearchDefault">
+            <input type="text" formControlName="availableContent" readonly class="form-control" placeholder="הזן תכנים"
+                   aria-label="Search" aria-describedby="iputGroupSearchDefault">
             <div class="input-group-append">
-              <button (click)="openContentModal()" class="btn btn-primary mb-0 shadow-none" style="font-size: 1.2em;" type="button" id="iputGroupSearchDefault">
+              <button (click)="openContentModal()" class="btn btn-primary mb-0 shadow-none" style="font-size: 1.2em;"
+                      type="button" id="iputGroupSearchDefault">
                 העלה תוכן
                 <i class="fas fa-books"></i>
               </button>
@@ -155,7 +162,10 @@
         <p class="text-danger text-center mt-3" *ngIf="!myForm.valid">אנא מלאו את כל הפרטים הנדרשים (מסומן ב-*).</p>
 
         <div class="form-group" [ngClass]="{'mt-3': myForm.valid}" style="justify-content: center; display: flex;">
-          <button [disabled]="!myForm.valid || !content._id" type="submit" style="font-size: 1.3em;" [ngClass]="{'btn-outline-primary': myForm.valid, 'btn-outline-danger': !myForm.valid}" class="btn shadow-none">הוסף</button>
+          <button [disabled]="!myForm.valid || !content._id" type="submit" style="font-size: 1.3em;"
+                  [ngClass]="{'btn-outline-primary': myForm.valid, 'btn-outline-danger': !myForm.valid}"
+                  class="btn shadow-none">הוסף
+          </button>
         </div>
 
       </form>
@@ -179,18 +189,21 @@
           <div class="title-divider-round"></div>
         </h4>
 
+
         <input [(ngModel)] = "contentTitle" type="name" class="form-control mb-3"  aria-describedby="inputDefault" placeholder="כותרת" />
         <textarea [(ngModel)] = "information" maxlength="200" required="true" class="form-control mb-3" id="contentInformation" aria-describedby="inputDefault" placeholder="תיאור של נושא ההתנדבות" ></textarea>
-
         <select id="contentCategory" class="custom-select mb-3" [(ngModel)] = "contentCategory" >
           <option selected>בחר קטגוריה</option>
           <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
         </select>
-
         <div class="custom-file mb-3">
-          <input type="file" class="custom-file-input" id="fileBrowser" (change)="onFileChange($event)" />
+          <input type="file" class="custom-file-input" id="fileBrowser" (change)="onFileChange($event)"
+                 accept="application/pdf, .doc, .docx, .ppt, .pptx,">
           <label id="fileBrowserLabel" class="custom-file-label" for="fileBrowser">בחר קובץ...</label>
         </div>
+      </div>
+      <div *ngIf="fileError.length" class="alert alert-danger" role="alert">
+        {{fileError}}
       </div>
       <div class="modal-footer d-flex justify-content-center pt-2 pb-5 rtl">
         <button [disabled]="!isFileSelected" (click)="uploadContent()" type="button" style="font-size: 1.3em;" class="btn btn-primary mb-2 shadow-none" data-dismiss="modal">העלה</button>

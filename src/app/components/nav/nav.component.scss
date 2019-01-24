@@ -23,3 +23,9 @@
   padding-top: 6px;
   padding-bottom: 4px;
 }
+
+#navFileBrowserLabel::after {
+  content: 'סייר';
+  cursor: pointer;
+  right: 85%;
+}
