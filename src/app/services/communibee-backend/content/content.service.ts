@@ -15,7 +15,7 @@ export class ContentService extends BackendModelService<Content, ContentModel> {
     super(path, backendHttpService);
   }
 
-  async getFile(contentId: string): Promise<ContentFile> {
+  async getFile(contentId: string) {
     try {
       return await this.backendHttp.get(`${path}/${contentId}/file`);
     } catch (e) {

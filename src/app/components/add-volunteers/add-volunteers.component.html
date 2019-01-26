@@ -162,7 +162,7 @@
         <p class="text-danger text-center mt-3" *ngIf="!myForm.valid">אנא מלאו את כל הפרטים הנדרשים (מסומן ב-*).</p>
 
         <div class="form-group" [ngClass]="{'mt-3': myForm.valid}" style="justify-content: center; display: flex;">
-          <button [disabled]="!myForm.valid || !content._id" type="submit" style="font-size: 1.3em;"
+          <button [disabled]="!myForm.valid || !isFileSelected" type="submit" style="font-size: 1.3em;"
                   [ngClass]="{'btn-outline-primary': myForm.valid, 'btn-outline-danger': !myForm.valid}"
                   class="btn shadow-none">הוסף
           </button>
@@ -175,39 +175,6 @@
 
 <div class="modal fade" id="modalContentUpload" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body text-center px-5 rtl">
-
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"></span>
-        </button>
-
-        <img class="mt-2 mb-4" src="../assets/images/modal-info-icon.png" alt="Information">
-
-        <h4 class="section-title-4 text-center font-weight-800 text-uppercase mb-4 pb-1">
-          העלה תוכן
-          <div class="title-divider-round"></div>
-        </h4>
-
-
-        <input [(ngModel)] = "contentTitle" type="name" class="form-control mb-3"  aria-describedby="inputDefault" placeholder="כותרת" />
-        <textarea [(ngModel)] = "information" maxlength="200" required="true" class="form-control mb-3" id="contentInformation" aria-describedby="inputDefault" placeholder="תיאור של נושא ההתנדבות" ></textarea>
-        <select id="contentCategory" class="custom-select mb-3" [(ngModel)] = "contentCategory" >
-          <option selected>בחר קטגוריה</option>
-          <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
-        </select>
-        <div class="custom-file mb-3">
-          <input type="file" class="custom-file-input" id="fileBrowser" (change)="onFileChange($event)"
-                 accept="application/pdf, .doc, .docx, .ppt, .pptx,">
-          <label id="fileBrowserLabel" class="custom-file-label" for="fileBrowser">בחר קובץ...</label>
-        </div>
-      </div>
-      <div *ngIf="fileError.length" class="alert alert-danger" role="alert">
-        {{fileError}}
-      </div>
-      <div class="modal-footer d-flex justify-content-center pt-2 pb-5 rtl">
-        <button [disabled]="!isFileSelected" (click)="uploadContent()" type="button" style="font-size: 1.3em;" class="btn btn-primary mb-2 shadow-none" data-dismiss="modal">העלה</button>
-      </div>
-    </div>
+    <app-add-content (contentTitleLoaded)="onContentTitleLoaded($event)"></app-add-content>
   </div>
 </div>

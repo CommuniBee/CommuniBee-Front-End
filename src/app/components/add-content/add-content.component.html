@@ -1,0 +1,55 @@
+<div class="modal-content model-big">
+    <form [formGroup]="addContentForm" #f="ngForm">
+        <div class="modal-body text-center px-10 rtl">
+
+            <button #closeBtn type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true"></span>
+            </button>
+
+            <img class="mt-2 mb-4" src="../assets/images/modal-info-icon.png" alt="Information">
+            <h4 class="section-title-4 text-center font-weight-800 text-uppercase mb-4 pb-1">
+                העלה תוכן
+                <div class="title-divider-round"></div>
+            </h4>
+
+            <div class="form-group">
+                <h4 class="secondary-header text-right mt-2 mb-0">
+                    נושא ההתנדבות *
+                </h4>
+                <input formControlName="title" [(ngModel)]="content.title" type="text" class="form-control mb-3"  aria-describedby="inputDefault" placeholder="כותרת" />
+            </div>
+            
+            <div class="form-group">
+                <h4 class="secondary-header text-right mt-2 mb-0">
+                    תיאור *
+                </h4>        
+                <textarea formControlName="information" [(ngModel)] = "content.information" maxlength="200" required="true" class="form-control mb-3" id="contentInformation" aria-describedby="inputDefault" placeholder="תיאור של נושא ההתנדבות" ></textarea>
+            </div>            
+            
+            <div class="form-group">
+                <h4 class="secondary-header text-right mt-2 mb-0">
+                    קטגוריה *
+                </h4>         
+                <select id="category" class="custom-select mb-3" [(ngModel)] = "content.category" formControlName="category" >
+                    <option *ngFor="let item of categories" [value]="item._id">{{item.name}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <h4 class="secondary-header text-right mt-2 mb-0">
+                    קובץ לטעינה *
+                </h4> 
+                <div class="custom-file mb-3">
+                    <input type="file" class="custom-file-input" id="fileBrowser" (change)="onFileChange($event)"
+                            accept="application/pdf, .doc, .docx, .ppt, .pptx,">
+                    <label id="fileBrowserLabel" class="custom-file-label" for="fileBrowser">בחר קובץ...</label>
+                </div>
+                <div *ngIf="fileErrorSize" class="alert alert-danger" role="alert">
+                    File size must be less then 10MB
+                </div>
+            </div>
+        </div>
+        <div class="form-group modal-footer d-flex justify-content-center pt-2 pb-5 rtl">
+            <button (click)="uploadContent()" [disabled]="!addContentForm.valid || !isFileSelected" style="font-size: 1.3em;" class="btn btn-primary mb-2 shadow-none" data-dismiss="modal">העלה</button>
+        </div>
+    </form>
+</div>

@@ -27,18 +27,14 @@ export class AddVolunteersComponent implements OnInit {
   contentTitle: string;
   contentCategory: any;
   isFileSelected = false;
+  fileErrorSize = false;
 
   constructor(private regionsSrv: RegionService,
               private fb: FormBuilder,
               private vltrOffer: VolunteeringOffersService,
               private auth: AuthService,
-              private router: Router,
-              private categoriesSrv: CategoryService,
-              private contentSrv: ContentService) {
+              private router: Router) {
     this.initForm();
-    categoriesSrv.getAll().then(categories_res => {
-      this.categories = categories_res;
-    });
   }
 
   ngOnInit() {
@@ -139,17 +135,25 @@ export class AddVolunteersComponent implements OnInit {
   }
 
   openContentModal() {
+    this.isFileSelected = false;
     $('#modalContentUpload').modal('toggle');
   }
 
-  onFileChange(event) {
+  onContentTitleLoaded(title: string) {
+    console.log(title);
+    this.myForm.patchValue({
+      availableContent: title
+    });
+    this.isFileSelected = true;
+  }
+
+ /** onFileChange(event) {
     const fileSize = event.srcElement.files[0].size;
     const maxFileSize = 5e+6; // 5MB
 
+    this.fileErrorSize = false;
     if (fileSize > maxFileSize) {
-        this.myForm.patchValue({
-        availableContent: 'File size is bigger then 5mb',
-      });
+        this.fileErrorSize = true;
     } else {
       const reader = new FileReader();
       if (event.target.files && event.target.files.length) {
@@ -163,9 +167,9 @@ export class AddVolunteersComponent implements OnInit {
         };
       }
     }
-  }
+  }*/
 
-  uploadContent() {
+/**  uploadContent() {
     this.content.title = this.contentTitle;
     this.content.category = this.contentCategory;
     this.content.information = this.information;
@@ -175,6 +179,6 @@ export class AddVolunteersComponent implements OnInit {
     this.contentSrv.create(this.content).then( contentRes => {
         this.content = contentRes;
     });
-  }
+  }*/
 
 }

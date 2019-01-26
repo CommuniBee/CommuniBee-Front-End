@@ -12,13 +12,18 @@ import { saveAs } from 'file-saver';
   styleUrls: ['./browse-content.component.scss']
 })
 export class BrowseContentComponent implements OnInit {
-  contents: ContentModel[] = [] as any;
-  cloneContetns: ContentModel[] = [] as any;
-  categories: CategoryModel[] = [] as any;
+  contents: ContentModel[] = [];
+  cloneContents: ContentModel[] = [];
+  categories: CategoryModel[] = [];
   title: string;
-  category_filter: any;
-  description: any;
-
+  category_filter: string;
+  description: string;
+  mimeMap = new Map([['pdf', 'application/pdf'],
+    ['doc', 'application/msword'],
+    ['docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+    ['ppt', 'application/vnd.ms-powerpoint'],
+    ['pptx', 'application/vnd.openxmlformats-officedocument.presentationml.presentation'],
+    ['txt', 'text/plain']]);
 
   constructor(private categoriesSrv: CategoryService,
     private contentSrv: ContentService) {
@@ -27,7 +32,7 @@ export class BrowseContentComponent implements OnInit {
   ngOnInit() {
       this.contentSrv.getAll().then(contents_res => {
       this.contents = contents_res as any;
-      this.cloneContetns = this.contents.slice(0);
+      this.cloneContents = this.contents.slice(0);
     });
     this.categoriesSrv.getAll().then( categories_res => {
       this.categories = categories_res;
@@ -55,10 +60,10 @@ export class BrowseContentComponent implements OnInit {
     }
 
     if ((!isTitleFilter) && (!isCatalogByFilter) && (!isDescFilter)) {
-        this.contents = this.cloneContetns;
+        this.contents = this.cloneContents;
     } else {
         this.contents = [];
-        this.cloneContetns.forEach(content => {
+        this.cloneContents.forEach(content => {
             isMarked = false;
             if (isTitleFilter) {
                 isMarked = content.title.includes(this.title);
@@ -89,33 +94,9 @@ export class BrowseContentComponent implements OnInit {
       const data = ArrBuff.base64ToArrayBuffer(fileData.file);
       const type = fileName.substring(fileName.lastIndexOf('.') + 1);
       let fileBlob;
-      switch (type) {
-        case 'pdf':
-            fileBlob = new Blob([data], { type: 'application/pdf' });
-            break;
-        case 'doc':
-            fileBlob = new Blob([data], { type: 'application/msword' });
-            break;
-        case 'docx':
-            fileBlob = new Blob([data],
-                { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-            break;
-        case 'ppt':
-            fileBlob = new Blob([data],
-                { type: 'application/vnd.ms-powerpoint' });
-            break;
-        case 'pptx':
-            fileBlob = new Blob( [data],
-            { type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation' });
-            break;
-        case 'txt':
-            fileBlob = new Blob([data], { type: 'text/plain'} );
-            break;
-        default:
-            fileBlob = '';
-      }
-      if ( fileBlob !== '' ) {
-        console.log('saving...');
+      const mime = this.mimeMap.get(type);
+      if (mime !== undefined) {
+        fileBlob = new Blob([data], {type: mime});
         saveAs(fileBlob, fileName);
       }
   }

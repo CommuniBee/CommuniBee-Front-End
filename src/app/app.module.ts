@@ -19,6 +19,7 @@ import { AddVolunteersComponent } from './components/add-volunteers/add-voluntee
 import { AuthInterceptorService } from './services/auth-interceptor/auth-interceptor.service';
 import { AuthService } from './services/communibee-backend/auth/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddContentComponent } from './components/add-content/add-content.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DashboardComponent,
     AddVolunteeringOpportunityComponent,
     AddVolunteersComponent,
+    AddContentComponent,
   ],
   imports: [
     BrowserModule,
