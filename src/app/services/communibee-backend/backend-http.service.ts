@@ -13,8 +13,8 @@ export class BackendHttpService {
     this.url = getCommunibeeApiUrl();
   }
 
-  get(path: string): Promise<any> {
-    return this.http.get(`${this.url}/${path}`).pipe(
+  get(path: string, query?: string): Promise<any> {
+    return this.http.get(`${this.url}/${path}?${query}`).pipe(
       retry(3),
     ).toPromise();
   }

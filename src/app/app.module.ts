@@ -19,6 +19,7 @@ import { AddVolunteersComponent } from './components/add-volunteers/add-voluntee
 import { AuthInterceptorService } from './services/auth-interceptor/auth-interceptor.service';
 import { AuthService } from './services/communibee-backend/auth/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -41,12 +42,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgSelectModule
   ],
   providers: [
     AuthService,
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}

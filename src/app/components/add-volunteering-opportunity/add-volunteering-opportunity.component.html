@@ -21,7 +21,8 @@
               <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
                 class="far fa-font"></i></span>
             </div>
-            <input type="text" formControlName="title" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault"
+            <input type="text" formControlName="title" class="form-control" aria-label="Username"
+                   aria-describedby="inputGroupIconDefault"
                    placeholder="הזן שם התנדבות">
             <div class="input-focus-bg"></div>
           </div>
@@ -36,7 +37,8 @@
               <span class="input-group-text input-group-icon" style="height: 33px;" id="inputGroupIconDefault"><i
                 class="far fa-question-circle"></i></span>
             </div>
-            <textarea formControlName="about" class="form-control mt-1" id="TextareaDefault" placeholder="הזן תיאור ההתנדבות" rows="3"></textarea>
+            <textarea formControlName="about" class="form-control mt-1" id="TextareaDefault"
+                      placeholder="הזן תיאור ההתנדבות" rows="3"></textarea>
 
             <div class="input-focus-bg"></div>
           </div>
@@ -53,7 +55,8 @@
               <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
                 class="far fa-user"></i></span>
                 </div>
-                <input type="text" formControlName="name" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault"
+                <input type="text" formControlName="name" class="form-control" aria-label="Username"
+                       aria-describedby="inputGroupIconDefault"
                        placeholder="שם מלא">
                 <div class="input-focus-bg"></div>
               </div>
@@ -66,7 +69,8 @@
               <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
                 class="far fa-phone"></i></span>
                 </div>
-                <input type="text" formControlName="phone" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault"
+                <input type="text" formControlName="phone" class="form-control" aria-label="Username"
+                       aria-describedby="inputGroupIconDefault"
                        placeholder="טלפון">
                 <div class="input-focus-bg"></div>
               </div>
@@ -79,7 +83,8 @@
               <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
                 class="far fa-at"></i></span>
                 </div>
-                <input type="text" formControlName="email" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault"
+                <input type="text" formControlName="email" class="form-control" aria-label="Username"
+                       aria-describedby="inputGroupIconDefault"
                        placeholder="אימייל">
                 <div class="input-focus-bg"></div>
               </div>
@@ -90,18 +95,12 @@
 
         <div class="input-group mb-3">
           <h4 class="secondary-header mt-2 mb-0">
-            תוכן
+            תוכן *
           </h4>
-          <div class="input-group-inner">
-            <input formControlName="content" type="text" class="form-control" placeholder="ללא תוכן" aria-label="Search" aria-describedby="iputGroupSearchDefault">
-            <div class="input-group-append">
-              <button class="btn btn-primary disabled mb-0 shadow-none" style="font-size: 1.2em;" type="button" id="inputGroupSearchDefault">
-                חפש תוכן
-                <i class="fas fa-books"></i>
-              </button>
-            </div>
-            <div class="input-focus-bg"></div>
-          </div>
+          <ng-select class="custom input-group shadow-none" placeholder="חפש תוכן להתנדבות"
+                     required autoCorrect formControlName="content" [items]="content"
+                     bindLabel="title" bindValue="_id">
+          </ng-select>
         </div>
 
         <h4 class="secondary-header mt-2 mb-0">
@@ -143,9 +142,11 @@
             כתובת *
           </h4>
           <div class="input-group-inner">
-            <input formControlName="address" type="text" class="form-control" placeholder="הזן כתובת או דקור נקודה במפה" aria-label="Search" aria-describedby="iputGroupSearchDefault">
+            <input formControlName="address" type="text" class="form-control" placeholder="הזן כתובת או דקור נקודה במפה"
+                   aria-label="Search" aria-describedby="iputGroupSearchDefault">
             <div class="input-group-append">
-              <button class="btn btn-primary disabled mb-0 shadow-none" style="font-size: 1.2em;" type="button" id="iputGroupSearchDefault">
+              <button class="btn btn-primary disabled mb-0 shadow-none" style="font-size: 1.2em;" type="button"
+                      id="iputGroupSearchDefault">
                 פתח מפה
                 <i class="fas fa-map-marker-alt"></i>
               </button>
@@ -158,15 +159,18 @@
           איזור בארץ *
         </h4>
         <div class="custom-control custom-radio">
-          <input formControlName="region" type="radio" id="customRadio1" value="צפון" name="region" class="custom-control-input">
+          <input formControlName="region" type="radio" id="customRadio1" value="צפון" name="region"
+                 class="custom-control-input">
           <label class="custom-control-label" for="customRadio1">צפון</label>
         </div>
         <div class="custom-control custom-radio">
-          <input formControlName="region" type="radio" id="customRadio2" value="מרכז" name="region" class="custom-control-input">
+          <input formControlName="region" type="radio" id="customRadio2" value="מרכז" name="region"
+                 class="custom-control-input">
           <label class="custom-control-label" for="customRadio2">מרכז</label>
         </div>
         <div class="custom-control custom-radio">
-          <input formControlName="region" type="radio" id="customRadio3" value="דרום" name="region" class="custom-control-input">
+          <input formControlName="region" type="radio" id="customRadio3" value="דרום" name="region"
+                 class="custom-control-input">
           <label class="custom-control-label" for="customRadio3">דרום</label>
         </div>
 
