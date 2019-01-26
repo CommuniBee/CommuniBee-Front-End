@@ -146,39 +146,4 @@ export class AddVolunteersComponent implements OnInit {
     });
     this.isFileSelected = true;
   }
-
- /** onFileChange(event) {
-    const fileSize = event.srcElement.files[0].size;
-    const maxFileSize = 5e+6; // 5MB
-
-    this.fileErrorSize = false;
-    if (fileSize > maxFileSize) {
-        this.fileErrorSize = true;
-    } else {
-      const reader = new FileReader();
-      if (event.target.files && event.target.files.length) {
-        const [file] = event.target.files;
-        reader.readAsArrayBuffer(file);
-
-        reader.onload = () => {
-          this.content.file = ArrBuff.arrayBufferToBase64(reader.result);
-          this.content.fileName = file.name;
-          this.isFileSelected = true;
-        };
-      }
-    }
-  }*/
-
-/**  uploadContent() {
-    this.content.title = this.contentTitle;
-    this.content.category = this.contentCategory;
-    this.content.information = this.information;
-    this.myForm.patchValue({
-      availableContent: `${this.content.title}`,
-    });
-    this.contentSrv.create(this.content).then( contentRes => {
-        this.content = contentRes;
-    });
-  }*/
-
 }
