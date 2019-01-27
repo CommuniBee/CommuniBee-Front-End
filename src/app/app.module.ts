@@ -20,6 +20,7 @@ import { AddVolunteersComponent } from './components/add-volunteers/add-voluntee
 import { AuthInterceptorService } from './services/auth-interceptor/auth-interceptor.service';
 import { AuthService } from './services/communibee-backend/auth/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddContentComponent } from './components/add-content/add-content.component';
 import { MatchComponent } from './components/match/match.component';
 import { StyleContactPipe } from './pipes/style-contact.pipe';
 import { WeekdayNamesPipe } from './pipes/weekday-names.pipe';
@@ -39,6 +40,7 @@ import { WeekdayNamesPipe } from './pipes/weekday-names.pipe';
     DashboardComponent,
     AddVolunteeringOpportunityComponent,
     AddVolunteersComponent,
+    AddContentComponent,
     MatchComponent,
     StyleContactPipe,
     WeekdayNamesPipe,
