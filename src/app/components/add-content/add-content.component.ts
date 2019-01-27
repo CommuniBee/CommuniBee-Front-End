@@ -53,18 +53,20 @@ export class AddContentComponent implements OnInit {
       const reader = new FileReader();
       if (event.target.files && event.target.files.length) {
         const [file] = event.target.files;
-        reader.readAsArrayBuffer(file);
-
         reader.onload = () => {
           this.content.file = ArrBuff.arrayBufferToBase64(reader.result);
           this.content.fileName = file.name;
           this.isFileSelected = true;
         };
+        reader.readAsArrayBuffer(file);
       }
     }
   }
 
   uploadContent() {
+    this.content.title = this.addContentForm.controls['title'].value;
+    this.content.information = this.addContentForm.controls['information'].value;
+    this.content.category = this.addContentForm.controls['category'].value;
     this.contentSrv.create(this.content).then( contentRes => {
         this.contentResult = contentRes;
         this.contentTitleLoaded.emit(this.contentResult.title);

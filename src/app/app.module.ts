@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-
+import { NgArrayPipesModule } from 'angular-pipes';
+import {NgbDatepickerModule, NgbTimepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BaseComponent } from './components/base/base.component';
@@ -20,6 +21,9 @@ import { AuthInterceptorService } from './services/auth-interceptor/auth-interce
 import { AuthService } from './services/communibee-backend/auth/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddContentComponent } from './components/add-content/add-content.component';
+import { MatchComponent } from './components/match/match.component';
+import { StyleContactPipe } from './pipes/style-contact.pipe';
+import { WeekdayNamesPipe } from './pipes/weekday-names.pipe';
 
 @NgModule({
   declarations: [
@@ -37,13 +41,19 @@ import { AddContentComponent } from './components/add-content/add-content.compon
     AddVolunteeringOpportunityComponent,
     AddVolunteersComponent,
     AddContentComponent,
+    MatchComponent,
+    StyleContactPipe,
+    WeekdayNamesPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgArrayPipesModule,
+    NgbDatepickerModule,
+    NgbTimepickerModule,
   ],
   providers: [
     AuthService,

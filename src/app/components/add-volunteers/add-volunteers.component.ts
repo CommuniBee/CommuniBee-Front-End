@@ -5,11 +5,9 @@ import {Router} from '@angular/router';
 import {AuthService} from '../../services/communibee-backend/auth/auth.service';
 import {VolunteeringOffersService} from '../../services/communibee-backend/volunteering-offers/volunteering-offers.service';
 import {VolunteeringOffer} from '../../services/communibee-backend/volunteering-offers/volunteering-offer';
-import {CategoryService} from '../../services/communibee-backend/category/category.service';
 import {CategoryModel} from '../../services/communibee-backend/category/category';
 import {ContentModel} from '../../services/communibee-backend/content/content';
-import {ContentService} from '../../services/communibee-backend/content/content.service';
-import {ArrBuff} from '../../services/utils/arr-buff.service';
+
 
 declare var $;
 
@@ -27,7 +25,6 @@ export class AddVolunteersComponent implements OnInit {
   contentTitle: string;
   contentCategory: any;
   isFileSelected = false;
-  fileErrorSize = false;
 
   constructor(private regionsSrv: RegionService,
               private fb: FormBuilder,
@@ -51,9 +48,9 @@ export class AddVolunteersComponent implements OnInit {
       poc: this.fb.group({
         name: ['', Validators.required],
         phone: ['', Validators.required],
-        email: ['', Validators.required],
+        email: ['', Validators.email],
       }),
-      numberOfVolunteers: ['', Validators.required],
+      numberOfVolunteers: ['', Validators.min(1)],
       availableContent: [''],
       days: this.fb.group({
         1: [false],
@@ -107,29 +104,15 @@ export class AddVolunteersComponent implements OnInit {
     return volunteeringOffer;
   }
 
-  daysCheckboxsToArray(days): [number] {
-    const availableWeekdays: [number] = [] as any;
-    if (days['1']) {
-      availableWeekdays.push(1);
-    }
-    if (days['2']) {
-      availableWeekdays.push(2);
-    }
-    if (days['3']) {
-      availableWeekdays.push(3);
-    }
-    if (days['4']) {
-      availableWeekdays.push(4);
-    }
-    if (days['5']) {
-      availableWeekdays.push(5);
-    }
-    if (days['6']) {
-      availableWeekdays.push(6);
-    }
-    if (days['7']) {
-      availableWeekdays.push(7);
-    }
+  daysCheckboxsToArray(days): number[] {
+    const availableWeekdays: number[] = [];
+    if (days['1']) { availableWeekdays.push(0); }
+    if (days['2']) { availableWeekdays.push(1); }
+    if (days['3']) { availableWeekdays.push(2); }
+    if (days['4']) { availableWeekdays.push(3); }
+    if (days['5']) { availableWeekdays.push(4); }
+    if (days['6']) { availableWeekdays.push(5); }
+    if (days['7']) { availableWeekdays.push(6); }
 
     return availableWeekdays;
   }
@@ -140,7 +123,6 @@ export class AddVolunteersComponent implements OnInit {
   }
 
   onContentTitleLoaded(title: string) {
-    console.log(title);
     this.myForm.patchValue({
       availableContent: title
     });
