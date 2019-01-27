@@ -1,0 +1,115 @@
+<div class="comp-container" style="min-height: 100%; display: flow-root;">
+  <div class="container" style="text-align: right;">
+
+    <div class="row justify-content-center mt-3">
+
+      <div class="col rtl">
+        <h2 style="display: inline;">
+          תיאום התנדבות
+        </h2>
+
+        <div class="input-group mb-1">
+        <h4 class="secondary-header mt-2 mb-0">
+            בחירת בקשת התנדבות
+        </h4>
+        <table class="table rtl table-sm table-hover" dir="rtl">
+          <thead class="thead">
+          <tr>
+            <th scope="col">שם</th>
+            <th scope="col">מספר מתנדבים</th>
+            <th scope="col">איש קשר</th>
+            <th scope="col">ימות השבוע</th>
+            <th scope="col">מיקום</th>
+            <th scope="col">מספר מופעים</th>
+            <th scope="col">איזור</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let request of volunteeringRequests"
+              [class.selected]="request === selectedRequest"
+              (click)="onSelectRequest(request)">
+            <td>{{request.title}}</td>
+            <td>{{request.numberOfVolunteers}}</td>
+            <td>{{request.contact | styleContact}}</td>
+            <td>{{request.availableWeekdays | weekdayNames | join: ', '}}</td>
+            <td>{{request.location}}</td>
+            <td>{{request.numberOfOccurrences}}</td>
+            <td>{{request.region}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+        <div class="input-group mb-1">
+          <h4 class="secondary-header mt-2 mb-0">
+            בחירת הצעת התנדבות
+          </h4>
+          <table class="table rtl table-sm table-hover" dir="rtl">
+            <thead class="thead">
+            <tr>
+              <th scope="col">שם</th>
+              <th scope="col">מספר מתנדבים</th>
+              <th scope="col">איש קשר</th>
+              <th scope="col">ימות השבוע</th>
+              <th scope="col">איזורים</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let offer of volunteeringOffers"
+                [class.selected]="offer === selectedOffer"
+                (click)="onSelectOffer(offer)">
+              <td>{{offer.title}}</td>
+              <td>{{offer.numberOfVolunteers}}</td>
+              <td>{{offer.contact | styleContact}}</td>
+              <td>{{offer.availableWeekdays | weekdayNames | join: ', '}}</td>
+              <td>{{offer.regions | join: ', '}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="input-group mb-1">
+          <h4 class="secondary-header mt-2 mb-0">
+            תאריך
+          </h4>
+          <div class="input-group-inner">
+            <ngb-datepicker [(ngModel)]="date"
+                            [ngModelOptions]="{ standalone: true }"
+                            (ngModelChange)="updateEventTime()"></ngb-datepicker>
+          </div>
+
+        </div>
+
+        <div class="input-group mb-1">
+          <h4 class="secondary-header mt-2 mb-0">
+            שעה
+          </h4>
+          <div class="input-group-inner">
+            <ngb-timepicker [(ngModel)]="time"
+                            [ngModelOptions]="{ standalone: true }"
+                            (ngModelChange)="updateEventTime()"
+                            [spinners]="false"
+                            [size]="'small'"></ngb-timepicker>
+          </div>
+        </div>
+
+        <form [formGroup]="matchForm" (submit)="sendData()">
+          <input type="hidden" formControlName="request" [(ngModel)]="selectedRequest._id">
+          <input type="hidden" formControlName="offer" [(ngModel)]="selectedOffer._id">
+          <input type="hidden" formControlName="date" [(ngModel)]="eventDate">
+
+          <div class="input-group mb-1 mt-3">
+            <button [disabled]="!matchForm.valid"
+                    type="submit"
+                    style="font-size: 1.3em;"
+                    [ngClass]="{'btn-outline-primary': matchForm.valid, 'btn-outline-danger': !matchForm.valid}"
+                    class="btn shadow-none">תאם
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+</div>
