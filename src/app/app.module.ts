@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-
+import { NgArrayPipesModule } from 'angular-pipes';
+import {NgbDatepickerModule, NgbTimepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BaseComponent } from './components/base/base.component';
@@ -19,6 +20,10 @@ import { AddVolunteersComponent } from './components/add-volunteers/add-voluntee
 import { AuthInterceptorService } from './services/auth-interceptor/auth-interceptor.service';
 import { AuthService } from './services/communibee-backend/auth/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddContentComponent } from './components/add-content/add-content.component';
+import { MatchComponent } from './components/match/match.component';
+import { StyleContactPipe } from './pipes/style-contact.pipe';
+import { WeekdayNamesPipe } from './pipes/weekday-names.pipe';
 import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
@@ -36,6 +41,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
     DashboardComponent,
     AddVolunteeringOpportunityComponent,
     AddVolunteersComponent,
+    AddContentComponent,
+    MatchComponent,
+    StyleContactPipe,
+    WeekdayNamesPipe,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +53,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule
+    ReactiveFormsModule,
+    NgArrayPipesModule,
+    NgbDatepickerModule,
+    NgbTimepickerModule,
   ],
   providers: [
     AuthService,

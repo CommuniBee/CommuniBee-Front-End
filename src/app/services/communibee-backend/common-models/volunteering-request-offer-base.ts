@@ -1,7 +1,7 @@
 import BackendModel from '../backend-model';
 import {User} from '../user/user';
 
-export interface VolunteeringBase {
+export interface VolunteeringRequestOfferBase {
   title: string;
   content: string;
   numberOfVolunteers?: number;
@@ -10,10 +10,11 @@ export interface VolunteeringBase {
     phone: string,
     email: string,
   };
-  availableWeekdays?: [number];
+  availableWeekdays?: number[];
   notes?: [string];
   createdByUserId: string | User;
 }
 
-export interface VolunteeringBaseModel extends BackendModel, VolunteeringBase {
+export interface VolunteeringBaseModel extends BackendModel, VolunteeringRequestOfferBase {
 }
+
