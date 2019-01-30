@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgArrayPipesModule } from 'angular-pipes';
-import {NgbDatepickerModule, NgbTimepickerModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BaseComponent } from './components/base/base.component';
@@ -24,6 +24,7 @@ import { AddContentComponent } from './components/add-content/add-content.compon
 import { MatchComponent } from './components/match/match.component';
 import { StyleContactPipe } from './pipes/style-contact.pipe';
 import { WeekdayNamesPipe } from './pipes/weekday-names.pipe';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -51,14 +52,17 @@ import { WeekdayNamesPipe } from './pipes/weekday-names.pipe';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgSelectModule,
+    ReactiveFormsModule,
     NgArrayPipesModule,
     NgbDatepickerModule,
     NgbTimepickerModule,
   ],
   providers: [
     AuthService,
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}

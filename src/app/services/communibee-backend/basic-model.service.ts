@@ -3,17 +3,18 @@ import { ErrorHandlerService } from '../error-handler/error-handler.service';
 
 export abstract class BackendModelService<BasicModel, BackendModel extends BasicModel> {
 
-  static getUrlWithId(path: string, id: string): string {
-    return `${path}/${id}`;
-  }
-
   protected constructor(protected path: string,
                         protected backendHttp: BackendHttpService) {
   }
 
-  async getAll(): Promise<BackendModel[]> {
+  static getUrlWithId(path: string, id: string): string {
+    return `${path}/${id}`;
+  }
+
+  async getAll(fields?: {[K in keyof BackendModel]?: boolean}): Promise<BackendModel[]> {
     try {
-      return await this.backendHttp.get(this.path);
+      const query = fields && Object.keys(fields).map(fieldName => `fields=${fieldName}`).join('&');
+      return await this.backendHttp.get(this.path, query);
     } catch (e) {
       ErrorHandlerService.handleError(e);
     }

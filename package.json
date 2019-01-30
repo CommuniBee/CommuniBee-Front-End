@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~7.1.0",
     "@angular/router": "~7.1.0",
     "@fortawesome/fontawesome-free": "^5.6.1",
+    "@ng-select/ng-select": "^2.15.1",
     "@ng-bootstrap/ng-bootstrap": "^4.0.1",
     "angular-pipes": "^9.0.2",
     "auth0-js": "^9.8.2",
@@ -32,7 +33,7 @@
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26",
     "file-saver": "~2.0.0",
-    "blob-util":"^2.0.2"
+    "blob-util": "^2.0.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.12.2",

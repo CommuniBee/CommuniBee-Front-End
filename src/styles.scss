@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 html {
   height: 100vh;
@@ -65,7 +66,6 @@ th {
   font-family: 'FbOgen';
 }
 
-
 p, button.btn {
   font-family: "FbOgen", Verdana, Tahoma;
   font-weight: 100;
@@ -84,6 +84,7 @@ p.h1, p.h2, p.h3, p.h4, p.h5 {
   direction: rtl;
   text-align: right;
 }
+
 .rtl input {
   direction: rtl;
 }
@@ -126,6 +127,7 @@ table.rtl thead th:last-child {
 .rtl .input-group-append {
   margin-left: 4px;
 }
+
 .rtl .custom-control-label::after {
   left: 0;
   right: -1.5rem;
@@ -138,4 +140,8 @@ table.rtl thead th:last-child {
 
 .rtl .custom-control.custom-radio, .rtl .custom-control.custom-checkbox {
   margin-right: 1.5rem;
+}
+
+.ng-dropdown-panel-items{
+  width: inherit;
 }
