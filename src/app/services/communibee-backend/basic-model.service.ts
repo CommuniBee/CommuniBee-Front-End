@@ -1,10 +1,6 @@
 import { BackendHttpService } from './backend-http.service';
 import { ErrorHandlerService } from '../error-handler/error-handler.service';
 
-type fieldedType<T> = {
-  [K in keyof T]?: boolean
-};
-
 export abstract class BackendModelService<BasicModel, BackendModel extends BasicModel> {
 
   protected constructor(protected path: string,
@@ -15,7 +11,7 @@ export abstract class BackendModelService<BasicModel, BackendModel extends Basic
     return `${path}/${id}`;
   }
 
-  async getAll(fields?: fieldedType<BackendModel>): Promise<BackendModel[]> {
+  async getAll(fields?: {[K in keyof BackendModel]?: boolean}): Promise<BackendModel[]> {
     try {
       const query = fields && Object.keys(fields).map(fieldName => `fields=${fieldName}`).join('&');
       return await this.backendHttp.get(this.path, query);
