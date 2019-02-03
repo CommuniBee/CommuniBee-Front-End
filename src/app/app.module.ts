@@ -25,6 +25,7 @@ import { MatchComponent } from './components/match/match.component';
 import { StyleContactPipe } from './pipes/style-contact.pipe';
 import { WeekdayNamesPipe } from './pipes/weekday-names.pipe';
 import { NgSelectModule } from '@ng-select/ng-select';
+import {DashboardTabsComponent} from './components/dashboard-tabs/dashboard-tabs.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     BrowseOpportunitiesComponent,
     BrowseVolunteersComponent,
     DashboardComponent,
+    DashboardTabsComponent,
     AddVolunteeringOpportunityComponent,
     AddVolunteersComponent,
     AddContentComponent,
