@@ -111,45 +111,19 @@
           </div>
         </div>
 
-        <h4 class="secondary-header mt-2 mb-0">
-          ימים אפשריים
-        </h4>
-        <div class="input-group mb-3" formGroupName="days">
+        <div class="input-group mb-3">
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" formControlName="1" class="custom-control-input" id="customCheck1">
-            <label class="custom-control-label" for="customCheck1">ראשון</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" formControlName="2" class="custom-control-input" id="customCheck2">
-            <label class="custom-control-label" for="customCheck2">שני</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" formControlName="3" class="custom-control-input" id="customCheck3">
-            <label class="custom-control-label" for="customCheck3">שלישי</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" formControlName="4" class="custom-control-input" id="customCheck4">
-            <label class="custom-control-label" for="customCheck4">רביעי</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" formControlName="5" class="custom-control-input" id="customCheck5">
-            <label class="custom-control-label" for="customCheck5">חמישי</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" formControlName="6" class="custom-control-input" id="customCheck6">
-            <label class="custom-control-label" for="customCheck6">שישי</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" formControlName="7" class="custom-control-input" id="customCheck7">
-            <label class="custom-control-label" for="customCheck7">שבת</label>
+            <input formControlName="multiOccurrence" type="checkbox" class="custom-control-input" id="multiOccurrence1"/>
+            <label class="custom-control-label" for="multiOccurrence1"><h4 class="secondary-header mt-2 mb-0">
+          התנדבות רב פעמית
+        </h4></label>
           </div>
         </div>
-
 
         <h4 class="secondary-header mt-2 mb-0">
           איזורים בארץ
         </h4>
-        <div formArrayName="regions" class="input-group mb-3" style="display: flex;">
+        <!--div formArrayName="regions" class="input-group mb-3" style="display: flex;">
           <div class="custom-control custom-checkbox"
                *ngFor="let region of regions; let i=index">
             <input type="checkbox" [formControlName]="i" class="custom-control-input" id="regionCheck{{i}}">
@@ -157,7 +131,11 @@
               {{region}}
             </label>
           </div>
-        </div>
+        </div-->
+        <ng-select class="custom input-group shadow-none" placeholder="חפש תוכן להתנדבות"
+                     required autoCorrect formControlName="content" [items]="content"
+                     bindLabel="title" bindValue="_id">
+        </ng-select>
 
         <p class="text-danger text-center mt-3" *ngIf="!myForm.valid">אנא מלאו את כל הפרטים הנדרשים (מסומן ב-*).</p>
 

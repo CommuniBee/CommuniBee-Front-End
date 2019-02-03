@@ -22,7 +22,6 @@ export class AddVolunteersComponent implements OnInit {
   categories: CategoryModel[] = [] as any;
   content: ContentModel = {} as any;
   information: string;
-  contentTitle: string;
   contentCategory: any;
   isFileSelected = false;
 
@@ -52,15 +51,7 @@ export class AddVolunteersComponent implements OnInit {
       }),
       numberOfVolunteers: ['', Validators.min(1)],
       availableContent: [''],
-      days: this.fb.group({
-        1: [false],
-        2: [false],
-        3: [false],
-        4: [false],
-        5: [false],
-        6: [false],
-        7: [false],
-      }),
+      multiOccurrence: [''],
       regions: this.fb.array(this.regions.map(region => this.fb.control(false))),
     });
   }
@@ -91,30 +82,18 @@ export class AddVolunteersComponent implements OnInit {
   }
 
   formValues2volunteeringOfferModel(formValues): VolunteeringOffer {
+    console.log('forms values: ', formValues);
+    console.log('content: ', this.content);
     const volunteeringOffer: VolunteeringOffer = {} as any;
     volunteeringOffer.title = formValues.title;
     volunteeringOffer.contact = formValues.poc;
     volunteeringOffer.numberOfVolunteers = formValues.numberOfVolunteers;
-    volunteeringOffer.availableContent = formValues.availableContent;
-    volunteeringOffer.availableWeekdays = this.daysCheckboxsToArray(formValues.days);
+    volunteeringOffer.content = this.content;
+    volunteeringOffer.multiOccurrence = formValues.multiOccurrence;
     volunteeringOffer.regions = this.regionCheckboxsToRegionArray(formValues.regions);
     volunteeringOffer.createdByUserId = this.auth.getLocalUserId();
-    volunteeringOffer.availableContent = this.content._id;
 
     return volunteeringOffer;
-  }
-
-  daysCheckboxsToArray(days): number[] {
-    const availableWeekdays: number[] = [];
-    if (days['1']) { availableWeekdays.push(0); }
-    if (days['2']) { availableWeekdays.push(1); }
-    if (days['3']) { availableWeekdays.push(2); }
-    if (days['4']) { availableWeekdays.push(3); }
-    if (days['5']) { availableWeekdays.push(4); }
-    if (days['6']) { availableWeekdays.push(5); }
-    if (days['7']) { availableWeekdays.push(6); }
-
-    return availableWeekdays;
   }
 
   openContentModal() {
@@ -122,10 +101,11 @@ export class AddVolunteersComponent implements OnInit {
     $('#modalContentUpload').modal('toggle');
   }
 
-  onContentTitleLoaded(title: string) {
+  onContentTitleLoaded(changedContent: ContentModel) {
     this.myForm.patchValue({
-      availableContent: title
+      availableContent: changedContent.title
     });
+    this.content = changedContent;
     this.isFileSelected = true;
   }
 }
