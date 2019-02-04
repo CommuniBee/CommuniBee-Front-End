@@ -19,7 +19,7 @@ export class AddContentComponent implements OnInit {
   fileErrorSize = false;
   contentResult: ContentModel = {} as any;
   @ViewChild('closeBtn') closeBtn: ElementRef;
-  @Output() contentTitleLoaded = new EventEmitter<string>();
+  @Output() contentTitleLoaded = new EventEmitter<ContentModel>();
 
   constructor(private fb: FormBuilder,
               private categoriesSrv: CategoryService,
@@ -69,7 +69,7 @@ export class AddContentComponent implements OnInit {
     this.content.category = this.addContentForm.controls['category'].value;
     this.contentSrv.create(this.content).then( contentRes => {
         this.contentResult = contentRes;
-        this.contentTitleLoaded.emit(this.contentResult.title);
+        this.contentTitleLoaded.emit(contentRes);
     });
     this.isFileSelected = false;
     this.addContentForm.reset();

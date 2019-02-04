@@ -1,17 +1,17 @@
 import BackendModel from '../backend-model';
 import {User} from '../user/user';
+import { Content, ContentModel } from '../content/content';
 
 export interface VolunteeringRequestOfferBase {
   title: string;
-  content: string;
-  numberOfVolunteers?: number;
+  content: Content | ContentModel;
   contact: {
     name: string,
     phone: string,
     email: string,
   };
-  availableWeekdays?: number[];
-  notes?: [string];
+  multiOccurrence: boolean;
+  regions: [string];
   createdByUserId: string | User;
 }
 
