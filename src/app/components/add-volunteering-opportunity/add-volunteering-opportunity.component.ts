@@ -70,13 +70,11 @@ export class AddVolunteeringOpportunityComponent implements OnInit {
     volunteeringRequest.title = formValues.title;
     volunteeringRequest.about = formValues.about;
     volunteeringRequest.content = formValues.content;
-    volunteeringRequest.availableWeekdays = this.daysCheckboxsToArray(formValues.days);
     volunteeringRequest.contact = {} as any;
+    volunteeringRequest.multiOccurrence = false;
     volunteeringRequest.contact.name = formValues.poc.name;
     volunteeringRequest.contact.phone = formValues.poc.phone;
     volunteeringRequest.contact.email = formValues.poc.email;
-    volunteeringRequest.location = formValues.address;
-    volunteeringRequest.region = formValues.region;
     volunteeringRequest.createdByUserId = this.auth.getLocalUserId();
 
     return volunteeringRequest;
