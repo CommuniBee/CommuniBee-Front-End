@@ -98,7 +98,7 @@ export class AddVolunteersComponent implements OnInit {
     volunteeringOffer.availableContent = formValues.availableContent;
     volunteeringOffer.availableWeekdays = this.daysCheckboxsToArray(formValues.days);
     volunteeringOffer.regions = this.regionCheckboxsToRegionArray(formValues.regions);
-    volunteeringOffer.createdByUserId = this.auth.getLocalUserId();
+    volunteeringOffer.createdByUserId = this.auth.getUserId();
     volunteeringOffer.availableContent = this.content._id;
 
     return volunteeringOffer;

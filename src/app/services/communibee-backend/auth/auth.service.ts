@@ -1,150 +1,105 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import * as auth0 from 'auth0-js';
+import { tokenNotExpired } from 'angular2-jwt';
+import { Auth0Lock } from 'auth0-lock';
 import { environment } from '../../../../environments/environment';
-import {TokenPayload} from './token-payload';
-import { timer, of } from 'rxjs';
-import {mergeMap} from 'rxjs/operators';
+import {UserProfile} from './user-profile';
 
 @Injectable()
 export class AuthService {
 
-  private idToken: string;
-  private idTokenPayload: TokenPayload;
-  private accessToken: string;
-  private expiresAt: number;
-  private refreshSubscription: any;
+  auth0Options = {
+    theme: {
+      logo: '/assets/imgs/bumbleb_logo.png',
+      primaryColor: '#FAD11E'
+    },
+    auth: {
+      redirectUrl: environment.auth0.redirectUri,
+      responseType: 'token id_token',
+      audience: `https://${environment.auth0.domain}/userinfo`,
+      params: {
+        scope: 'openid email profile'
+      }
+    },
+    autoclose: true,
+    oidcConformant: true,
+    additionalSignUpFields: [
+      {
+        name: 'organization',
+        placeholder: 'your organization',
+      }, {
+        name: 'first_name',
+        placeholder: 'your first name'
+      }, {
+        name: 'last_name',
+        placeholder: 'your last name'
+      }, {
+        type: 'select',
+        name: 'location',
+        placeholder: 'your location',
+        options: [
+          {value: 'us', label: 'United States'},
+          {value: 'fr', label: 'France'},
+          {value: 'ar', label: 'Argentina'}
+        ],
+        // prefill: 'us'
+      }
+    ],
+  };
 
-  auth0 = new auth0.WebAuth({
-    clientID: environment.auth0.clientId,
-    domain: environment.auth0.domain,
-    responseType: 'token id_token',
-    redirectUri: environment.auth0.redirectUri,
-    scope: 'openid email profile',
-  });
+  lock = new Auth0Lock(
+    environment.auth0.clientId,
+    environment.auth0.domain,
+    this.auth0Options
+  );
 
   constructor(private router: Router) {
-    this.idToken = '';
-    this.accessToken = '';
-    this.expiresAt = 0;
+    this.lock.on('authenticated', (authResult: any) => {
+      this.lock.getUserInfo(authResult.accessToken, (error, profile) => {
+        if (error) {
+          throw new Error(error);
+        }
+
+        localStorage.setItem('token', authResult.idToken);
+        localStorage.setItem('profile', JSON.stringify(profile));
+        this.router.navigate(['/']);
+      });
+    });
+
+    this.lock.on('authorization_error', error => {
+      console.error('something went wrong', error);
+    });
+
   }
 
-  public getAccessToken(): string {
-    return this.accessToken;
+  public getUserProfile(): UserProfile {
+    return JSON.parse(localStorage.getItem('profile'));
   }
 
-  public getIdTokenPayload(): TokenPayload {
-    return this.idTokenPayload;
+  public getUserId(): string {
+    return this.getUserProfile().sub;
   }
 
-  public getLocalUserId(): string {
-    return this.idTokenPayload.sub;
+  public getUserName(): string {
+    return this.getUserProfile().name;
   }
 
   public getIdToken(): string {
-    return this.idToken;
+    return localStorage.getItem('token');
   }
 
   public login(): void {
-    this.auth0.authorize();
-  }
-
-  public register(): void {
-    this.auth0.authorize({
-      redirectUri: environment.auth0.registerRedirectUri
-    });
-  }
-
-  public handleAuthentication(): void {
-    this.auth0.parseHash((err, authResult) => {
-      console.log(authResult);
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        window.location.hash = '';
-        this.localLogin(authResult);
-        console.log('Login succeeded');
-      } else if (err) {
-        this.router.navigate(['/']);
-        console.log('Login Failed');
-      }
-    });
-  }
-
-  private localLogin(authResult): void {
-    // Set isLoggedIn flag in localStorage
-    localStorage.setItem('isLoggedIn', 'true');
-    // Set the time that the access token will expire at
-    this.expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
-    this.accessToken = authResult.accessToken;
-    this.idToken = authResult.idToken;
-    this.idTokenPayload = authResult.idTokenPayload;
-
-    this.scheduleRenewal();
-  }
-
-  public renewTokens(): void {
-    this.auth0.checkSession({
-      responseType: 'token id_token'
-    }, (err, authResult) => {
-      console.log(authResult);
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        this.localLogin(authResult);
-      } else if (err) {
-        console.error('Could not renew token, logging out', err);
-        this.logout();
-      }
-    });
+    this.lock.show();
   }
 
   public logout(): void {
-    // Remove tokens and expiry time
-    this.accessToken = '';
-    this.idToken = '';
-    this.idTokenPayload = {};
-    this.expiresAt = 0;
-    // Remove isLoggedIn flag from localStorage
-    localStorage.removeItem('isLoggedIn');
-    this.unscheduleRenewal();
+    localStorage.removeItem('profile');
+    localStorage.removeItem('token');
 
-    // Go back to the home route
     this.router.navigate(['/']);
   }
 
-  public isAuthenticated(): boolean {
-    // Check whether the current time is past the
-    // access token's expiry time
-    return new Date().getTime() < this.expiresAt;
+  isAuthenticated(): boolean {
+    return tokenNotExpired();
   }
-
-  public scheduleRenewal() {
-    if (!this.isAuthenticated()) { return; }
-    this.unscheduleRenewal();
-
-    const expiresIn$ = of(this.expiresAt).pipe(
-      mergeMap(
-        expiresAt => {
-          const now = Date.now();
-          // Use timer to track delay until expiration
-          // to run the refresh at the proper time
-          return timer(Math.max(1, this.expiresAt - now));
-        }
-      )
-    );
-
-    // Once the delay time from above is
-    // reached, get a new JWT and schedule
-    // additional refreshes
-    this.refreshSubscription = expiresIn$.subscribe(
-      () => {
-        this.renewTokens();
-        this.scheduleRenewal();
-      }
-    );
-  }
-
-  public unscheduleRenewal() {
-    if (this.refreshSubscription) {
-      this.refreshSubscription.unsubscribe();
-    }
-  }
-
 }
