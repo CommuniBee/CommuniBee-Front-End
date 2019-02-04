@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {RegionService} from '../../services/communibee-backend/region/region.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/communibee-backend/auth/auth.service';
@@ -7,6 +6,9 @@ import {VolunteeringOffersService} from '../../services/communibee-backend/volun
 import {VolunteeringOffer} from '../../services/communibee-backend/volunteering-offers/volunteering-offer';
 import {CategoryModel} from '../../services/communibee-backend/category/category';
 import {ContentModel} from '../../services/communibee-backend/content/content';
+import {ContentService} from '../../services/communibee-backend/content/content.service';
+import {SubRegionsModel} from '../../services/communibee-backend/subregion/subregion';
+import {SubRegionService} from '../../services/communibee-backend/subregion/subregion.service';
 
 
 declare var $;
@@ -19,26 +21,30 @@ declare var $;
 export class AddVolunteersComponent implements OnInit {
   public myForm: FormGroup;
   regions: string[] = [] as any;
-  categories: CategoryModel[] = [] as any;
+  categories: CategoryModel[];
+  subRegions: SubRegionsModel[];
   content: ContentModel = {} as any;
+  contentList: ContentModel[];
   information: string;
   contentCategory: any;
   isFileSelected = false;
 
-  constructor(private regionsSrv: RegionService,
+  constructor(private subRegionsSrv: SubRegionService,
+              private contentSrv: ContentService,
               private fb: FormBuilder,
               private vltrOffer: VolunteeringOffersService,
               private auth: AuthService,
               private router: Router) {
-    this.initForm();
   }
 
   ngOnInit() {
-    this.regionsSrv.getAll().then(regions_res => {
-      this.regions = regions_res as any;
-      this.initForm();
+    this.subRegionsSrv.getAll().then(subregions_res => {
+      this.subRegions = subregions_res;
     });
-
+    this.contentSrv.getAll().then(content_res => {
+      this.contentList = content_res;
+    });
+    this.initForm();
   }
 
   initForm() {
@@ -52,7 +58,7 @@ export class AddVolunteersComponent implements OnInit {
       numberOfVolunteers: ['', Validators.min(1)],
       availableContent: [''],
       multiOccurrence: [''],
-      regions: this.fb.array(this.regions.map(region => this.fb.control(false))),
+      regions: [null],
     });
   }
 
@@ -60,37 +66,26 @@ export class AddVolunteersComponent implements OnInit {
     const formValues = this.myForm.value;
     const volunteeringOffer: VolunteeringOffer = this.formValues2volunteeringOfferModel(formValues);
 
-    console.log(volunteeringOffer);
-
     this.vltrOffer.create(volunteeringOffer).then(volunteeringOfferDocument => {
-      console.log(volunteeringOfferDocument);
       if (volunteeringOfferDocument) {
         this.router.navigateByUrl('/dashboard');
       }
     });
   }
 
-  regionCheckboxsToRegionArray(regionCheckboxArray: [boolean]) {
-    const availableRegions: [string] = [] as any;
-    regionCheckboxArray.forEach((regionChecked, i) => {
-      if (regionChecked) {
-        availableRegions.push(this.regions[i]);
-      }
-    });
-
-    return availableRegions;
-  }
-
   formValues2volunteeringOfferModel(formValues): VolunteeringOffer {
     console.log('forms values: ', formValues);
-    console.log('content: ', this.content);
     const volunteeringOffer: VolunteeringOffer = {} as any;
     volunteeringOffer.title = formValues.title;
     volunteeringOffer.contact = formValues.poc;
     volunteeringOffer.numberOfVolunteers = formValues.numberOfVolunteers;
-    volunteeringOffer.content = this.content;
-    volunteeringOffer.multiOccurrence = formValues.multiOccurrence;
-    volunteeringOffer.regions = this.regionCheckboxsToRegionArray(formValues.regions);
+    volunteeringOffer.content = formValues.availableContent;
+    if ( formValues.multiOccurrence === '' ) {
+       volunteeringOffer.multiOccurrence = false;
+    } else {
+        volunteeringOffer.multiOccurrence = formValues.multiOccurrence;
+    }
+    volunteeringOffer.regions = formValues.regions;
     volunteeringOffer.createdByUserId = this.auth.getLocalUserId();
 
     return volunteeringOffer;
@@ -108,4 +103,17 @@ export class AddVolunteersComponent implements OnInit {
     this.content = changedContent;
     this.isFileSelected = true;
   }
+
+  groupByFn(regionItem: SubRegionsModel) {
+   return regionItem.region.name;
+  }
+
+  onChangeContent(selectedContent) {
+    if (selectedContent == null) {
+        this.isFileSelected = false;
+    } else {
+        this.isFileSelected = true;
+    }
+  }
+
 }
