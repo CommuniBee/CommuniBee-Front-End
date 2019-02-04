@@ -3,7 +3,7 @@ import { BackendHttpService } from '../backend-http.service';
 import { SubRegions, SubRegionsModel } from './subregion';
 import { BackendModelService } from '../basic-model.service';
 
-const path = 'subregions';
+export const path = 'subregions';
 
 @Injectable({
   providedIn: 'root',
