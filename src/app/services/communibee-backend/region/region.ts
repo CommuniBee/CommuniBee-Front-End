@@ -1,6 +1,5 @@
 import BackendModel from '../backend-model';
 
-
 export interface Regions {
   name: string;
 }

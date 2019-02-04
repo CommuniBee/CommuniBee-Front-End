@@ -57,7 +57,7 @@ export class AddVolunteersComponent implements OnInit {
       }),
       numberOfVolunteers: ['', Validators.min(1)],
       availableContent: [''],
-      multiOccurrence: [''],
+      multiOccurrence: [false],
       regions: [null],
     });
   }
@@ -74,17 +74,12 @@ export class AddVolunteersComponent implements OnInit {
   }
 
   formValues2volunteeringOfferModel(formValues): VolunteeringOffer {
-    console.log('forms values: ', formValues);
     const volunteeringOffer: VolunteeringOffer = {} as any;
     volunteeringOffer.title = formValues.title;
     volunteeringOffer.contact = formValues.poc;
     volunteeringOffer.numberOfVolunteers = formValues.numberOfVolunteers;
     volunteeringOffer.content = formValues.availableContent;
-    if ( formValues.multiOccurrence === '' ) {
-       volunteeringOffer.multiOccurrence = false;
-    } else {
-        volunteeringOffer.multiOccurrence = formValues.multiOccurrence;
-    }
+    volunteeringOffer.multiOccurrence = formValues.multiOccurrence;
     volunteeringOffer.regions = formValues.regions;
     volunteeringOffer.createdByUserId = this.auth.getLocalUserId();
 
@@ -97,14 +92,14 @@ export class AddVolunteersComponent implements OnInit {
   }
 
   onContentTitleLoaded(changedContent: ContentModel) {
+    this.contentList = [...this.contentList, changedContent];
     this.myForm.patchValue({
-      availableContent: changedContent.title
+      availableContent: changedContent._id
     });
-    this.content = changedContent;
     this.isFileSelected = true;
   }
 
-  groupByFn(regionItem: SubRegionsModel) {
+  groupByRegion(regionItem: SubRegionsModel) {
    return regionItem.region.name;
   }
 

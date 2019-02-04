@@ -93,12 +93,11 @@
           </div>
         </div>
 
-
         <div class="input-group mb-3">
           <h4 class="secondary-header mt-2 mb-0">
             תוכן להעברה
           </h4>
-          <ng-select class="custom input-group shadow-none" placeholder="בחירת או הזנת תוכן" 
+          <ng-select class="custom input-group shadow-none" placeholder="בחירת  תוכן" 
                 required autoCorrect formControlName="availableContent" [items]="contentList" 
                 bindLabel="title" bindValue="_id" (change)="onChangeContent($event)">
           </ng-select>
@@ -126,7 +125,7 @@
         </h4>
         <ng-select class="custom input-group shadow-none" placeholder="איזורי התנדבות אפשריים" 
             required autoCorrect formControlName="regions" [items]="subRegions" 
-            bindLabel="name" bindValue="_id" [closeOnSelect]="false" [groupBy]="groupByFn" [selectableGroup]="true" [multiple]="true">
+            bindLabel="name" bindValue="_id" [selectableGroupAsModel]="false" [closeOnSelect]="false" [groupBy]="groupByRegion" [selectableGroup]="true" [multiple]="true">
         </ng-select>
 
         <p class="text-danger text-center mt-3" *ngIf="!myForm.valid">אנא מלאו את כל הפרטים הנדרשים (מסומן ב-*).</p>
