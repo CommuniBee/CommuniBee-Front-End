@@ -128,7 +128,7 @@
         <p class="text-danger text-center mt-3" *ngIf="!myForm.valid">אנא מלאו את כל הפרטים הנדרשים (מסומן ב-*).</p>
 
         <div class="form-group" [ngClass]="{'mt-3': myForm.valid}" style="justify-content: center; display: flex;">
-          <button [disabled]="!myForm.valid || !isFileSelected" type="submit" style="font-size: 1.3em;"
+          <button [disabled]="!myForm.valid" type="submit" style="font-size: 1.3em;"
                   [ngClass]="{'btn-outline-primary': myForm.valid, 'btn-outline-danger': !myForm.valid}"
                   class="btn shadow-none">הוסף
           </button>

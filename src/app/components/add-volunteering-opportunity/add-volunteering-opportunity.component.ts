@@ -56,14 +56,11 @@ export class AddVolunteeringOpportunityComponent implements OnInit {
   }
 
   sendData() {
-    console.log(this.form.value);
     if (!this.form.valid) {
       return;
     }
     const formValues = this.form.value;
     const volunteeringRequest: VolunteeringRequest = this.formValues2volunteeringRequestModel(formValues);
-
-    console.log(volunteeringRequest);
 
     this.vltrReq.create(volunteeringRequest).then(volunteeringRequestDocument => {
       if (volunteeringRequestDocument) {

@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/communibee-backend/auth/auth.service';
-import { User } from '../../services/communibee-backend/user/user';
 import { CategoryService } from '../../services/communibee-backend/category/category.service';
-import { ArrBuff } from '../../services/utils/arr-buff.service';
 import { ContentModel } from '../../services/communibee-backend/content/content';
-import { ContentService } from '../../services/communibee-backend/content/content.service';
 
 declare var $;
 
@@ -18,7 +15,7 @@ export class NavComponent implements OnInit {
   categories = [];
   content: ContentModel = {} as any;
 
-  constructor(public auth: AuthService, private categoriesSrv: CategoryService, private contentSrv: ContentService) {
+  constructor(public auth: AuthService, private categoriesSrv: CategoryService) {
   }
 
   ngOnInit() {
@@ -37,7 +34,7 @@ export class NavComponent implements OnInit {
     $('#navModalContentUpload').modal('toggle');
   }
 
-  onFileChange(event) {
+  /** onFileChange(event) {
     const fileSize = event.srcElement.files[0].size;
     const maxFileSize = 5e+6; // 5MB
     if (fileSize > maxFileSize) {
@@ -65,9 +62,8 @@ export class NavComponent implements OnInit {
 
   uploadContent() {
     this.contentSrv.create(this.content).then(contentRes => {
-      console.log(contentRes);
       this.content = contentRes;
     });
-  }
+  }*/
 
 }

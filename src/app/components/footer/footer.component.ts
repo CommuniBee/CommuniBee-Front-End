@@ -8,7 +8,7 @@ import { AuthService } from '../../services/communibee-backend/auth/auth.service
 })
 export class FooterComponent implements OnInit {
 
-  constructor(public auth: AuthService) { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
   }

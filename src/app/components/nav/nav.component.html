@@ -13,18 +13,22 @@
     <div class="collapse navbar-collapse" id="navbarCollapse1">
       <ul class="navbar-nav ml-auto pr-lg-4 py-3 py-lg-0" style="padding-right: 0;">
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-          <a class="nav-link" [routerLink]="getHomePath()" href="#"><i class="fas fa-home ml-2"></i> בית</a>
+          <a class="nav-link" [routerLink]="getHomePath()" href="#">
+              <i class="fas fa-home ml-2"></i>בית
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><i class="fas fa-info ml-2"></i>עלינו</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" (click)="openContentModal()">
-                <i class="fas fa-plus ml-2"></i>הוספת תוכן</a>
+                <i class="fas fa-plus ml-2"></i>הוספת תוכן
+          </a>
         </li>
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <a routerLink="/match" href="#" class="nav-link" *ngIf="auth.isAuthenticated()">
-                <i class="far fa-calendar-check ml-2"></i>תיאום התנדבות</a>
+                <i class="far fa-calendar-check ml-2"></i>תיאום התנדבות
+            </a>
         </li>
       </ul>
       <div class="mr-auto pt-4 pb-3 py-lg-0">
