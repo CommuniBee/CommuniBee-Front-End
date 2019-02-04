@@ -1,11 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VolunteeringRequestsService } from '../../services/communibee-backend/volunteering-requests/volunteering-requests.service';
 import { VolunteeringRequest } from '../../services/communibee-backend/volunteering-requests/volunteering-request';
 import { AuthService } from '../../services/communibee-backend/auth/auth.service';
 import { Router } from '@angular/router';
-import { ContentService } from '../../services/communibee-backend/content/content.service';
 import { BasicContentModel } from '../../services/communibee-backend/content/content';
+import {ContentModel} from '../../services/communibee-backend/content/content';
+import {ContentService} from '../../services/communibee-backend/content/content.service';
+import {SubRegionsModel} from '../../services/communibee-backend/subregion/subregion';
+import {SubRegionService} from '../../services/communibee-backend/subregion/subregion.service';
+
+
+declare var $;
 
 @Component({
   selector: 'app-add-volunteering-opportunity',
@@ -15,40 +21,42 @@ import { BasicContentModel } from '../../services/communibee-backend/content/con
 export class AddVolunteeringOpportunityComponent implements OnInit {
   public form: FormGroup;
   content: BasicContentModel[];
+  subRegions: SubRegionsModel[];
+  contentList: ContentModel[];
+  @ViewChild('modalContentUpload') contentModal: ElementRef;
 
   constructor(private fb: FormBuilder,
               private vltrReq: VolunteeringRequestsService,
               private contentService: ContentService,
+              private subRegionsSrv: SubRegionService,
               private auth: AuthService,
               private router: Router) {
     this.form = this.fb.group({
       title: ['', Validators.required],
       about: ['', Validators.required],
-      content: [null],
-      days: this.fb.group({
-        1: [true],
-        2: [true],
-        3: [true],
-        4: [true],
-        5: [true],
-        6: [false],
-        7: [false],
-      }),
+      availableContent: [''],
+      multiOccurrence: [false],
       poc: this.fb.group({
         name: ['', Validators.required],
         phone: ['', Validators.required],
         email: ['', Validators.required],
       }),
-      address: ['', Validators.required],
-      region: ['', Validators.required],
+      regions: [null],
     });
   }
 
   async ngOnInit() {
     this.content = await this.contentService.getAll({ title: true });
+      this.subRegionsSrv.getAll().then(subregions_res => {
+      this.subRegions = subregions_res;
+    });
+    this.contentService.getAll().then(content_res => {
+      this.contentList = content_res;
+    });
   }
 
   sendData() {
+    console.log(this.form.value);
     if (!this.form.valid) {
       return;
     }
@@ -67,30 +75,30 @@ export class AddVolunteeringOpportunityComponent implements OnInit {
   formValues2volunteeringRequestModel(formValues): VolunteeringRequest {
     const volunteeringRequest: VolunteeringRequest = {} as any;
 
+    volunteeringRequest.organization = 'ברירת מחדל';
     volunteeringRequest.title = formValues.title;
     volunteeringRequest.about = formValues.about;
-    volunteeringRequest.content = formValues.content;
-    volunteeringRequest.contact = {} as any;
-    volunteeringRequest.multiOccurrence = false;
-    volunteeringRequest.contact.name = formValues.poc.name;
-    volunteeringRequest.contact.phone = formValues.poc.phone;
-    volunteeringRequest.contact.email = formValues.poc.email;
+    volunteeringRequest.contact = formValues.poc;
+    volunteeringRequest.content = formValues.availableContent;
+    volunteeringRequest.multiOccurrence = formValues.multiOccurrence;
+    volunteeringRequest.regions = formValues.regions;
     volunteeringRequest.createdByUserId = this.auth.getLocalUserId();
 
     return volunteeringRequest;
   }
 
-  daysCheckboxsToArray(days): number[] {
-    const availableWeekdays: number[] = [];
-    if (days['1']) { availableWeekdays.push(0); }
-    if (days['2']) { availableWeekdays.push(1); }
-    if (days['3']) { availableWeekdays.push(2); }
-    if (days['4']) { availableWeekdays.push(3); }
-    if (days['5']) { availableWeekdays.push(4); }
-    if (days['6']) { availableWeekdays.push(5); }
-    if (days['7']) { availableWeekdays.push(6); }
-
-    return availableWeekdays;
+ onContentTitleLoaded(changedContent: ContentModel) {
+    this.contentList = [...this.contentList, changedContent];
+    this.form.patchValue({
+      availableContent: changedContent._id
+    });
   }
 
+  groupByRegion(regionItem: SubRegionsModel) {
+   return regionItem.region.name;
+  }
+
+  openContentModal() {
+    $('#modalContentUpload').modal('toggle');
+  }
 }

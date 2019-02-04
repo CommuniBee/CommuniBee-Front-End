@@ -3,7 +3,7 @@ import {User} from '../user/user';
 import { Content, ContentModel } from '../content/content';
 
 export interface VolunteeringRequestOfferBase {
-  title: string;
+  organization: string;
   content: Content | ContentModel;
   contact: {
     name: string,
