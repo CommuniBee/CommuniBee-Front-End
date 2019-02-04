@@ -1,4 +1,4 @@
-<div class="modal-content model-big">
+<div class="modal-content model-big rtl">
     <form [formGroup]="addContentForm" #f="ngForm">
         <div class="modal-body text-center px-10 rtl">
 
@@ -12,6 +12,54 @@
                 <div class="title-divider-round"></div>
             </h4>
 
+            <h4 class="secondary-header mt-2 mb-0 text-right">
+                איש קשר *
+            </h4>
+            <div class="row rtl justify-content-center" formGroupName="poc">
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                    <div class="input-group-inner">
+                        <div class="input-group-prepend">
+                    <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
+                        class="far fa-user"></i></span>
+                        </div>
+                        <input type="text" formControlName="name" class="form-control" aria-label="Username"
+                            aria-describedby="inputGroupIconDefault"
+                            placeholder="שם מלא">
+                        <div class="input-focus-bg"></div>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                    <div class="input-group-inner">
+                        <div class="input-group-prepend">
+                    <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
+                        class="far fa-phone"></i></span>
+                        </div>
+                        <input type="text" formControlName="phone" class="form-control" aria-label="Username"
+                            aria-describedby="inputGroupIconDefault"
+                            placeholder="טלפון">
+                        <div class="input-focus-bg"></div>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group mb-3">
+                    <div class="input-group-inner">
+                        <div class="input-group-prepend">
+                    <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
+                        class="far fa-at"></i></span>
+                        </div>
+                        <input type="text" formControlName="email" class="form-control" aria-label="Username"
+                            aria-describedby="inputGroupIconDefault"
+                            placeholder="אימייל">
+                        <div class="input-focus-bg"></div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="form-group">
                 <h4 class="secondary-header text-right mt-2 mb-0">
                     נושא ההתנדבות *
@@ -24,7 +72,7 @@
                     תיאור *
                 </h4>        
                 <textarea formControlName="information" maxlength="200" required="true" class="form-control mb-3" id="contentInformation" aria-describedby="inputDefault" placeholder="תיאור של נושא ההתנדבות" ></textarea>
-            </div>            
+            </div>
             
             <div class="form-group">
                 <h4 class="secondary-header text-right mt-2 mb-0">
@@ -40,14 +88,16 @@
                 </h4> 
                 <div class="custom-file mb-3">
                     <input type="file" class="custom-file-input" id="fileBrowser" (change)="onFileChange($event)"
-                            accept="application/pdf, .doc, .docx, .ppt, .pptx,">
-                    <label id="fileBrowserLabel" class="custom-file-label" for="fileBrowser">בחר קובץ...</label>
+                            accept="application/pdf, .doc, .docx, .ppt, .pptx,"/>
+                    <label #fileBrowserLabel id="fileBrowserLabel" class="custom-file-label" for="fileBrowser">בחירת קובץ...</label>
                 </div>
                 <div *ngIf="fileErrorSize" class="alert alert-danger" role="alert">
                     File size must be less then 10MB
                 </div>
             </div>
         </div>
+        <p class="text-danger text-center mt-3" *ngIf="!addContentForm.valid || !isFileSelected">אנא מלאו את כל הפרטים הנדרשים (מסומן ב-*).</p>
+
         <div class="form-group modal-footer d-flex justify-content-center pt-2 pb-5 rtl">
             <button (click)="uploadContent()" [disabled]="!addContentForm.valid || !isFileSelected" style="font-size: 1.3em;" class="btn btn-primary mb-2 shadow-none" data-dismiss="modal">העלה</button>
         </div>
