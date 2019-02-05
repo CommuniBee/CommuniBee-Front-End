@@ -5,14 +5,14 @@ import {Component, OnInit} from '@angular/core';
   templateUrl: './dashboard-tabs.component.html',
   styleUrls: ['./dashboard-tabs.component.css']
 })
-export class DashboardTabsComponent implements OnInit{
+export class DashboardTabsComponent implements OnInit {
   private selectedTab: number;
 
   constructor() {
 
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.selectedTab = 0;
   }
 
