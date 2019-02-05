@@ -1,12 +1,9 @@
 <div class="rtl">
-  <nav class="navbar navbar-dark bg-dark">
-    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <a href="#future" class="nav-item nav-link active" data-toggle="tab"
-         aria-selected="selectedTab === 0" (click)="selectTab(0)">התנדבויות עתידיות</a>
-      <a href="#requests" class="nav-item nav-link" data-toggle="tab"
-         aria-selected="selectedTab === 1" (click)="selectTab(1)">בקשות שלי</a>
-      <a href="#history" class="nav-item nav-link" data-toggle="tab"
-         aria-selected="selectedTab === 2" (click)="selectTab(2)">היסטוריה</a>
+  <nav class="navbar-dark bg-dark">
+    <div class="nav nav-fill nav-tabs" id="nav-tab" role="tablist">
+      <a href="#future" class="nav-item nav-link active" data-toggle="tab" (click)="selectTab(0)">התנדבויות עתידיות</a>
+      <a href="#requests" class="nav-item nav-link" data-toggle="tab" (click)="selectTab(1)">בקשות שלי</a>
+      <a href="#history" class="nav-item nav-link" data-toggle="tab" (click)="selectTab(2)">היסטוריה</a>
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
