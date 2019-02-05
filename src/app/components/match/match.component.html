@@ -14,10 +14,10 @@
                     <h4 class="secondary-header mt-2 mb-0">
                         בחירת בקשת התנדבות
                     </h4>
-                    <div id="accordion" class="list-group">
-                        <div *ngFor="let request of volunteeringRequests; index as i" class="list-group-item list-group-item-action align-items-start">
-                            <div class="card">
-                                <div class="card-header" [attr.id]="'heading'+i">
+                    <ul id="accordion" class="list-group">
+                        <li *ngFor="let request of volunteeringRequests; index as i" class="list-group-item list-group-item-action align-items-start py-1">
+                            <div class="card py-0">
+                                <div class="card-header py-0" [attr.id]="'heading'+i">
                                     <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="'#collapse'+i" aria-expanded="true" aria-controls="collapseOne">
                                         <h3 class="mb-0">{{request.title}}</h3>
                                     </button>
@@ -25,15 +25,15 @@
                                     <small>עבור {{request.organization}}</small>
                                 </div>
                                 <div [attr.id]="'collapse'+i" class="collapse show" [attr.aria-labelledby]="'heading'+i" data-parent="#accordion">
-                                    <div class="card-body">
+                                    <div class="card-body py-0">
                                         <h6 class="mb-1">{{request.content.title}}</h6>
                                         <p class="mb-1">{{request.about}}</p>
                                         <small>לתיאום יש לפנות ל- {{request.contact.name}}, {{request.contact.phone}}, {{request.contact.email}}</small>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

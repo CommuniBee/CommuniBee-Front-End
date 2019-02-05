@@ -5,3 +5,10 @@
 ngb-datepicker, ngb-timepicker {
   direction: ltr;
 }
+
+.list-group{
+    max-height: 1200px;
+    margin-bottom: 10px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
