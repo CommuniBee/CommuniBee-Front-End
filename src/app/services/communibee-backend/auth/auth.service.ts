@@ -15,21 +15,26 @@ import { UserMetadata } from './user-metadata';
 @Injectable()
 export class AuthService {
 
-  auth0Options = {
+  baseLockOptions = {
     theme: {
       logo: '/assets/imgs/bumbleb_logo.png',
       primaryColor: '#FAD11E'
     },
     auth: {
-      redirectUrl: environment.auth0.redirectUri,
       responseType: 'token id_token',
       audience: `https://${environment.auth0.domain}/userinfo`,
+      sso: true,
       params: {
         scope: 'openid email profile app_metadata user_metadata'
       }
     },
     autoclose: true,
     oidcConformant: true,
+  };
+
+  signupLockOptions = {
+    ...this.baseLockOptions,
+    allowLogin: false,
     additionalSignUpFields: [
       {
         name: 'organization',
@@ -43,10 +48,26 @@ export class AuthService {
       },
     ],
   };
-  lock = new Auth0Lock(
+
+  loginLockOptions = {
+    ...this.baseLockOptions,
+    allowSignUp: false,
+    auth: {
+      ...this.baseLockOptions.auth,
+      redirect: false
+    }
+  };
+
+  loginLock = new Auth0Lock(
     environment.auth0.clientId,
     environment.auth0.domain,
-    this.auth0Options
+    this.loginLockOptions
+  );
+
+  signupLock = new Auth0Lock(
+    environment.auth0.clientId,
+    environment.auth0.domain,
+    this.signupLockOptions
   );
 
   constructor(private router: Router, httpBackend: HttpBackend) {
@@ -70,17 +91,16 @@ export class AuthService {
         prefill: subRegionsOptions[0].value
       };
 
-      this.auth0Options.additionalSignUpFields.push(locationField as any);
+      this.signupLockOptions.additionalSignUpFields.push(locationField as any);
 
-      this.lock = new Auth0Lock(
+      this.signupLock = new Auth0Lock(
         environment.auth0.clientId,
         environment.auth0.domain,
-        this.auth0Options
+        this.signupLockOptions
       );
 
-      this.lock.on('authenticated', (authResult: any) => {
-        console.log(this.lock);
-        this.lock.getUserInfo(authResult.accessToken, (error, profile) => {
+      this.loginLock.on('authenticated', (authResult: any) => {
+        this.loginLock.getUserInfo(authResult.accessToken, (error, profile) => {
           if (error) {
             throw new Error(error);
           }
@@ -90,11 +110,6 @@ export class AuthService {
           this.router.navigate(['/dashboard']);
         });
       });
-
-      this.lock.on('authorization_error', error => {
-        console.error('something went wrong', error);
-      });
-
     });
   }
 
@@ -145,7 +160,11 @@ export class AuthService {
   }
 
   public login(): void {
-    this.lock.show();
+    this.loginLock.show();
+  }
+
+  public signup(): void {
+    this.signupLock.show();
   }
 
   public logout(): void {

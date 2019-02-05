@@ -42,7 +42,12 @@
                 class="btn btn-link no-shadow mb-0 mr-1"
                 style="padding: 2px 10px; padding-right: 2px; color: white; font-weight: normal;"
                 *ngIf="!isAuthenticated()"
-                (click)="login()">הרשם/התחבר</button>
+                (click)="signup()">הרשם</button>
+        <button type="button"
+                class="btn btn-link no-shadow mb-0 mr-1"
+                style="padding: 2px 10px; padding-right: 2px; color: white; font-weight: normal;"
+                *ngIf="!auth.isAuthenticated()"
+                (click)="login()">התחבר</button>
         <button type="button"
                 class="btn btn-link no-shadow mb-0 mr-1"
                 style="padding: 2px 10px; padding-right: 2px; color: white; font-weight: normal;"
