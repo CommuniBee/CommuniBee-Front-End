@@ -145,3 +145,20 @@ table.rtl thead th:last-child {
 .ng-dropdown-panel-items{
   width: inherit;
 }
+
+.ctr{
+  align-items: center;
+  justify-content: space-around;
+}
+
+.col, .row {
+  display:flex;
+}
+
+.col {
+  flex-direction: column;
+}
+
+.row {
+  flex-direction: row;
+}

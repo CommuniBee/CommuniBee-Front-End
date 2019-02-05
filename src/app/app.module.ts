@@ -26,6 +26,7 @@ import { StyleContactPipe } from './pipes/style-contact.pipe';
 import { WeekdayNamesPipe } from './pipes/weekday-names.pipe';
 import { BrowseContentPipe} from './components/browse-content/browse-content.pipe';
 import { NgSelectModule } from '@ng-select/ng-select';
+import {DashboardTabsComponent} from './components/dashboard-tabs/dashboard-tabs.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     BrowseOpportunitiesComponent,
     BrowseVolunteersComponent,
     DashboardComponent,
+    DashboardTabsComponent,
     AddVolunteeringOpportunityComponent,
     AddVolunteersComponent,
     AddContentComponent,
