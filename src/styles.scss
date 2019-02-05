@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 html {
   height: 100vh;
@@ -49,6 +50,12 @@ a.nav-link {
   font-size: 1.25em !important;
 }
 
+th {
+  font-family: 'FbOgen';
+  font-weight: 500;
+  font-size: 1.2em !important;
+}
+
 .breadcrumb-item {
   font-family: 'FbOgen';
   font-weight: bold;
@@ -58,7 +65,6 @@ a.nav-link {
 .display-1, .display-2, .display-3, .display-4 {
   font-family: 'FbOgen';
 }
-
 
 p, button.btn {
   font-family: "FbOgen", Verdana, Tahoma;
@@ -78,6 +84,81 @@ p.h1, p.h2, p.h3, p.h4, p.h5 {
   direction: rtl;
   text-align: right;
 }
+
 .rtl input {
   direction: rtl;
+}
+
+.secondary-header {
+  font-weight: lighter;
+  color: #485357;
+}
+
+/* RTL Table fix */
+table.rtl thead th:first-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0.1875rem;
+  border-bottom-right-radius: 0rem;
+}
+
+table.rtl thead th:last-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0.1875rem;
+  border-bottom-left-radius: 0rem;
+}
+
+/* RTL Alert fix */
+.alert.rtl > i:first-child {
+  right: 0;
+}
+
+.alert.rtl > button:last-child {
+  right: inherit;
+  left: 0;
+}
+
+//RTL input icon fix
+.rtl .input-group-icon {
+  margin-right: 4px;
+}
+
+.rtl .input-group-append {
+  margin-left: 4px;
+}
+
+.rtl .custom-control-label::after {
+  left: 0;
+  right: -1.5rem;
+}
+
+.rtl .custom-control-label::before {
+  left: 0;
+  right: -1.5rem;
+}
+
+.rtl .custom-control.custom-radio, .rtl .custom-control.custom-checkbox {
+  margin-right: 1.5rem;
+}
+
+.ng-dropdown-panel-items{
+  width: inherit;
+}
+
+.ctr{
+  align-items: center;
+  justify-content: space-around;
+}
+
+.col, .row {
+  display:flex;
+}
+
+.col {
+  flex-direction: column;
+}
+
+.row {
+  flex-direction: row;
 }

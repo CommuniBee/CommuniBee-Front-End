@@ -1,0 +1,1 @@
+echo "-----BEGIN CERTIFICATE----- " > /etc/ssl/nginx.crt; echo $NGINX_SSL_CERT >> /etc/ssl/nginx.crt; echo "-----END CERTIFICATE-----" >> /etc/ssl/nginx.crt; echo "-----BEGIN PRIVATE KEY----- " > /etc/ssl/nginx.key; echo $NGINX_SSL_KEY >> /etc/ssl/nginx.key; echo "-----END PRIVATE KEY-----" >> /etc/ssl/nginx.key; nginx -g "daemon off;"

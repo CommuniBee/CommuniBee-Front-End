@@ -1,0 +1,25 @@
+<div class="rtl">
+  <nav class="navbar-dark bg-dark">
+    <div class="nav nav-fill nav-tabs" id="nav-tab" role="tablist">
+      <a href="#future" class="nav-item nav-link active" data-toggle="tab" (click)="selectTab(0)">התנדבויות עתידיות</a>
+      <a href="#requests" class="nav-item nav-link" data-toggle="tab" (click)="selectTab(1)">בקשות שלי</a>
+      <a href="#history" class="nav-item nav-link" data-toggle="tab" (click)="selectTab(2)">היסטוריה</a>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active"
+         id="future"
+         role="tabpanel"
+         aria-labelledby="nav-home-tab">
+      <span *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]">upcoming event {{i}}</span>
+    </div>
+    <div class="tab-pane fade" id="requests" role="tabpanel"
+         aria-labelledby="nav-profile-tab">
+      <span *ngFor="let t of [1,2,3,4,5,6,7,8,9,10]">request {{t}}</span>
+    </div>
+    <div class="tab-pane fade" id="history" role="tabpanel"
+         aria-labelledby="nav-contact-tab">
+      <span *ngFor="let k of [1,2,3,4,5,6,7,8,9,10]">history {{k}}</span>
+    </div>
+  </div>
+</div>

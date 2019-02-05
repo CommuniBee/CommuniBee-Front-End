@@ -3,14 +3,24 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  auth0: {
+    clientId: 'tZimRnXJVsgNl4zeTTpFoGl4-GV5q_ls',
+    domain: 'communibee.auth0.com',
+    redirectUri: 'http://localhost:4200/dashboard',
+    registerRedirectUri: 'http://localhost:4200/register?auth0_callback=true',
+  },
+  api: {
+    url: 'http://localhost:3000'
+  }
 };
 
 /*
  * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
+ * to ignore zone related fileError stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
+ *`
  * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
+ * on performance if an fileError is thrown.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+// import 'zone.js/dist/zone-fileError';  // Included with Angular CLI.
+

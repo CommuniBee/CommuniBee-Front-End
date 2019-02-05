@@ -1,34 +1,65 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark no-shadow" dir="rtl">
   <div class="container">
 
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" routerLink="/">
       <img src="../assets/imgs/communiBee-logo-white.png" width="140" alt="Navbar brand">
     </a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse1" aria-controls="navbarCollapse1" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse1"
+            aria-controls="navbarCollapse1" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarCollapse1">
       <ul class="navbar-nav ml-auto pr-lg-4 py-3 py-lg-0" style="padding-right: 0;">
-        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" >
-          <a  class="nav-link" routerLink="/" href="#"><i class="fas fa-home ml-2"></i> בית</a>
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <a class="nav-link" [routerLink]="getHomePath()" href="#">
+              <i class="fas fa-home ml-2"></i>בית
+          </a>
         </li>
-        <li class="nav-item mr-2">
+        <li class="nav-item">
           <a class="nav-link" href="#"><i class="fas fa-info ml-2"></i>עלינו</a>
         </li>
-        <li class="nav-item mr-2">
-          <a class="nav-link" href="#" data-toggle="modal" data-target="#modalRegisterForm"><i class="fas fa-phone ml-2"></i>צרו קשר</a>
+        <li class="nav-item">
+          <a class="nav-link" (click)="openContentModal()">
+                <i class="fas fa-plus ml-2"></i>הוספת תוכן
+          </a>
         </li>
-
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/match" href="#" class="nav-link" *ngIf="auth.isAuthenticated()">
+                <i class="far fa-calendar-check ml-2"></i>תיאום התנדבות
+            </a>
+        </li>
       </ul>
       <div class="mr-auto pt-4 pb-3 py-lg-0">
-        <button type="button" class="btn btn-link no-shadow mb-0 mr-1" style="padding: 2px 10px; padding-right: 2px; color: white; font-weight: normal;">הרשם</button>
-        <button type="button" class="btn btn-link no-shadow mb-0 mr-1" style="padding: 2px 10px; padding-right: 2px; color: white; font-weight: normal;">התחבר</button>
-        <button type="button" class="btn btn-outline-primary no-shadow mb-0 mr-1" style="padding: 2px 10px; padding-right: 2px; color: white;"><i style="font-size: 1em;position: relative; top: 1px;" class="fas fa-plus ml-2"></i>הוסף תוכן</button>
-        <button type="button" class="btn btn-round btn-icon-only btn-warning btn-sm shadow-none mb-0 mr-4"><i class="fab fa-facebook-f"></i></button>
-        <button type="button" class="btn btn-round btn-icon-only btn-warning btn-sm shadow-none mb-0 mr-1"><i class="fab fa-twitter"></i></button>
-        <button type="button" class="btn btn-round btn-icon-only btn-warning btn-sm shadow-none mb-0 mr-1"><i class="fab fa-instagram"></i></button>
+        <label
+          *ngIf="auth.isAuthenticated()"
+          style="padding: 2px 10px; padding-right: 2px; color: white; font-weight: normal; position:relative; top: -1px;">
+          <i class="fas fa-user ml-2"></i>
+          <b>{{auth.getUserName()}}</b>
+        </label>
+        <button type="button"
+                class="btn btn-link no-shadow mb-0 mr-1"
+                style="padding: 2px 10px; padding-right: 2px; color: white; font-weight: normal;"
+                *ngIf="!auth.isAuthenticated()"
+                (click)="auth.signup()">הרשם</button>
+        <button type="button"
+                class="btn btn-link no-shadow mb-0 mr-1"
+                style="padding: 2px 10px; padding-right: 2px; color: white; font-weight: normal;"
+                *ngIf="!auth.isAuthenticated()"
+                (click)="auth.login()">התחבר</button>
+        <button type="button"
+                class="btn btn-link no-shadow mb-0 mr-1"
+                style="padding: 2px 10px; padding-right: 2px; color: white; font-weight: normal;"
+                *ngIf="auth.isAuthenticated()"
+                (click)="auth.logout()">התנתק
+        </button>
+        <a href="https://www.facebook.com/BumbleB3339/" class="btn btn-round btn-icon-only btn-warning btn-sm shadow-none mb-0 mr-4"><i
+          class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/frc3339" class="btn btn-round btn-icon-only btn-warning btn-sm shadow-none mb-0 mr-1"><i
+          class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/bumbleb3339/" class="btn btn-round btn-icon-only btn-warning btn-sm shadow-none mb-0 mr-1"><i
+          class="fab fa-instagram"></i></a>
       </div>
     </div>
 
@@ -36,3 +67,10 @@
 </nav>
 
 <app-contact-modal></app-contact-modal>
+
+<div class="modal fade" id="navModalContentUpload" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <app-add-content></app-add-content>
+  </div>
+</div>
+
