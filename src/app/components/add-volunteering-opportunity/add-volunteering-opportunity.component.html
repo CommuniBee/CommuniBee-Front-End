@@ -23,7 +23,7 @@
             </div>
             <input type="text" formControlName="organization" class="form-control" aria-label="Username"
                    aria-describedby="inputGroupIconDefault"
-                   placeholder="הזן שם ארגון">
+                   placeholder="שם ארגון...">
             <div class="input-focus-bg"></div>
           </div>
         </div>
@@ -39,7 +39,7 @@
             </div>
             <input type="text" formControlName="title" class="form-control" aria-label="Username"
                    aria-describedby="inputGroupIconDefault"
-                   placeholder="הזן שם התנדבות">
+                   placeholder="שם התנדבות...">
             <div class="input-focus-bg"></div>
           </div>
         </div>
@@ -54,7 +54,7 @@
                 class="far fa-question-circle"></i></span>
             </div>
             <textarea formControlName="about" class="form-control mt-1" id="TextareaDefault"
-                      placeholder="הזן תיאור ההתנדבות" rows="3"></textarea>
+                      placeholder="תיאור ההתנדבות..." rows="3"></textarea>
 
             <div class="input-focus-bg"></div>
           </div>
@@ -73,7 +73,7 @@
                 </div>
                 <input type="text" formControlName="name" class="form-control" aria-label="Username"
                        aria-describedby="inputGroupIconDefault"
-                       placeholder="שם מלא">
+                       placeholder="שם מלא...">
                 <div class="input-focus-bg"></div>
               </div>
             </div>
@@ -87,7 +87,7 @@
                 </div>
                 <input type="text" formControlName="phone" class="form-control" aria-label="Username"
                        aria-describedby="inputGroupIconDefault"
-                       placeholder="טלפון">
+                       placeholder="טלפון...">
                 <div class="input-focus-bg"></div>
               </div>
             </div>
@@ -101,7 +101,7 @@
                 </div>
                 <input type="text" formControlName="email" class="form-control" aria-label="Username"
                        aria-describedby="inputGroupIconDefault"
-                       placeholder="אימייל">
+                       placeholder="אימייל...">
                 <div class="input-focus-bg"></div>
               </div>
             </div>
@@ -112,7 +112,7 @@
           <h4 class="secondary-header mt-2 mb-0">
             תוכן להעברה
           </h4>
-          <ng-select class="custom input-group shadow-none" placeholder="בחירת תוכן" 
+          <ng-select class="custom input-group shadow-none" placeholder="בחירת תוכן..." 
                 required autoCorrect formControlName="availableContent" [items]="contentList" 
                 bindLabel="title" bindValue="_id">
           </ng-select>
@@ -137,7 +137,7 @@
         <h4 class="secondary-header mt-2 mb-0">
           איזורים בארץ
         </h4>
-        <ng-select class="custom input-group shadow-none" placeholder="איזורי התנדבות אפשריים" 
+        <ng-select class="custom input-group shadow-none" placeholder="איזורי התנדבות אפשריים..." 
             required autoCorrect formControlName="regions" [items]="subRegions" 
             bindLabel="name" bindValue="_id" [selectableGroupAsModel]="false" [closeOnSelect]="false" [groupBy]="groupByRegion" [selectableGroup]="true" [multiple]="true">
         </ng-select>

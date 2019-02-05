@@ -42,7 +42,7 @@ export class AddVolunteeringOpportunityComponent implements OnInit {
         phone: ['', Validators.required],
         email: [auth.getUserEmail(), [Validators.required, Validators.email]],
       }),
-      regions: [[auth.getOrganizationLocation()]],
+      regions: [[auth.getUserLocation()]],
     });
   }
 

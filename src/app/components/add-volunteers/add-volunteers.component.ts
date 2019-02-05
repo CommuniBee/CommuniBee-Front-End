@@ -56,7 +56,7 @@ export class AddVolunteersComponent implements OnInit {
       numberOfVolunteers: ['', Validators.min(1)],
       availableContent: [''],
       multiOccurrence: [false],
-      regions: [[this.auth.getOrganizationLocation()]],
+      regions: [[this.auth.getUserLocation()]],
     });
   }
 

@@ -136,7 +136,7 @@ export class AuthService {
     return this.getUserMetadata().organization;
   }
 
-    public getOrganizationLocation(): string {
+    public getUserLocation(): string {
     return this.getUserMetadata().location;
   }
 

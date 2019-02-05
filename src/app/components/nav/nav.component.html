@@ -26,7 +26,7 @@
           </a>
         </li>
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a routerLink="/match" href="#" class="nav-link" *ngIf="isAuthenticated() && isAllowed()">
+            <a routerLink="/match" href="#" class="nav-link" *ngIf="isAuthenticated() && isAllowedTo()">
                 <i class="far fa-calendar-check ml-2"></i>תיאום התנדבות
             </a>
         </li>

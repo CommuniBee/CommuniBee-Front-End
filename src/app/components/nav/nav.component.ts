@@ -38,7 +38,7 @@ export class NavComponent implements OnInit {
       return this.auth.isAuthenticated();
   }
 
-  isAllowed() {
+  isAllowedTo() {
       return (this.auth.isManager());
   }
 
