@@ -12,6 +12,22 @@
                 <div class="title-divider-round"></div>
             </h4>
 
+            <div class="input-group mb-3">
+                <h4 class="secondary-header mt-2 mb-0">
+                    שם ארגון *
+                </h4>
+                <div class="input-group-inner">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
+                        class="far fa-user-circle"></i></span>
+                    </div>
+                    <input type="text" formControlName="organization" class="form-control" aria-label="Username"
+                        aria-describedby="inputGroupIconDefault"
+                        placeholder="שם ארגון">
+                    <div class="input-focus-bg"></div>
+                </div>
+            </div>
+
             <h4 class="secondary-header mt-2 mb-0 text-right">
                 איש קשר *
             </h4>
@@ -96,10 +112,10 @@
                 </div>
             </div>
         </div>
-        <p class="text-danger text-center mt-3" *ngIf="!addContentForm.valid || !isFileSelected">אנא מלאו את כל הפרטים הנדרשים (מסומן ב-*).</p>
+        <p class="text-danger text-center mt-3" *ngIf="!isFormValid()">אנא מלאו את כל הפרטים הנדרשים (מסומן ב-*).</p>
 
         <div class="form-group modal-footer d-flex justify-content-center pt-2 pb-5 rtl">
-            <button (click)="uploadContent()" [disabled]="!addContentForm.valid || !isFileSelected" style="font-size: 1.3em;" class="btn btn-primary mb-2 shadow-none" data-dismiss="modal">העלה</button>
+            <button (click)="uploadContent()" [disabled]="!isFormValid()" style="font-size: 1.3em;" class="btn btn-primary mb-2 shadow-none" data-dismiss="modal">העלה</button>
         </div>
     </form>
 </div>
