@@ -101,7 +101,6 @@ export class AuthService {
 
       this.loginLock.on('authenticated', (authResult: any) => {
         this.loginLock.getUserInfo(authResult.accessToken, (error, profile) => {
-          console.log(profile);
           if (error) {
             throw new Error(error);
           }
