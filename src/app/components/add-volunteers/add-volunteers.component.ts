@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {RegionService} from '../../services/communibee-backend/region/region.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/communibee-backend/auth/auth.service';
@@ -7,6 +6,9 @@ import {VolunteeringOffersService} from '../../services/communibee-backend/volun
 import {VolunteeringOffer} from '../../services/communibee-backend/volunteering-offers/volunteering-offer';
 import {CategoryModel} from '../../services/communibee-backend/category/category';
 import {ContentModel} from '../../services/communibee-backend/content/content';
+import {ContentService} from '../../services/communibee-backend/content/content.service';
+import {SubRegionsModel} from '../../services/communibee-backend/subregion/subregion';
+import {SubRegionService} from '../../services/communibee-backend/subregion/subregion.service';
 
 
 declare var $;
@@ -19,27 +21,30 @@ declare var $;
 export class AddVolunteersComponent implements OnInit {
   public myForm: FormGroup;
   regions: string[] = [] as any;
-  categories: CategoryModel[] = [] as any;
+  categories: CategoryModel[];
+  subRegions: SubRegionsModel[];
   content: ContentModel = {} as any;
+  contentList: ContentModel[];
   information: string;
-  contentTitle: string;
   contentCategory: any;
   isFileSelected = false;
 
-  constructor(private regionsSrv: RegionService,
+  constructor(private subRegionsSrv: SubRegionService,
+              private contentSrv: ContentService,
               private fb: FormBuilder,
               private vltrOffer: VolunteeringOffersService,
               private auth: AuthService,
               private router: Router) {
-    this.initForm();
   }
 
   ngOnInit() {
-    this.regionsSrv.getAll().then(regions_res => {
-      this.regions = regions_res as any;
-      this.initForm();
+    this.subRegionsSrv.getAll().then(subregions_res => {
+      this.subRegions = subregions_res;
     });
-
+    this.contentSrv.getAll().then(content_res => {
+      this.contentList = content_res;
+    });
+    this.initForm();
   }
 
   initForm() {
@@ -52,16 +57,8 @@ export class AddVolunteersComponent implements OnInit {
       }),
       numberOfVolunteers: ['', Validators.min(1)],
       availableContent: [''],
-      days: this.fb.group({
-        1: [false],
-        2: [false],
-        3: [false],
-        4: [false],
-        5: [false],
-        6: [false],
-        7: [false],
-      }),
-      regions: this.fb.array(this.regions.map(region => this.fb.control(false))),
+      multiOccurrence: [false],
+      regions: [null],
     });
   }
 
@@ -69,25 +66,11 @@ export class AddVolunteersComponent implements OnInit {
     const formValues = this.myForm.value;
     const volunteeringOffer: VolunteeringOffer = this.formValues2volunteeringOfferModel(formValues);
 
-    console.log(volunteeringOffer);
-
     this.vltrOffer.create(volunteeringOffer).then(volunteeringOfferDocument => {
-      console.log(volunteeringOfferDocument);
       if (volunteeringOfferDocument) {
         this.router.navigateByUrl('/dashboard');
       }
     });
-  }
-
-  regionCheckboxsToRegionArray(regionCheckboxArray: [boolean]) {
-    const availableRegions: [string] = [] as any;
-    regionCheckboxArray.forEach((regionChecked, i) => {
-      if (regionChecked) {
-        availableRegions.push(this.regions[i]);
-      }
-    });
-
-    return availableRegions;
   }
 
   formValues2volunteeringOfferModel(formValues): VolunteeringOffer {
@@ -95,26 +78,12 @@ export class AddVolunteersComponent implements OnInit {
     volunteeringOffer.title = formValues.title;
     volunteeringOffer.contact = formValues.poc;
     volunteeringOffer.numberOfVolunteers = formValues.numberOfVolunteers;
-    volunteeringOffer.availableContent = formValues.availableContent;
-    volunteeringOffer.availableWeekdays = this.daysCheckboxsToArray(formValues.days);
-    volunteeringOffer.regions = this.regionCheckboxsToRegionArray(formValues.regions);
-    volunteeringOffer.createdByUserId = this.auth.getLocalUserId();
-    volunteeringOffer.availableContent = this.content._id;
+    volunteeringOffer.content = formValues.availableContent;
+    volunteeringOffer.multiOccurrence = formValues.multiOccurrence;
+    volunteeringOffer.regions = formValues.regions;
+    volunteeringOffer.createdByUserId = this.auth.getUserId();
 
     return volunteeringOffer;
-  }
-
-  daysCheckboxsToArray(days): number[] {
-    const availableWeekdays: number[] = [];
-    if (days['1']) { availableWeekdays.push(0); }
-    if (days['2']) { availableWeekdays.push(1); }
-    if (days['3']) { availableWeekdays.push(2); }
-    if (days['4']) { availableWeekdays.push(3); }
-    if (days['5']) { availableWeekdays.push(4); }
-    if (days['6']) { availableWeekdays.push(5); }
-    if (days['7']) { availableWeekdays.push(6); }
-
-    return availableWeekdays;
   }
 
   openContentModal() {
@@ -122,10 +91,24 @@ export class AddVolunteersComponent implements OnInit {
     $('#modalContentUpload').modal('toggle');
   }
 
-  onContentTitleLoaded(title: string) {
+  onContentTitleLoaded(changedContent: ContentModel) {
+    this.contentList = [...this.contentList, changedContent];
     this.myForm.patchValue({
-      availableContent: title
+      availableContent: changedContent._id
     });
     this.isFileSelected = true;
   }
+
+  groupByRegion(regionItem: SubRegionsModel) {
+   return regionItem.region.name;
+  }
+
+  onChangeContent(selectedContent) {
+    if (selectedContent == null) {
+        this.isFileSelected = false;
+    } else {
+        this.isFileSelected = true;
+    }
+  }
+
 }
