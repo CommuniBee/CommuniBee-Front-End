@@ -6,18 +6,8 @@ import {AuthService} from './services/communibee-backend/auth/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'CommuniBee';
 
-  constructor(public authService: AuthService) {
-    authService.handleAuthentication();
-    authService.scheduleRenewal();
-  }
-
-  ngOnInit() {
-    if (localStorage.getItem('isLoggedIn') === 'true') {
-      this.authService.renewTokens();
-    }
-  }
-
+  constructor() {}
 }
