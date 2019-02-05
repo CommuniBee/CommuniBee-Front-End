@@ -4,11 +4,11 @@ import { VolunteeringRequestsService } from '../../services/communibee-backend/v
 import { VolunteeringRequest } from '../../services/communibee-backend/volunteering-requests/volunteering-request';
 import { AuthService } from '../../services/communibee-backend/auth/auth.service';
 import { Router } from '@angular/router';
+import { ContentService } from '../../services/communibee-backend/content/content.service';
 import { BasicContentModel } from '../../services/communibee-backend/content/content';
-import {ContentModel} from '../../services/communibee-backend/content/content';
-import {ContentService} from '../../services/communibee-backend/content/content.service';
-import {SubRegionsModel} from '../../services/communibee-backend/subregion/subregion';
-import {SubRegionService} from '../../services/communibee-backend/subregion/subregion.service';
+import { ContentModel } from '../../services/communibee-backend/content/content';
+import { SubRegionsModel } from '../../services/communibee-backend/subregion/subregion';
+import { SubRegionService } from '../../services/communibee-backend/subregion/subregion.service';
 
 
 declare var $;
@@ -79,7 +79,7 @@ export class AddVolunteeringOpportunityComponent implements OnInit {
     volunteeringRequest.content = formValues.availableContent;
     volunteeringRequest.multiOccurrence = formValues.multiOccurrence;
     volunteeringRequest.regions = formValues.regions;
-    volunteeringRequest.createdByUserId = this.auth.getLocalUserId();
+    volunteeringRequest.createdByUserId = this.auth.getUserId();
 
     return volunteeringRequest;
   }

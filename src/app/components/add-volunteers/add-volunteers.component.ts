@@ -79,7 +79,7 @@ export class AddVolunteersComponent implements OnInit {
     volunteeringOffer.content = formValues.availableContent;
     volunteeringOffer.multiOccurrence = formValues.multiOccurrence;
     volunteeringOffer.regions = formValues.regions;
-    volunteeringOffer.createdByUserId = this.auth.getLocalUserId();
+    volunteeringOffer.createdByUserId = this.auth.getUserId();
 
     return volunteeringOffer;
   }
