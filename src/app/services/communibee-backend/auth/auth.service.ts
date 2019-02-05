@@ -81,14 +81,13 @@ export class AuthService {
       this.lock.on('authenticated', (authResult: any) => {
         console.log(this.lock);
         this.lock.getUserInfo(authResult.accessToken, (error, profile) => {
-          console.log(profile);
           if (error) {
             throw new Error(error);
           }
 
           localStorage.setItem('token', authResult.idToken);
           localStorage.setItem('profile', JSON.stringify(profile));
-          this.router.navigate(['/']);
+          this.router.navigate(['/dashboard']);
         });
       });
 
@@ -133,6 +132,14 @@ export class AuthService {
     return this.getUserProfile().email;
   }
 
+  public getUserOrganization(): string {
+    return this.getUserMetadata().organization;
+  }
+
+    public getOrganizationLocation(): string {
+    return this.getUserMetadata().location;
+  }
+
   public getIdToken(): string {
     return localStorage.getItem('token');
   }
@@ -150,5 +157,9 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return tokenNotExpired();
+  }
+
+  isManager(): boolean {
+    return (this.getUserRole() === 'frc_team' || this.getUserRole() === 'bumbleb');
   }
 }

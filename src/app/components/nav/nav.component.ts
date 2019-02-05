@@ -15,7 +15,7 @@ export class NavComponent implements OnInit {
   categories = [];
   content: ContentModel = {} as any;
 
-  constructor(public auth: AuthService, private categoriesSrv: CategoryService) {
+  constructor(private auth: AuthService, private categoriesSrv: CategoryService) {
   }
 
   ngOnInit() {
@@ -34,4 +34,23 @@ export class NavComponent implements OnInit {
     $('#navModalContentUpload').modal('toggle');
   }
 
+  isAuthenticated() {
+      return this.auth.isAuthenticated();
+  }
+
+  isAllowed() {
+      return (this.auth.isManager());
+  }
+
+  getUserName() {
+      return this.auth.getUserName();
+  }
+
+  login() {
+      this.auth.login();
+  }
+
+  logout() {
+      this.auth.logout();
+  }
 }

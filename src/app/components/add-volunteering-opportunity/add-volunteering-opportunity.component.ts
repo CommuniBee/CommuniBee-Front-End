@@ -32,6 +32,7 @@ export class AddVolunteeringOpportunityComponent implements OnInit {
               private auth: AuthService,
               private router: Router) {
     this.form = this.fb.group({
+      organization: [auth.getUserOrganization(), Validators.required],
       title: ['', Validators.required],
       about: ['', Validators.required],
       availableContent: [''],
@@ -39,9 +40,9 @@ export class AddVolunteeringOpportunityComponent implements OnInit {
       poc: this.fb.group({
         name: [auth.getUserName(), Validators.required],
         phone: ['', Validators.required],
-        email: [auth.getUserEmail(), Validators.required],
+        email: [auth.getUserEmail(), [Validators.required, Validators.email]],
       }),
-      regions: [null],
+      regions: [[auth.getOrganizationLocation()]],
     });
   }
 
@@ -72,7 +73,7 @@ export class AddVolunteeringOpportunityComponent implements OnInit {
   formValues2volunteeringRequestModel(formValues): VolunteeringRequest {
     const volunteeringRequest: VolunteeringRequest = {} as any;
 
-    volunteeringRequest.organization = 'ברירת מחדל';
+    volunteeringRequest.organization = formValues.organization;
     volunteeringRequest.title = formValues.title;
     volunteeringRequest.about = formValues.about;
     volunteeringRequest.contact = formValues.poc;

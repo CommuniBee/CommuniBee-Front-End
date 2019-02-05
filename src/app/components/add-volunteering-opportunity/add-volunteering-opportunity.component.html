@@ -8,10 +8,26 @@
 
     </div>
   </div>
-
+  
   <div class="row rtl justify-content-center">
     <div class="col-lg-8">
       <form [formGroup]="form" (submit)="sendData()">
+        <div class="input-group mb-3">
+          <h4 class="secondary-header mt-2 mb-0">
+            שם ארגון *
+          </h4>
+          <div class="input-group-inner">
+            <div class="input-group-prepend">
+              <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
+                class="far fa-user-circle"></i></span>
+            </div>
+            <input type="text" formControlName="organization" class="form-control" aria-label="Username"
+                   aria-describedby="inputGroupIconDefault"
+                   placeholder="הזן שם ארגון">
+            <div class="input-focus-bg"></div>
+          </div>
+        </div>
+
         <div class="input-group mb-3">
           <h4 class="secondary-header mt-2 mb-0">
             שם ההתנדבות *
