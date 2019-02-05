@@ -15,7 +15,22 @@ export class DashboardTabsComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.events = [{kesem: 'kesem', david: 'david'}];
+    this.events = [
+      {kesem: 'kesem', david: 'david'},
+      {kesem: 'kesem', david: 'david'},
+      {kesem: 'kesem', david: 'david'},
+      {kesem: 'kesem', david: 'david'},
+      {kesem: 'kesem', david: 'david'},
+      {kesem: 'kesem', david: 'david'},
+      {kesem: 'kesem', david: 'david'},
+      {kesem: 'kesem', david: 'david'},
+      {kesem: 'kesem', david: 'david'},
+      {kesem: 'kesem', david: 'david'},
+      {kesem: 'kesem', david: 'david'},
+      {kesem: 'kesem', david: 'david'},
+      {kesem: 'kesem', david: 'david'},
+      {kesem: 'kesem', david: 'david'}
+    ];
     //this.events = await this.eventsService.getAll();
   }
 
