@@ -37,9 +37,9 @@ export class AddVolunteeringOpportunityComponent implements OnInit {
       availableContent: [''],
       multiOccurrence: [false],
       poc: this.fb.group({
-        name: ['', Validators.required],
+        name: [auth.getUserName(), Validators.required],
         phone: ['', Validators.required],
-        email: ['', Validators.required],
+        email: [auth.getUserEmail(), Validators.required],
       }),
       regions: [null],
     });
