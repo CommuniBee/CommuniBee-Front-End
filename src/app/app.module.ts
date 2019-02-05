@@ -27,6 +27,7 @@ import { WeekdayNamesPipe } from './pipes/weekday-names.pipe';
 import { NgSelectModule } from '@ng-select/ng-select';
 import {DashboardTabsComponent} from './components/dashboard-tabs/dashboard-tabs.component';
 import { GenericTableComponent } from './components/generic-table/generic-table.component';
+import { ObjectKeysPipe } from './pipes/object-keys.pipe';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { GenericTableComponent } from './components/generic-table/generic-table.
     StyleContactPipe,
     WeekdayNamesPipe,
     GenericTableComponent,
+    ObjectKeysPipe,
   ],
   imports: [
     BrowserModule,

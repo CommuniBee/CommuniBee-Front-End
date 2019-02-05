@@ -6,8 +6,15 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./generic-table.component.scss']
 })
 export class GenericTableComponent {
-  @Input() elements:any[];
-  @Input() keys:string[];
+  @Input() elements: any[];
+  @Input() keys: string[];
+  selectedElement: any;
+  Object = Object;
 
-  constructor() { }
+  constructor() {
+  }
+
+  displayRow(element: any) {
+    this.selectedElement = element;
+  }
 }
