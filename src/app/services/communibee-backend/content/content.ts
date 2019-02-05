@@ -15,6 +15,12 @@ export interface Content extends BasicContent {
   category: Category | CategoryModel;
   tags?: string[];
   information: string;
+  organization: string;
+  contact: {
+    name: string,
+    phone: string,
+    email: string,
+  };
 }
 
 export interface BasicContentModel extends BackendModel, BasicContent {

@@ -19,6 +19,7 @@ export class AddContentComponent implements OnInit {
   fileErrorSize = false;
   contentResult: ContentModel = {} as any;
   @ViewChild('closeBtn') closeBtn: ElementRef;
+  @ViewChild('fileBrowserLabel') fileLabel: ElementRef;
   @Output() contentTitleLoaded = new EventEmitter<ContentModel>();
 
   constructor(private fb: FormBuilder,
@@ -35,10 +36,16 @@ export class AddContentComponent implements OnInit {
 
   initForm() {
     this.addContentForm = this.fb.group({
+      organization: ['', Validators.required],
       title: ['', Validators.required],
       information: ['', [Validators.required,
         Validators.maxLength(200)]],
       category: ['', Validators.required],
+      poc: this.fb.group({
+        name: ['', Validators.required],
+        phone: ['', Validators.required],
+        email: ['', Validators.required],
+      }),
     });
   }
 
@@ -56,6 +63,7 @@ export class AddContentComponent implements OnInit {
         reader.onload = () => {
           this.content.file = ArrBuff.arrayBufferToBase64(reader.result);
           this.content.fileName = file.name;
+          this.fileLabel.nativeElement.innerHTML = file.name;
           this.isFileSelected = true;
         };
         reader.readAsArrayBuffer(file);
@@ -64,9 +72,12 @@ export class AddContentComponent implements OnInit {
   }
 
   uploadContent() {
+    this.content.organization = this.addContentForm.controls['organization'].value;
     this.content.title = this.addContentForm.controls['title'].value;
     this.content.information = this.addContentForm.controls['information'].value;
     this.content.category = this.addContentForm.controls['category'].value;
+    this.content.contact = this.addContentForm.controls['poc'].value;
+    console.log(this.content);
     this.contentSrv.create(this.content).then( contentRes => {
         this.contentResult = contentRes;
         this.contentTitleLoaded.emit(contentRes);
@@ -74,6 +85,10 @@ export class AddContentComponent implements OnInit {
     this.isFileSelected = false;
     this.addContentForm.reset();
     this.closeBtn.nativeElement.click();
+  }
+
+  isFormValid() {
+      return this.addContentForm.valid && this.isFileSelected;
   }
 
 }

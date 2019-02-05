@@ -90,89 +90,41 @@
               </div>
             </div>
           </div>
-
         </div>
 
         <div class="input-group mb-3">
           <h4 class="secondary-header mt-2 mb-0">
-            תוכן *
+            תוכן להעברה
           </h4>
-          <ng-select class="custom input-group shadow-none" placeholder="חפש תוכן להתנדבות"
-                     required autoCorrect formControlName="content" [items]="content"
-                     bindLabel="title" bindValue="_id">
+          <ng-select class="custom input-group shadow-none" placeholder="בחירת תוכן" 
+                required autoCorrect formControlName="availableContent" [items]="contentList" 
+                bindLabel="title" bindValue="_id">
           </ng-select>
         </div>
-
-        <h4 class="secondary-header mt-2 mb-0">
-          ימים אפשריים
-        </h4>
-        <div class="input-group mb-3" formGroupName="days">
-          <div class="custom-control custom-checkbox">
-            <input formControlName="1" type="checkbox" class="custom-control-input" id="customCheck1">
-            <label class="custom-control-label" for="customCheck1">ראשון</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input formControlName="3" type="checkbox" class="custom-control-input" id="customCheck2">
-            <label class="custom-control-label" for="customCheck2">שני</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input formControlName="3" type="checkbox" class="custom-control-input" id="customCheck3">
-            <label class="custom-control-label" for="customCheck3">שלישי</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input formControlName="4" type="checkbox" class="custom-control-input" id="customCheck4">
-            <label class="custom-control-label" for="customCheck4">רביעי</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input formControlName="5" type="checkbox" class="custom-control-input" id="customCheck5">
-            <label class="custom-control-label" for="customCheck5">חמישי</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input formControlName="6" type="checkbox" class="custom-control-input" id="customCheck6">
-            <label class="custom-control-label" for="customCheck6">שישי</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input formControlName="7" type="checkbox" class="custom-control-input" id="customCheck7">
-            <label class="custom-control-label" for="customCheck7">שבת</label>
-          </div>
+         <div class="input-group-append">
+            <button (click)="openContentModal()" class="btn btn-primary mb-0 shadow-none" style="font-size: 1.2em;"
+                    type="button" id="iputGroupSearchDefault">
+            העלה תוכן
+            <i class="fas fa-books"></i>
+            </button>
         </div>
 
         <div class="input-group mb-3">
-          <h4 class="secondary-header mt-2 mb-0">
-            כתובת *
-          </h4>
-          <div class="input-group-inner">
-            <input formControlName="address" type="text" class="form-control" placeholder="הזן כתובת או דקור נקודה במפה"
-                   aria-label="Search" aria-describedby="iputGroupSearchDefault">
-            <div class="input-group-append">
-              <button class="btn btn-primary disabled mb-0 shadow-none" style="font-size: 1.2em;" type="button"
-                      id="iputGroupSearchDefault">
-                פתח מפה
-                <i class="fas fa-map-marker-alt"></i>
-              </button>
-            </div>
-            <div class="input-focus-bg"></div>
+          <div class="custom-control custom-checkbox">
+            <input formControlName="multiOccurrence" type="checkbox" class="custom-control-input" id="multiOccurrence1"/>
+            <label class="custom-control-label" for="multiOccurrence1"><h4 class="secondary-header mt-2 mb-0">
+                התנדבות רב פעמית
+            </h4></label>
           </div>
         </div>
 
         <h4 class="secondary-header mt-2 mb-0">
-          איזור בארץ *
+          איזורים בארץ
         </h4>
-        <div class="custom-control custom-radio">
-          <input formControlName="region" type="radio" id="customRadio1" value="צפון" name="region"
-                 class="custom-control-input">
-          <label class="custom-control-label" for="customRadio1">צפון</label>
-        </div>
-        <div class="custom-control custom-radio">
-          <input formControlName="region" type="radio" id="customRadio2" value="מרכז" name="region"
-                 class="custom-control-input">
-          <label class="custom-control-label" for="customRadio2">מרכז</label>
-        </div>
-        <div class="custom-control custom-radio">
-          <input formControlName="region" type="radio" id="customRadio3" value="דרום" name="region"
-                 class="custom-control-input">
-          <label class="custom-control-label" for="customRadio3">דרום</label>
-        </div>
+        <ng-select class="custom input-group shadow-none" placeholder="איזורי התנדבות אפשריים" 
+            required autoCorrect formControlName="regions" [items]="subRegions" 
+            bindLabel="name" bindValue="_id" [selectableGroupAsModel]="false" [closeOnSelect]="false" [groupBy]="groupByRegion" [selectableGroup]="true" [multiple]="true">
+        </ng-select>
 
         <p class="text-danger text-center" *ngIf="!form.valid">אנא מלאו את כל הפרטים הנדרשים (מסומן ב-*).</p>
 
@@ -182,5 +134,11 @@
 
       </form>
     </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalContentUpload" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <app-add-content (contentTitleLoaded)="onContentTitleLoaded($event)"></app-add-content>
   </div>
 </div>

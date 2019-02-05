@@ -23,11 +23,9 @@ export class AddVolunteersComponent implements OnInit {
   regions: string[] = [] as any;
   categories: CategoryModel[];
   subRegions: SubRegionsModel[];
-  content: ContentModel = {} as any;
   contentList: ContentModel[];
   information: string;
   contentCategory: any;
-  isFileSelected = false;
 
   constructor(private subRegionsSrv: SubRegionService,
               private contentSrv: ContentService,
@@ -49,7 +47,7 @@ export class AddVolunteersComponent implements OnInit {
 
   initForm() {
     this.myForm = this.fb.group({
-      title: ['', Validators.required],
+      organization: ['', Validators.required],
       poc: this.fb.group({
         name: ['', Validators.required],
         phone: ['', Validators.required],
@@ -75,7 +73,7 @@ export class AddVolunteersComponent implements OnInit {
 
   formValues2volunteeringOfferModel(formValues): VolunteeringOffer {
     const volunteeringOffer: VolunteeringOffer = {} as any;
-    volunteeringOffer.title = formValues.title;
+    volunteeringOffer.organization = formValues.organization;
     volunteeringOffer.contact = formValues.poc;
     volunteeringOffer.numberOfVolunteers = formValues.numberOfVolunteers;
     volunteeringOffer.content = formValues.availableContent;
@@ -87,7 +85,6 @@ export class AddVolunteersComponent implements OnInit {
   }
 
   openContentModal() {
-    this.isFileSelected = false;
     $('#modalContentUpload').modal('toggle');
   }
 
@@ -96,19 +93,9 @@ export class AddVolunteersComponent implements OnInit {
     this.myForm.patchValue({
       availableContent: changedContent._id
     });
-    this.isFileSelected = true;
   }
 
   groupByRegion(regionItem: SubRegionsModel) {
    return regionItem.region.name;
   }
-
-  onChangeContent(selectedContent) {
-    if (selectedContent == null) {
-        this.isFileSelected = false;
-    } else {
-        this.isFileSelected = true;
-    }
-  }
-
 }

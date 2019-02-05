@@ -24,7 +24,6 @@ import { AddContentComponent } from './components/add-content/add-content.compon
 import { MatchComponent } from './components/match/match.component';
 import { StyleContactPipe } from './pipes/style-contact.pipe';
 import { WeekdayNamesPipe } from './pipes/weekday-names.pipe';
-import { BrowseContentPipe} from './components/browse-content/browse-content.pipe';
 import { NgSelectModule } from '@ng-select/ng-select';
 import {DashboardTabsComponent} from './components/dashboard-tabs/dashboard-tabs.component';
 
@@ -48,7 +47,6 @@ import {DashboardTabsComponent} from './components/dashboard-tabs/dashboard-tabs
     MatchComponent,
     StyleContactPipe,
     WeekdayNamesPipe,
-    BrowseContentPipe,
   ],
   imports: [
     BrowserModule,
