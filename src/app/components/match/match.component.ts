@@ -19,7 +19,6 @@ export class MatchComponent implements OnInit {
   matchForm: FormGroup;
   date: NgbDateStruct;
 
-  time = { hour: 0, minute: 0 };
   eventDate: Date = new Date();
 
   volunteeringRequests: VolunteeringRequestModel[] = [];
@@ -35,12 +34,12 @@ export class MatchComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.volunteeringRequestsService.getAll().then(requests => { this.volunteeringRequests = requests; });
+    this.volunteeringRequestsService.getAll().then(requests => {
+        this.volunteeringRequests = requests; });
     this.volunteeringOffersService.getAll().then(offers => { this.volunteeringOffers = offers; });
 
     this.date = this.calendar.getToday();
     const now  = new Date();
-    this.time = { hour: now.getHours(), minute: now.getMinutes() };
 
     this.matchForm = this.formBuilder.group({
       request: [undefined, Validators.required],
@@ -50,25 +49,20 @@ export class MatchComponent implements OnInit {
   }
 
   onSelectRequest(request: VolunteeringRequestModel): void {
-    console.log(request);
     this.selectedRequest = request;
   }
 
   onSelectOffer(offer: VolunteeringOfferModel): void {
-    console.log(offer);
     this.selectedOffer = offer;
   }
 
   updateEventTime() {
-    this.eventDate = new Date(this.date.year, this.date.month - 1, this.date.day, this.time.hour, this.time.minute);
+    this.eventDate = new Date(this.date.year, this.date.month - 1, this.date.day);
   }
 
   sendData() {
     const event: VolunteeringEvent = this.matchForm.value;
-    console.log(event);
-
     this.volunteeringEventsService.create(event).then(response => {
-      console.log(response);
       if (response) {
         this.router.navigateByUrl('/dashboard');
       }
