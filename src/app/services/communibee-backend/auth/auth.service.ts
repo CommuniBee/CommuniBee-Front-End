@@ -120,12 +120,17 @@ export class AuthService {
     return this.getCustomField('user_metadata');
   }
 
-  public getRole(): string {
+  public getUserRole(): string {
     return this.getAppMetadata().role;
   }
+
   public getUserName(): string {
     const userMetadata = this.getUserMetadata();
     return `${userMetadata.first_name} ${userMetadata.last_name}`;
+  }
+
+  public getUserEmail(): string {
+    return this.getUserProfile().email;
   }
 
   public getIdToken(): string {

@@ -1,7 +1,7 @@
 import BackendModel from '../backend-model';
 import { Regions, RegionsModel } from '../region/region';
 
-export interface SubRegions extends Regions {
+export interface SubRegions {
   name: string;
   region: RegionsModel;
 }
