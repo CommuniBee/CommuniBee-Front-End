@@ -1,12 +1,12 @@
-import {ContentModel} from "../../services/communibee-backend/content/content";
-import {GenericColumn} from "../../components/generic-table/generic-column";
+import {ContentModel} from '../../services/communibee-backend/content/content';
+import {GenericColumn} from '../../components/generic-table/generic-column';
 
 export enum OfferOrRequest {
   VolunteeringRequest = 'VolunteeringRequest',
   VolunteeringOffer = 'VolunteeringOffer'
 }
 
-export const OfferRequestTableColumns: GenericColumn[] = [
+export const offerRequestTableColumns: GenericColumn[] = [
   {
     key: 'title',
     hebKey: 'שם ההתנדבות',

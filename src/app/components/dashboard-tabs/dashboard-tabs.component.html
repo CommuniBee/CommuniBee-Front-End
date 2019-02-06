@@ -7,19 +7,19 @@
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
-<!--    <div class="tab-pane fade show active"
+    <div class="tab-pane fade show active"
          id="future"
          role="tabpanel"
          aria-labelledby="nav-home-tab">
-      <app-generic-table [elements]="events" [superKeys]="applicationsKeys"></app-generic-table>
-    </div>-->
+      <app-generic-table [elements]="futureEvents" [genericColumns]="eventColumns"></app-generic-table>
+    </div>
     <div class="tab-pane fade" id="requests" role="tabpanel"
          aria-labelledby="nav-profile-tab">
       <app-generic-table [elements]="volunteeringApplications" [genericColumns]="offerRequestTableColumns"></app-generic-table>
     </div>
-<!--    <div class="tab-pane fade" id="history" role="tabpanel"
+    <div class="tab-pane fade" id="history" role="tabpanel"
          aria-labelledby="nav-contact-tab">
-      <app-generic-table [elements]="events" [superKeys]="applicationsKeys"></app-generic-table>
-    </div>-->
+      <app-generic-table [elements]="historyEvents" [genericColumns]="eventColumns"></app-generic-table>
+    </div>
   </div>
 </div>
