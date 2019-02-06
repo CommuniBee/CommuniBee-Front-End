@@ -147,6 +147,14 @@ export class AuthService {
     return this.getUserProfile().email;
   }
 
+  public getUserOrganization(): string {
+    return this.getUserMetadata().organization;
+  }
+
+    public getUserLocation(): string {
+    return this.getUserMetadata().location;
+  }
+
   public getIdToken(): string {
     return localStorage.getItem('token');
   }
@@ -168,5 +176,9 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return tokenNotExpired();
+  }
+
+  isManager(): boolean {
+    return (this.getUserRole() === 'frc_team' || this.getUserRole() === 'bumbleb');
   }
 }
