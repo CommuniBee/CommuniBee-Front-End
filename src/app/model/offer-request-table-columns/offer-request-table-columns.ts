@@ -7,34 +7,55 @@ export enum OfferOrRequest {
 }
 
 export const OfferRequestTableColumns: GenericColumn[] = [
-  {key: 'title', hebKey:'שם ההתנדבות'},
-  {key: 'about', hebKey:'תיאור'},
+  {
+    key: 'title',
+    hebKey: 'שם ההתנדבות',
+    inTable: true
+  },
+  {
+    key: 'about',
+    hebKey: 'תיאור',
+    inTable: true
+  },
+  {
+    key: 'organization',
+    hebKey: 'ארגון'
+  },
   {
     key: 'contact',
-    hebKey:'איש קשר',
+    hebKey: 'איש קשר',
     cellRenderer: (value: any) => {
       return `${value.name}`;
-    }
+    },
+    modalRenderer: (value: any) => {
+      return `<span style="white-space: pre-line">
+      שם: ${value.name}
+      <br>
+      טלפון: ${value.phone}
+      <br>
+      אימייל: ${value.email}</span>`
+    },
+    inTable: true
   },
   {
     key: 'content',
-    hebKey:'תוכן ההתנדבות',
+    hebKey: 'תוכן ההתנדבות',
     cellRenderer: (value: ContentModel) => {
       return `${value.title}`;
-    }
+    },
+    inTable: true
   },
   {
     key: 'numberOfVolunteers',
-    hebKey:'מספר המתנדבים',
-    cellRenderer: (value: number) => {
-      return `${value}`;
-    }
+    hebKey: 'מספר המתנדבים',
+    inTable: true
   },
   {
     key: 'kind',
-    hebKey:'סוג ההתנדבות',
+    hebKey: 'סוג ההתנדבות',
     cellRenderer: (value: string) => {
       return value === OfferOrRequest.VolunteeringRequest ? 'בקשה' : 'הצעה';
-    }
-  },
+    },
+    inTable:true
+  }
 ];
