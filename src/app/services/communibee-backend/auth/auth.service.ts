@@ -14,6 +14,7 @@ import {UserMetadata} from './user-metadata';
 
 @Injectable()
 export class AuthService implements CanActivateChild {
+
   baseLockOptions = {
     theme: {
       logo: '/assets/imgs/bumbleb_logo.png',

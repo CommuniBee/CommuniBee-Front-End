@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Router} from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { VolunteeringRequestsService } from '../../services/communibee-backend/volunteering-requests/volunteering-requests.service';
-import { VolunteeringOffersService } from '../../services/communibee-backend/volunteering-offers/volunteering-offers.service';
-import { VolunteeringEventsService } from '../../services/communibee-backend/volunteering-events/volunteering-events.service';
-import { VolunteeringOfferModel } from '../../services/communibee-backend/volunteering-offers/volunteering-offer';
-import { VolunteeringRequestModel } from '../../services/communibee-backend/volunteering-requests/volunteering-request';
-import { VolunteeringEvent } from '../../services/communibee-backend/volunteering-events/volunteering-event';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {NgbCalendar, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import {VolunteeringRequestsService} from '../../services/communibee-backend/volunteering-requests/volunteering-requests.service';
+import {VolunteeringOffersService} from '../../services/communibee-backend/volunteering-offers/volunteering-offers.service';
+import {VolunteeringEventsService} from '../../services/communibee-backend/volunteering-events/volunteering-events.service';
+import {VolunteeringOfferModel} from '../../services/communibee-backend/volunteering-offers/volunteering-offer';
+import {VolunteeringBaseModel} from '../../services/communibee-backend/common-models/volunteering-request-offer-base';
+import {VolunteeringEvent} from '../../services/communibee-backend/volunteering-events/volunteering-event';
 
 @Component({
   selector: 'app-match',
@@ -15,32 +15,36 @@ import { VolunteeringEvent } from '../../services/communibee-backend/volunteerin
   styleUrls: ['./match.component.scss']
 })
 export class MatchComponent implements OnInit {
-
   matchForm: FormGroup;
   date: NgbDateStruct;
 
-  time = { hour: 0, minute: 0 };
+  time = {hour: 0, minute: 0};
   eventDate: Date = new Date();
 
-  volunteeringRequests: VolunteeringRequestModel[] = [];
-  volunteeringOffers: VolunteeringOfferModel[] = [];
-  selectedRequest: VolunteeringRequestModel = { _id: null } as VolunteeringRequestModel;
-  selectedOffer: VolunteeringOfferModel = { _id: null } as VolunteeringOfferModel;
+  volunteeringRequests: VolunteeringBaseModel[] = [];
+  volunteeringOffers: VolunteeringBaseModel[] = [];
+  selectedRequest: VolunteeringBaseModel = {_id: null} as VolunteeringBaseModel;
+  selectedOffer: VolunteeringBaseModel = {_id: null} as VolunteeringBaseModel;
 
   constructor(private volunteeringRequestsService: VolunteeringRequestsService,
               private volunteeringOffersService: VolunteeringOffersService,
               private volunteeringEventsService: VolunteeringEventsService,
               private formBuilder: FormBuilder,
               private calendar: NgbCalendar,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
-    this.volunteeringRequestsService.getAll().then(requests => { this.volunteeringRequests = requests; });
-    this.volunteeringOffersService.getAll().then(offers => { this.volunteeringOffers = offers; });
+    this.volunteeringRequestsService.getAll().then(requests => {
+      this.volunteeringRequests = requests;
+    });
+    this.volunteeringOffersService.getAll().then(offers => {
+      this.volunteeringOffers = offers;
+    });
 
     this.date = this.calendar.getToday();
-    const now  = new Date();
-    this.time = { hour: now.getHours(), minute: now.getMinutes() };
+    const now = new Date();
+    this.time = {hour: now.getHours(), minute: now.getMinutes()};
 
     this.matchForm = this.formBuilder.group({
       request: [undefined, Validators.required],
@@ -49,7 +53,7 @@ export class MatchComponent implements OnInit {
     });
   }
 
-  onSelectRequest(request: VolunteeringRequestModel): void {
+  onSelectRequest(request: VolunteeringBaseModel): void {
     console.log(request);
     this.selectedRequest = request;
   }
