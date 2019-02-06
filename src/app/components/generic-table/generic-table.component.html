@@ -1,19 +1,27 @@
 <div class="table-cotainer">
   <table class="table table-sm table-striped table-hover">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope=col *ngFor="let column of genericColumns">
+        {{column.hebKey}}
+      </th>
+    </tr>
+    </thead>
     <tbody>
     <tr *ngFor="let element of elements; let i = index"
         data-toggle="modal"
         data-target="#exampleModal"
         (click)="displayRow(element)">
-      <th scope="row">{{i}}</th>
-      <td *ngFor="let superKey of genericColumns">
-        <span *ngIf="element[superKey.key]">
-          <span *ngIf="superKey.cellRenderer; else noRender">
-            {{superKey.cellRenderer(element[superKey.key])}}
+      <th scope="row">{{i + 1}}</th>
+      <td *ngFor="let column of genericColumns">
+        <span *ngIf="element[column.key]">
+          <span *ngIf="column.cellRenderer; else noRender">
+            {{column.cellRenderer(element[column.key])}}
           </span>
           <ng-template #noRender>
             <span>
-              {{element[superKey.key]}}
+              {{element[column.key]}}
             </span>
           </ng-template>
         </span>
