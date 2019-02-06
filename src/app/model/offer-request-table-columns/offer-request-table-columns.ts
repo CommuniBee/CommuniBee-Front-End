@@ -1,6 +1,11 @@
 import {ContentModel} from "../../services/communibee-backend/content/content";
 import {GenericColumn} from "../../components/generic-table/generic-column";
 
+export enum OfferOrRequest {
+  VolunteeringRequest = 'VolunteeringRequest',
+  VolunteeringOffer = 'VolunteeringOffer'
+}
+
 export const OfferRequestTableColumns: GenericColumn[] = [
   {key: 'title'},
   {key: 'about'},
@@ -25,7 +30,7 @@ export const OfferRequestTableColumns: GenericColumn[] = [
   {
     key: 'kind',
     cellRenderer: (value: string) => {
-      return value === 'VolunteeringRequest' ? 'בקשת התנדבות' : 'הצעת התנדבות';
+      return value === OfferOrRequest.VolunteeringRequest ? 'בקשת התנדבות' : 'הצעת התנדבות';
     }
   },
 ];
