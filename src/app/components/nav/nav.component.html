@@ -21,38 +21,38 @@
           <a class="nav-link" href="#"><i class="fas fa-info ml-2"></i>עלינו</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="openContentModal()">
+          <a  *ngIf="isAuthenticated()" class="nav-link" (click)="openContentModal()">
                 <i class="fas fa-plus ml-2"></i>הוספת תוכן
           </a>
         </li>
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a routerLink="/match" href="#" class="nav-link" *ngIf="auth.isAuthenticated()">
+            <a routerLink="/match" href="#" class="nav-link" *ngIf="isAuthenticated() && isAllowedTo()">
                 <i class="far fa-calendar-check ml-2"></i>תיאום התנדבות
             </a>
         </li>
       </ul>
       <div class="mr-auto pt-4 pb-3 py-lg-0">
         <label
-          *ngIf="auth.isAuthenticated()"
+          *ngIf="isAuthenticated()"
           style="padding: 2px 10px; padding-right: 2px; color: white; font-weight: normal; position:relative; top: -1px;">
           <i class="fas fa-user ml-2"></i>
-          <b>{{auth.getUserName()}}</b>
+          <b>{{getUserName()}}</b>
         </label>
         <button type="button"
                 class="btn btn-link no-shadow mb-0 mr-1"
                 style="padding: 2px 10px; padding-right: 2px; color: white; font-weight: normal;"
-                *ngIf="!auth.isAuthenticated()"
-                (click)="auth.signup()">הרשם</button>
+                *ngIf="!isAuthenticated()"
+                (click)="signup()">הרשם</button>
         <button type="button"
                 class="btn btn-link no-shadow mb-0 mr-1"
                 style="padding: 2px 10px; padding-right: 2px; color: white; font-weight: normal;"
-                *ngIf="!auth.isAuthenticated()"
-                (click)="auth.login()">התחבר</button>
+                *ngIf="!isAuthenticated()"
+                (click)="login()">התחבר</button>
         <button type="button"
                 class="btn btn-link no-shadow mb-0 mr-1"
                 style="padding: 2px 10px; padding-right: 2px; color: white; font-weight: normal;"
-                *ngIf="auth.isAuthenticated()"
-                (click)="auth.logout()">התנתק
+                *ngIf="isAuthenticated()"
+                (click)="logout()">התנתק
         </button>
         <a href="https://www.facebook.com/BumbleB3339/" class="btn btn-round btn-icon-only btn-warning btn-sm shadow-none mb-0 mr-4"><i
           class="fab fa-facebook-f"></i></a>

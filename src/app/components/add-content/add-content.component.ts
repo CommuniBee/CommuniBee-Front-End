@@ -1,22 +1,24 @@
-import {Component, OnInit, ViewChild, ElementRef, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, EventEmitter, Output, DoCheck} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CategoryService} from '../../services/communibee-backend/category/category.service';
 import {CategoryModel} from '../../services/communibee-backend/category/category';
 import {ContentModel} from '../../services/communibee-backend/content/content';
 import {ContentService} from '../../services/communibee-backend/content/content.service';
 import {ArrBuff} from '../../services/utils/arr-buff.service';
+import { AuthService } from '../../services/communibee-backend/auth/auth.service';
 
 @Component({
   selector: 'app-add-content',
   templateUrl: './add-content.component.html',
   styleUrls: ['./add-content.component.scss'],
 })
-export class AddContentComponent implements OnInit {
+export class AddContentComponent implements OnInit, DoCheck {
   public addContentForm: FormGroup;
   categories: CategoryModel[] = [];
   content: ContentModel = {} as any;
   isFileSelected = false;
   fileErrorSize = false;
+  isAfterLogin = false;
   contentResult: ContentModel = {} as any;
   @ViewChild('closeBtn') closeBtn: ElementRef;
   @ViewChild('fileBrowserLabel') fileLabel: ElementRef;
@@ -24,7 +26,8 @@ export class AddContentComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private categoriesSrv: CategoryService,
-              private contentSrv: ContentService) {
+              private contentSrv: ContentService,
+              private auth: AuthService) {
     this.initForm();
   }
 
@@ -32,6 +35,7 @@ export class AddContentComponent implements OnInit {
     this.categoriesSrv.getAll().then(categories_res => {
       this.categories = categories_res;
     });
+    this.initForm();
   }
 
   initForm() {
@@ -44,7 +48,7 @@ export class AddContentComponent implements OnInit {
       poc: this.fb.group({
         name: ['', Validators.required],
         phone: ['', Validators.required],
-        email: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
       }),
     });
   }
@@ -77,7 +81,6 @@ export class AddContentComponent implements OnInit {
     this.content.information = this.addContentForm.controls['information'].value;
     this.content.category = this.addContentForm.controls['category'].value;
     this.content.contact = this.addContentForm.controls['poc'].value;
-    console.log(this.content);
     this.contentSrv.create(this.content).then( contentRes => {
         this.contentResult = contentRes;
         this.contentTitleLoaded.emit(contentRes);
@@ -89,6 +92,24 @@ export class AddContentComponent implements OnInit {
 
   isFormValid() {
       return this.addContentForm.valid && this.isFileSelected;
+  }
+
+  ngDoCheck() {
+    if ( this.auth.isAuthenticated() && !this.isAfterLogin ) {
+        this.addContentForm = this.fb.group({
+            organization: [this.auth.getUserOrganization(), Validators.required],
+            title: ['', Validators.required],
+            information: ['', [Validators.required,
+                Validators.maxLength(200)]],
+            category: ['', Validators.required],
+            poc: this.fb.group({
+                name: [this.auth.getUserName(), Validators.required],
+                phone: ['', Validators.required],
+                email: [this.auth.getUserEmail(), [Validators.required, Validators.email]],
+            }),
+        });
+        this.isAfterLogin = true;
+    }
   }
 
 }
