@@ -1,38 +1,38 @@
-import {ContentModel} from "../../services/communibee-backend/content/content";
-import {GenericColumn} from "../../components/generic-table/generic-column";
+import {ContentModel} from '../../services/communibee-backend/content/content';
+import {GenericColumn} from '../../components/generic-table/generic-column';
 
 export enum OfferOrRequest {
   VolunteeringRequest = 'VolunteeringRequest',
   VolunteeringOffer = 'VolunteeringOffer'
 }
 
-export const OfferRequestTableColumns: GenericColumn[] = [
-  {key: 'title', hebKey:'שם ההתנדבות'},
-  {key: 'about', hebKey:'תיאור'},
+export const offerRequestTableColumns: GenericColumn[] = [
+  { key: 'title', hebKey: 'שם ההתנדבות'},
+  { key: 'about', hebKey: 'תיאור'},
   {
     key: 'contact',
-    hebKey:'איש קשר',
+    hebKey: 'איש קשר',
     cellRenderer: (value: any) => {
       return `${value.name}`;
     }
   },
   {
     key: 'content',
-    hebKey:'תוכן ההתנדבות',
+    hebKey: 'תוכן ההתנדבות',
     cellRenderer: (value: ContentModel) => {
       return `${value.title}`;
     }
   },
   {
     key: 'numberOfVolunteers',
-    hebKey:'מספר המתנדבים',
+    hebKey: 'מספר המתנדבים',
     cellRenderer: (value: number) => {
       return `${value}`;
     }
   },
   {
     key: 'kind',
-    hebKey:'סוג ההתנדבות',
+    hebKey: 'סוג ההתנדבות',
     cellRenderer: (value: string) => {
       return value === OfferOrRequest.VolunteeringRequest ? 'בקשה' : 'הצעה';
     }
