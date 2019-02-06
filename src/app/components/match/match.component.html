@@ -28,7 +28,8 @@
                                     <div class="card-body py-0">
                                         <h6 class="mb-1">{{request.content.title}}</h6>
                                         <p class="mb-1">{{request.about}}</p>
-                                        <small>לתיאום יש לפנות ל- {{request.contact.name}}, {{request.contact.phone}}, {{request.contact.email}}</small>
+                                        <div *ngFor="let region of request.regions;">{{region.name}}</div>
+                                        <small>לתיאום יש לפנות ל- {{request.contact.name}}, {{request.contact.phone}}, {{request.contact.email}}</small> 
                                     </div>
                                 </div>
                             </div>
