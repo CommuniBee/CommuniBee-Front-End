@@ -109,7 +109,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let event of plannedEvents; index as i">
-                    <td><button class="btn shadow-none" (click)="cancelEvent(event)">ביטול אירוע</button></td>
+                    <td><button class="btn btn-secondary shadow-none" (click)="cancelEvent(event)">ביטול אירוע</button></td>
                     <td>{{event.title}}</td>
                     <td>
                         {{event.request.organization}}

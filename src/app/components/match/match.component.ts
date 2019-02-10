@@ -8,7 +8,6 @@ import { VolunteeringEventsService } from '../../services/communibee-backend/vol
 import { VolunteeringEventModel } from '../../services/communibee-backend/volunteering-events/volunteering-event';
 import { VolunteeringOfferModel } from '../../services/communibee-backend/volunteering-offers/volunteering-offer';
 import { VolunteeringRequestModel } from '../../services/communibee-backend/volunteering-requests/volunteering-request';
-import { VolunteeringEvent } from '../../services/communibee-backend/volunteering-events/volunteering-event';
 
 declare var $;
 
@@ -100,7 +99,8 @@ export class MatchComponent implements OnInit {
   }
 
   cancelEvent(volunteeringEvent: VolunteeringEventModel ) {
-    this.volunteeringEventsService.delete(this.volunteeringEvent._id).then(response => {
+    console.log('in delete');
+    this.volunteeringEventsService.delete(volunteeringEvent._id).then(response => {
         if (response) {
             this.volunteeringRequestsService.setMatchced(volunteeringEvent.request._id, false);
             this.volunteeringOffersService.setMatchced(volunteeringEvent.offer._id, false);
