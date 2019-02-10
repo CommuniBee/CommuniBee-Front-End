@@ -15,6 +15,14 @@ export class VolunteeringOffersService extends BackendModelService<VolunteeringO
     super(path, backendHttpService);
   }
 
+  async getUnmatched() {
+   try {
+      return await this.backendHttp.get(`${path}/unmatched`);
+    } catch (e) {
+      ErrorHandlerService.handleError(e);
+    }
+  }
+
   async setMatchced(eventId: string, isMatched: boolean) {
    try {
       if (isMatched) {

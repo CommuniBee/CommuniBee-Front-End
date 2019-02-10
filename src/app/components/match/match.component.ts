@@ -38,9 +38,9 @@ export class MatchComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.volunteeringRequestsService.getAll().then(requests => {
+    this.volunteeringRequestsService.getUnmatched().then(requests => {
         this.volunteeringRequests = requests; });
-    this.volunteeringOffersService.getAll().then(offers => { this.volunteeringOffers = offers; });
+    this.volunteeringOffersService.getUnmatched().then(offers => { this.volunteeringOffers = offers; });
     this.volunteeringEventsService.getPlannedEvent().then( planned => { this.plannedEvents = planned; });
 
 
@@ -93,7 +93,9 @@ export class MatchComponent implements OnInit {
             this.volunteeringOffers = this.volunteeringOffers.filter(item => item._id !== event.offer);
             this.volunteeringEvent.offer = this.selectedOffer;
             this.volunteeringEvent.request = this.selectedRequest;
+            this.volunteeringEvent._id = response._id;
             this.plannedEvents.push(this.volunteeringEvent);
+            this.matchForm.reset();
         }
     });
   }
