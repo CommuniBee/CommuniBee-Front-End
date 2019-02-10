@@ -99,7 +99,6 @@ export class MatchComponent implements OnInit {
   }
 
   cancelEvent(volunteeringEvent: VolunteeringEventModel ) {
-    console.log('in delete');
     this.volunteeringEventsService.delete(volunteeringEvent._id).then(response => {
         if (response) {
             this.volunteeringRequestsService.setMatchced(volunteeringEvent.request._id, false);
