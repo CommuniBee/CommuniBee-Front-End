@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { ErrorHandlerService } from '../../error-handler/error-handler.service';
 import { BackendModelService } from '../basic-model.service';
 import { BackendHttpService } from '../backend-http.service';
-import { VolunteeringEvent, VolunteeringEventModel, VolunteeringRequestOfferBase } from './volunteering-event';
+import { VolunteeringEvent, VolunteeringEventModel } from './volunteering-event';
+import { VolunteeringOfferModel } from '../volunteering-offers/volunteering-offer';
+import { VolunteeringRequestModel } from '../volunteering-requests/volunteering-request';
 
 const path = 'volunteering-events';
 
@@ -15,7 +17,15 @@ export class VolunteeringEventsService extends BackendModelService<VolunteeringE
     super(path, backendHttpService);
   }
 
-  async getRequestOfEvent(eventId: string): Promise<VolunteeringRequestOfferBase> {
+  async getPlannedEvent() {
+   try {
+      return await this.backendHttp.get(`${path}/planned`);
+    } catch (e) {
+      ErrorHandlerService.handleError(e);
+    }
+  }
+
+  async getRequestOfEvent(eventId: string): Promise<VolunteeringRequestModel> {
     try {
       return await this.backendHttp.get(`${path}/${eventId}/request`);
     } catch (e) {
@@ -23,7 +33,7 @@ export class VolunteeringEventsService extends BackendModelService<VolunteeringE
     }
   }
 
-  async getOfferOfEvent(eventId: string): Promise<VolunteeringRequestOfferBase> {
+  async getOfferOfEvent(eventId: string): Promise<VolunteeringOfferModel> {
     try {
       return await this.backendHttp.get(`${path}/${eventId}/offer`);
     } catch (e) {

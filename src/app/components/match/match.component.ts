@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router} from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { VolunteeringRequestsService } from '../../services/communibee-backend/volunteering-requests/volunteering-requests.service';
 import { VolunteeringOffersService } from '../../services/communibee-backend/volunteering-offers/volunteering-offers.service';
 import { VolunteeringEventsService } from '../../services/communibee-backend/volunteering-events/volunteering-events.service';
+import { VolunteeringEventModel } from '../../services/communibee-backend/volunteering-events/volunteering-event';
 import { VolunteeringOfferModel } from '../../services/communibee-backend/volunteering-offers/volunteering-offer';
 import { VolunteeringRequestModel } from '../../services/communibee-backend/volunteering-requests/volunteering-request';
 import { VolunteeringEvent } from '../../services/communibee-backend/volunteering-events/volunteering-event';
+
+declare var $;
 
 @Component({
   selector: 'app-match',
@@ -19,12 +22,14 @@ export class MatchComponent implements OnInit {
   matchForm: FormGroup;
   date: NgbDateStruct;
 
-  eventDate: Date = new Date();
+  event_Date: Date = new Date();
 
+  volunteeringEvent: VolunteeringEventModel;
   volunteeringRequests: VolunteeringRequestModel[] = [];
   volunteeringOffers: VolunteeringOfferModel[] = [];
-  selectedRequest: VolunteeringRequestModel = { _id: null } as VolunteeringRequestModel;
-  selectedOffer: VolunteeringOfferModel = { _id: null } as VolunteeringOfferModel;
+  plannedEvents: VolunteeringEventModel[];
+  selectedOffer: VolunteeringOfferModel = {} as any;
+  selectedRequest: VolunteeringRequestModel = {} as any;
 
   constructor(private volunteeringRequestsService: VolunteeringRequestsService,
               private volunteeringOffersService: VolunteeringOffersService,
@@ -37,36 +42,76 @@ export class MatchComponent implements OnInit {
     this.volunteeringRequestsService.getAll().then(requests => {
         this.volunteeringRequests = requests; });
     this.volunteeringOffersService.getAll().then(offers => { this.volunteeringOffers = offers; });
+    this.volunteeringEventsService.getPlannedEvent().then( planned => { this.plannedEvents = planned; });
+
 
     this.date = this.calendar.getToday();
-    const now  = new Date();
 
     this.matchForm = this.formBuilder.group({
+      title: [undefined, Validators.required],
       request: [undefined, Validators.required],
       offer: [undefined, Validators.required],
-      date: [now, Validators.required],
+      eventDate: [this.date, Validators.required],
     });
   }
 
   onSelectRequest(request: VolunteeringRequestModel): void {
     this.selectedRequest = request;
+    this.matchForm.get('request').setValue(this.selectedRequest._id);
+    const currentTitle = this.matchForm.get('title').value;
+    if ( currentTitle == null ) {
+      this.matchForm.get('title').setValue(this.selectedRequest.title + ' עבור ' + this.selectedRequest.organization + ' על ידי ');
+    } else {
+      this.matchForm.get('title').setValue(this.selectedRequest.title + ' עבור ' +
+       this.selectedRequest.organization + ' על ידי ' + currentTitle.split('על ידי')[1].trim());
+    }
   }
 
-  onSelectOffer(offer: VolunteeringOfferModel): void {
+  onSelectOffer(offer: VolunteeringOfferModel) {
     this.selectedOffer = offer;
-  }
-
-  updateEventTime() {
-    this.eventDate = new Date(this.date.year, this.date.month - 1, this.date.day);
+    this.matchForm.get('offer').setValue(this.selectedOffer._id);
+    const currentTitle = this.matchForm.get('title').value;
+    if ( currentTitle == null ) {
+      this.matchForm.get('title').setValue(' על ידיי ' + this.selectedOffer.organization);
+    } else {
+        this.matchForm.get('title').setValue(currentTitle.split('על ידי')[0].trim() + ' על ידי ' + this.selectedOffer.organization);
+    }
   }
 
   sendData() {
-    const event: VolunteeringEvent = this.matchForm.value;
-    this.volunteeringEventsService.create(event).then(response => {
-      if (response) {
-        this.router.navigateByUrl('/dashboard');
-      }
+    const event: any = this.matchForm.value;
+    this.volunteeringEvent = {} as any;
+    this.volunteeringEvent.title = event.title;
+    this.volunteeringEvent.offer = event.offer;
+    this.volunteeringEvent.request = event.request;
+    this.volunteeringEvent.date = new Date( event.eventDate.year, event.eventDate.month - 1,
+        event.eventDate.day );
+    this.volunteeringEventsService.create(this.volunteeringEvent).then(response => {
+        if (response) {
+            this.volunteeringRequestsService.setMatchced(event.request, true);
+            this.volunteeringOffersService.setMatchced(event.offer, true);
+            this.volunteeringRequests = this.volunteeringRequests.filter(item => item._id !== event.request);
+            this.volunteeringOffers = this.volunteeringOffers.filter(item => item._id !== event.offer);
+            this.volunteeringEvent.offer = this.selectedOffer;
+            this.volunteeringEvent.request = this.selectedRequest;
+            this.plannedEvents.push(this.volunteeringEvent);
+        }
     });
   }
 
+  cancelEvent(volunteeringEvent: VolunteeringEventModel ) {
+    this.volunteeringEventsService.delete(this.volunteeringEvent._id).then(response => {
+        if (response) {
+            this.volunteeringRequestsService.setMatchced(volunteeringEvent.request._id, false);
+            this.volunteeringOffersService.setMatchced(volunteeringEvent.offer._id, false);
+            this.volunteeringRequests.push(volunteeringEvent.request);
+            this.volunteeringOffers.push(volunteeringEvent.offer);
+            this.plannedEvents = this.plannedEvents.filter(item => item._id !== volunteeringEvent._id);
+        }
+    });
+  }
+
+  openMatchFormModal() {
+    $('#modalMatchForm').modal('toggle');
+  }
 }
