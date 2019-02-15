@@ -2,13 +2,13 @@
   background-color: #d1d7da !important;
 }
 
-.card-header .is-selected row{
+.card-header .selected row{
    background-color: yellow;
    color: #2c3e50; 
 }
 
 
-.card-header:not(.is-selected), .card-header:not(.is-selected) h5{
+.card-header:not(.selected), .card-header:not(.selected) h5{
   background-color: #2c3e50;
   color: white
 }

@@ -25,7 +25,7 @@
             <ul id="accordion" class="list-group p-0 mx-0">
                 <li *ngFor="let request of volunteeringRequests; index as i" class="list-group-item align-items-start p-0 m-0">
                     <div class="card p-0 m-0">
-                        <div (click)="onSelectRequest(request)" [ngClass]="{'is-selected': selectedRequest===request}"
+                        <div (click)="onSelectRequest(request)" [ngClass]="{'selected': selectedRequest===request}"
                             class="row card-header py-0 mx-0" aria-expanded="true" [attr.aria-controls]="'#collapse'+i" [attr.id]="'headingO'+i">
                            <div class="col-1 d-flex align-items-center justify-content-center">
                                 <i class="fas fa-plus-circle fa-2x pl-1" data-toggle="collapse" [attr.data-target]="'#collapse'+i"></i>
@@ -59,7 +59,7 @@
             <ul id="accordionO" class="list-group p-0 mx-0">
                 <li *ngFor="let offer of volunteeringOffers; index as i" class="list-group-item align-items-start p-0 m-0">
                     <div class="card p-0 m-0">
-                        <div (click)="onSelectOffer(offer)" [ngClass]="{'is-selected': selectedOffer===offer}" 
+                        <div (click)="onSelectOffer(offer)" [ngClass]="{'selected': selectedOffer===offer}" 
                             class="row card-header py-0 mx-0" 
                             aria-expanded="true" [attr.aria-controls]="'#collapseO'+i" [attr.id]="'headingO'+i">
                            <div class="col-1 d-flex align-items-center justify-content-center">

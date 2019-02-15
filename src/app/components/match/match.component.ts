@@ -79,16 +79,18 @@ export class MatchComponent implements OnInit {
 
   sendData() {
     const event: any = this.matchForm.value;
-    this.volunteeringEvent = {} as any;
-    this.volunteeringEvent.title = event.title;
-    this.volunteeringEvent.offer = event.offer;
-    this.volunteeringEvent.request = event.request;
-    this.volunteeringEvent.date = new Date( event.eventDate.year, event.eventDate.month - 1,
+    this.volunteeringEvent = {
+      title: event.title,
+      offer: event.offer,
+      request: event.reques
+    } as any;
+    this.volunteeringEvent.date = new Date( event.eventDate.year,
+        event.eventDate.month - 1,
         event.eventDate.day );
     this.volunteeringEventsService.create(this.volunteeringEvent).then(response => {
         if (response) {
-            this.volunteeringRequestsService.setMatchced(event.request, true);
-            this.volunteeringOffersService.setMatchced(event.offer, true);
+            this.volunteeringRequestsService.setMatched(event.request, true);
+            this.volunteeringOffersService.setMatched(event.offer, true);
             this.volunteeringRequests = this.volunteeringRequests.filter(item => item._id !== event.request);
             this.volunteeringOffers = this.volunteeringOffers.filter(item => item._id !== event.offer);
             this.volunteeringEvent.offer = this.selectedOffer;
@@ -103,8 +105,8 @@ export class MatchComponent implements OnInit {
   cancelEvent(volunteeringEvent: VolunteeringEventModel ) {
     this.volunteeringEventsService.delete(volunteeringEvent._id).then(response => {
         if (response) {
-            this.volunteeringRequestsService.setMatchced(volunteeringEvent.request._id, false);
-            this.volunteeringOffersService.setMatchced(volunteeringEvent.offer._id, false);
+            this.volunteeringRequestsService.setMatched(volunteeringEvent.request._id, false);
+            this.volunteeringOffersService.setMatched(volunteeringEvent.offer._id, false);
             this.volunteeringRequests.push(volunteeringEvent.request);
             this.volunteeringOffers.push(volunteeringEvent.offer);
             this.plannedEvents = this.plannedEvents.filter(item => item._id !== volunteeringEvent._id);

@@ -19,7 +19,7 @@ export class VolunteeringEventsService extends BackendModelService<VolunteeringE
 
   async getPlannedEvent() {
    try {
-      return await this.backendHttp.get(`${path}/planned`);
+      return await this.backendHttp.get(`${path}`, 'isDone=false');
     } catch (e) {
       ErrorHandlerService.handleError(e);
     }
