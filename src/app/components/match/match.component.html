@@ -43,7 +43,7 @@
                                                 <i class="far fa-square" *ngIf="!request.multiOccurrence"></i>
                                     </div>
                                 </div>
-                                <p class="mb-1">{{request.about}}</p>
+                                <p class="mb-1">{{request.about | slice:0:3000}}</p>
                                 <div><span class="badge badge-success ml-1 mb-1" *ngFor="let region of request.regions;">{{region.name}}</span></div>
                                 <small>לתיאום יש לפנות ל- {{request.contact.name}}, {{request.contact.phone}}, {{request.contact.email}}</small> 
                             </div>
@@ -87,7 +87,9 @@
         </div>
     </div>
     <div class="row">
-        <div class="title-divider-round"></div>
+        <div class="col-12">
+            <hr class="my-4">
+        </div>
     </div>
     <div class="row">
         <div class="col-12">
