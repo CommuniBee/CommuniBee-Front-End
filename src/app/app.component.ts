@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {AuthService} from './services/communibee-backend/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +7,4 @@ import {AuthService} from './services/communibee-backend/auth/auth.service';
 })
 export class AppComponent {
   title = 'CommuniBee';
-
-  constructor(private authService: AuthService) {
-  }
 }
