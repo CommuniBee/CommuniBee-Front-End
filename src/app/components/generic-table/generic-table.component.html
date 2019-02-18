@@ -35,11 +35,16 @@
       <div class="modal-body">
         <div *ngFor="let column of columns">
           <span *ngIf="selectedElement[column.key] !== undefined">
-            <span class="badge badge-secondary">{{column.hebKey}} :</span>
-            <span *ngIf="column.modalRenderer; else cellRenderer" [innerHTML]="column.modalRenderer(selectedElement[column.key])"></span>
-            <ng-template #cellRenderer>
-              <app-cell-renderer [element]="selectedElement" [column]="column"></app-cell-renderer>
-            </ng-template>
+            <div class="container">
+              <div class="row py-1">
+                <span class="col-3"><span class="badge badge-secondary">{{column.hebKey}} :</span></span>
+                <span class="col-9" *ngIf="column.modalRenderer; else cellRenderer"
+                      [innerHTML]="column.modalRenderer(selectedElement[column.key])"></span>
+                <ng-template #cellRenderer>
+                  <app-cell-renderer [element]="selectedElement" [column]="column"></app-cell-renderer>
+                </ng-template>
+              </div>
+            </div>
           </span>
         </div>
       </div>
