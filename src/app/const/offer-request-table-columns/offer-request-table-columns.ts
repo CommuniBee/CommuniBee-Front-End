@@ -57,5 +57,12 @@ export const offerRequestTableColumns: GenericColumn[] = [
       return value === OfferOrRequest.VolunteeringRequest ? 'בקשה' : 'הצעה';
     },
     isTableColumn: true
+  },
+  {
+    key: 'multiOccurrence',
+    hebKey: 'רב פעמי',
+    modalRenderer: (value: boolean) => {
+      return ` <i class="far ${value ? 'fa-check-square' : 'fa-square'}"></i>`;
+    }
   }
 ];

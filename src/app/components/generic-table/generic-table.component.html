@@ -34,8 +34,8 @@
       </div>
       <div class="modal-body">
         <div *ngFor="let column of columns">
-          <span class="badge badge-secondary">{{column.hebKey}} :</span>
-          <span *ngIf="selectedElement[column.key]">
+          <span *ngIf="selectedElement[column.key] !== undefined">
+            <span class="badge badge-secondary">{{column.hebKey}} :</span>
             <span *ngIf="column.modalRenderer; else cellRenderer" [innerHTML]="column.modalRenderer(selectedElement[column.key])"></span>
             <ng-template #cellRenderer>
               <app-cell-renderer [element]="selectedElement" [column]="column"></app-cell-renderer>
