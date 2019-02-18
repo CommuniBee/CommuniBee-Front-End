@@ -3,16 +3,10 @@ import * as moment from 'moment';
 
 export const eventColumns: GenericColumn[] = [
   {
-    key: 'request',
+    key: 'title',
     hebKey: 'שם ההתנדבות',
     isTableColumn: true,
-    cellRenderer: (req: any) => req.title
-  },
-  {
-    key: 'request',
-    hebKey: 'ארגון',
-    isTableColumn: true,
-    cellRenderer: (req: any) => req.organization
+    cellRenderer: (title: any) => title
   },
   {
     key: 'offer',
@@ -20,16 +14,22 @@ export const eventColumns: GenericColumn[] = [
     cellRenderer: (off: any) => off.content.title
   },
   {
-    key: 'offer',
-    hebKey: 'מבצע',
+    key: 'request',
+    hebKey: 'ארגון מארח',
     isTableColumn: true,
-    cellRenderer: (off: any) => off.organization
+    cellRenderer: (req: any) => req.organization
   },
   {
     key: 'request',
-    hebKey: 'נציג ארגון',
+    hebKey: 'נציג מארח',
     isTableColumn: true,
     cellRenderer: (req: any) => req.contact.name
+  },
+  {
+    key: 'offer',
+    hebKey: 'ארגון מתנדב',
+    isTableColumn: true,
+    cellRenderer: (off: any) => off.organization
   },
   {
     key: 'offer',
@@ -41,6 +41,6 @@ export const eventColumns: GenericColumn[] = [
     key: 'date',
     hebKey: 'תאריך',
     isTableColumn: true,
-    cellRenderer: (date: string) => moment(date).format('DD-MM-YYYY HH:mm')
+    cellRenderer: (date: string) => moment(date).format('DD-MM-YYYY')
   }
 ];
