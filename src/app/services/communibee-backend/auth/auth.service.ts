@@ -6,7 +6,6 @@ import { Auth0Lock } from 'auth0-lock';
 import { retry } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import { UserProfile } from './user-profile';
-import { getCommunibeeApiUrl } from '../../../../configuration';
 import { path as subRegionsPath } from '../subregion/subregion.service';
 import { SubRegionsModel } from '../subregion/subregion';
 import { AppMetadata } from './app-metadata';
@@ -74,7 +73,7 @@ export class AuthService {
 
     const httpClient = new HttpClient(httpBackend);
 
-    httpClient.get<SubRegionsModel[]>(`${getCommunibeeApiUrl()}/${subRegionsPath}`).pipe(
+    httpClient.get<SubRegionsModel[]>(`${environment.api.url}/${subRegionsPath}`).pipe(
       retry(3),
     ).subscribe((subRegionsResponse: SubRegionsModel[]) => {
 
