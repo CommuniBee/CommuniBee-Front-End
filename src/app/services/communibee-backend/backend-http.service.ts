@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { retry } from 'rxjs/operators';
-import { getCommunibeeApiUrl } from '../../../configuration';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,7 @@ export class BackendHttpService {
   url: string;
 
   constructor(private http: HttpClient) {
-    this.url = getCommunibeeApiUrl();
+    this.url = environment.api.url;
   }
 
   get(path: string, query?: string): Promise<any> {

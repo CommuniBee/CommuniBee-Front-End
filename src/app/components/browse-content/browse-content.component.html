@@ -7,12 +7,12 @@
 </nav>
 
 <div class="container">
-  <div class="row rtl" style="">
+  <div class="row rtl">
     <div class="col-sm col-md-3">
       <div class="input-group mb-3">
         <div class="input-group-inner">
           <div class="input-group-prepend">
-            <span class="input-group-text input-group-icon mr-1" id="inputGroupIconDefault"><i class="far fa-font"></i></span>
+            <span class="input-group-text input-group-icon mr-1" id="inputGroupIconDefault"><i class="fas fa-font"></i></span>
           </div>
           <input type="text" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault" placeholder="כותרת" [(ngModel)]= "title"/>
           <div class="input-focus-bg"></div>
@@ -23,7 +23,7 @@
       <div class="input-group mb-3">
         <div class="input-group-inner">
           <div class="input-group-prepend">
-            <span class="input-group-text input-group-icon mr-1" id="inputGroupIconDefault"><i class="far fa-align-right"></i></span>
+            <span class="input-group-text input-group-icon mr-1" id="inputGroupIconDefault"><i class="fas fa-align-right"></i></span>
           </div>
           <input type="text" class="form-control" aria-label="Username" aria-describedby="inputGroupIconDefault" placeholder="תוכן" [(ngModel)]= "description"/>
           <div class="input-focus-bg"></div>
@@ -59,7 +59,7 @@
 <div class="container">
   <div class="row" style="flex-direction: row-reverse;">
     <div class="col-sm col-md-3" *ngFor="let con_info of contents">
-      <div class="card card-feed-item border-0 shadow">        
+      <div class="card card-feed-item border-0 shadow">
         <a  role="button" class="card-feed-img" (click)="openFile(con_info._id, con_info.fileName)" target="" [ngSwitch]="con_info.category.name">
           <img *ngSwitchCase="'אלקטרוניקה'" class="card-img-top" src="assets/imgs/electronic.jpg" alt="Card feed" />
           <img *ngSwitchCase="'תכנות'" class="card-img-top" src="assets/imgs/software.jpg" alt="Card feed" />
@@ -67,7 +67,7 @@
           <img *ngSwitchCase="'סמארטפונים'" class="card-img-top" src="assets/imgs/mobile.jpg" alt="Card feed" />
         </a>
         <div class="card-body mb-1" style="padding-bottom: 0;">
-          <div style="font-size: 1em; padding: 2px 15px; font-weight: lighter;" class="btn btn-dark btn-round btn-sm card-feed-link"><i class="fas fa-info-circle"></i>{{con_info.category.name}}</div>          
+          <div style="font-size: 1em; padding: 2px 15px; font-weight: lighter;" class="btn btn-dark btn-round btn-sm card-feed-link"><i class="fas fa-info-circle"></i>{{con_info.category.name}}</div>
           <div style="direction: rtl; text-align: right;">
             <p class="h5">{{con_info.title}}</p>
             <div class="divider-4 yellow"></div>
@@ -80,5 +80,5 @@
       </div>
     </div>
   </div>
-</div>    
+</div>
 
