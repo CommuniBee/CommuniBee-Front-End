@@ -18,12 +18,8 @@ ngb-datepicker, ngb-timepicker {
   direction: ltr;
 }
 
-.list-group, .eventTable{
+.list-group{
     max-height: 350px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-}
-
-.eventTable {
-    padding-bottom: 250px;
 }
