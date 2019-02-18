@@ -2,6 +2,24 @@
   background-color: #d1d7da !important;
 }
 
+.card-header .selected row{
+   background-color: yellow;
+   color: #2c3e50; 
+}
+
+
+.card-header:not(.selected), .card-header:not(.selected) h5{
+  background-color: #2c3e50;
+  color: white
+}
+
+
 ngb-datepicker, ngb-timepicker {
   direction: ltr;
+}
+
+.list-group, .table{
+    max-height: 350px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }

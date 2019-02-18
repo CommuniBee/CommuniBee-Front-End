@@ -9,6 +9,7 @@ import {AddVolunteeringOpportunityComponent} from './components/add-volunteering
 import {AddVolunteersComponent} from './components/add-volunteers/add-volunteers.component';
 import {MatchComponent} from './components/match/match.component';
 import {AuthService} from './services/communibee-backend/auth/auth.service';
+import { AboutComponent } from './components/about/about.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -22,7 +23,8 @@ const routes: Routes = [
       {path: 'dashboard', component: DashboardComponent},
       {path: 'opportunities/add', component: AddVolunteeringOpportunityComponent},
       {path: 'volunteers/add', component: AddVolunteersComponent},
-      {path: 'match', component: MatchComponent}
+      {path: 'match', component: MatchComponent},
+      {path: 'about', component: AboutComponent}
     ],
     canActivateChild: [AuthService]
   }

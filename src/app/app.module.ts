@@ -28,6 +28,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import {DashboardTabsComponent} from './components/dashboard-tabs/dashboard-tabs.component';
 import { GenericTableComponent } from './components/generic-table/generic-table.component';
 import { CellRendererComponent } from './components/cell-renderer/cell-renderer.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { CellRendererComponent } from './components/cell-renderer/cell-renderer.
     WeekdayNamesPipe,
     GenericTableComponent,
     CellRendererComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
