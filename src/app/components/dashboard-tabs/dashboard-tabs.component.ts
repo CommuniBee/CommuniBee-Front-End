@@ -46,16 +46,16 @@ export class DashboardTabsComponent implements OnInit {
     const volRequests: VolunteeringBaseModel[] = await this.volunteeringRequestsService.getAll();
     const volOffers: VolunteeringBaseModel[] = await this.volunteeringOffersService.getAll();
     const allVolunteeringApplications: VolunteeringBaseModel[] = [...volRequests, ...volOffers];
-    this.offersAndRequests = allVolunteeringApplications.filter((application) => {
+    this.offersAndRequests = !this.authService.isManager() ? allVolunteeringApplications.filter((application) => {
       return this.organization === application.organization;
-    });
+    }) : allVolunteeringApplications;
   }
 
   async getAllEvents(): Promise<void> {
-    this.events = (await this.eventsService.getAll())
-      .filter((event) => {
-        return [event.request.organization, event.offer.organization].includes(this.organization);
-      });
+    const allEvents: VolunteeringEventModel[] = await this.eventsService.getAll();
+    this.events = !this.authService.isManager() ? allEvents.filter((event) => {
+      return [event.request.organization, event.offer.organization].includes(this.organization);
+    }) : allEvents;
   }
 
   modalClosed(): void {
@@ -79,6 +79,7 @@ export class DashboardTabsComponent implements OnInit {
         }
         return buttonToDisplay;
       },
+      isTableColumn: true,
       onClick: this.doneAndRateEvent.bind(this)
     };
   }

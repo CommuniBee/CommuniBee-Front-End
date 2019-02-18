@@ -1,6 +1,6 @@
 import BackendModel from '../backend-model';
 import {User} from '../user/user';
-import { Content, ContentModel } from '../content/content';
+import {Content, ContentModel} from '../content/content';
 
 export interface VolunteeringRequestOfferBase {
   organization: string;
@@ -11,7 +11,7 @@ export interface VolunteeringRequestOfferBase {
     email: string,
   };
   multiOccurrence: boolean;
-  regions: [string];
+  regions: { name: string, region: string }[];
   isMatched: boolean;
   createdByUserId: string | User;
 }

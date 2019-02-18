@@ -26,6 +26,9 @@ import {DashboardTabsComponent} from './components/dashboard-tabs/dashboard-tabs
 import { GenericTableComponent } from './components/generic-table/generic-table.component';
 import { CellRendererComponent } from './components/cell-renderer/cell-renderer.component';
 import { AboutComponent } from './components/about/about.component';
+import { TableColumnsPipe } from './pipes/table-columns.pipe';
+import { RemoveTitleColumnPipe } from './pipes/remove-title-column.pipe';
+import { UpcomingToLatestPipe } from './pipes/upcoming-to-latest.pipe';
 import { ModalComponent } from './components/modal/modal.component';
 import { FinishAndRateComponent } from './components/finish-and-rate/finish-and-rate.component';
 import { SeparateEventsPipe } from './pipes/separate-events.pipe';
@@ -52,7 +55,10 @@ import { SeparateEventsPipe } from './pipes/separate-events.pipe';
     AboutComponent,
     ModalComponent,
     FinishAndRateComponent,
-    SeparateEventsPipe
+    SeparateEventsPipe,
+    TableColumnsPipe,
+    RemoveTitleColumnPipe,
+    UpcomingToLatestPipe
   ],
   imports: [
     BrowserModule,

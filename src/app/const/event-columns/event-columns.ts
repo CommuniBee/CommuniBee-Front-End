@@ -1,41 +1,67 @@
 import {GenericColumn} from '../../components/generic-table/generic-column';
 import * as moment from 'moment';
+import {OrganizationReview} from '../../services/communibee-backend/volunteering-events/volunteering-event';
 
 export const baseEventColumns: GenericColumn[] = [
   {
-    key: 'request',
+    key: 'title',
     hebKey: 'שם ההתנדבות',
-    cellRenderer: (req: any) => req.title
-  },
-  {
-    key: 'request',
-    hebKey: 'ארגון',
-    cellRenderer: (req: any) => req.organization
+    isTableColumn: true,
+    isTitleColumn: () => true,
+    cellRenderer: (title: any) => title
   },
   {
     key: 'offer',
     hebKey: 'תוכן',
-    hideInTable: true,
     cellRenderer: (off: any) => off.content.title
   },
   {
-    key: 'offer',
-    hebKey: 'מבצע',
-    cellRenderer: (off: any) => off.organization
+    key: 'request',
+    hebKey: 'ארגון מארח',
+    isTableColumn: true,
+    cellRenderer: (req: any) => req.organization
   },
   {
     key: 'request',
-    hebKey: 'נציג ארגון',
+    hebKey: 'נציג מארח',
     cellRenderer: (req: any) => req.contact.name
   },
   {
     key: 'offer',
+    hebKey: 'ארגון מתנדב',
+    isTableColumn: true,
+    cellRenderer: (off: any) => off.organization
+  },
+  {
+    key: 'offer',
     hebKey: 'נציג מתנדב',
+    isTableColumn: true,
     cellRenderer: (off: any) => off.contact.name
+  },
+  {
+    key: 'offerReview',
+    hebKey: 'הערת מתנדב',
+    cellRenderer: (review: OrganizationReview) => review.description
+  },
+  {
+    key: 'offerReview',
+    hebKey: 'דירוג מתנדב',
+    cellRenderer: (review: OrganizationReview) => review.rating
+  },
+  {
+    key: 'requestReview',
+    hebKey: 'הערת מארח',
+    cellRenderer: (review: OrganizationReview) => review.description
+  },
+  {
+    key: 'requestReview',
+    hebKey: 'דירוג מארח',
+    cellRenderer: (review: OrganizationReview) => review.rating
   },
   {
     key: 'date',
     hebKey: 'תאריך',
-    cellRenderer: (date: string) => moment(date).format('DD-MM-YYYY HH:mm')
+    isTableColumn: true,
+    cellRenderer: (date: string) => moment(date).format('DD-MM-YYYY')
   }
 ];

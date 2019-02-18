@@ -9,16 +9,18 @@ export enum OfferOrRequest {
 export const offerRequestTableColumns: GenericColumn[] = [
   {
     key: 'title',
-    hebKey: 'שם ההתנדבות'
+    hebKey: 'שם ההתנדבות',
+    isTableColumn: true,
+    isTitleColumn: (offerOrRequest: any) => offerOrRequest.title
   },
   {
     key: 'about',
-    hebKey: 'תיאור'
+    hebKey: 'תיאור',
+    isTableColumn: true
   },
   {
     key: 'organization',
-    hebKey: 'ארגון',
-    hideInTable: true
+    hebKey: 'ארגון'
   },
   {
     key: 'contact',
@@ -40,7 +42,9 @@ export const offerRequestTableColumns: GenericColumn[] = [
     hebKey: 'תוכן ההתנדבות',
     cellRenderer: (value: ContentModel) => {
       return `${value.title}`;
-    }
+    },
+    isTableColumn: true,
+    isTitleColumn: (offerOrRequest: any) => !offerOrRequest.title
   },
   {
     key: 'numberOfVolunteers',
@@ -51,6 +55,26 @@ export const offerRequestTableColumns: GenericColumn[] = [
     hebKey: 'סוג ההתנדבות',
     cellRenderer: (value: string) => {
       return value === OfferOrRequest.VolunteeringRequest ? 'בקשה' : 'הצעה';
+    },
+    isTableColumn: true
+  },
+  {
+    key: 'multiOccurrence',
+    hebKey: 'רב פעמי',
+    modalRenderer: (value: boolean) => {
+      return ` <i class="far ${value ? 'fa-check-square' : 'fa-square'}"></i>`;
+    }
+  },
+  {
+    key: 'regions',
+    hebKey: 'איזורים',
+    modalRenderer: (value: { name: string, region: string }[]) => {
+      let regionsHTML = '  ';
+
+      for (const region of value) {
+        regionsHTML += `<span class="badge badge-success ml-1 mb-1">${region.name}</span>`;
+      }
+      return regionsHTML;
     }
   }
 ];
