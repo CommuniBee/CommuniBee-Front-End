@@ -10,7 +10,6 @@ import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BodyComponent } from './components/body/body.component';
 import { HomeComponent } from './components/home/home.component';
-import { ContactModalComponent } from './components/contact-modal/contact-modal.component';
 import { BrowseContentComponent } from './components/browse-content/browse-content.component';
 import { BrowseOpportunitiesComponent } from './components/browse-opportunities/browse-opportunities.component';
 import { BrowseVolunteersComponent } from './components/browse-volunteers/browse-volunteers.component';
@@ -38,7 +37,6 @@ import { AboutComponent } from './components/about/about.component';
     FooterComponent,
     BodyComponent,
     HomeComponent,
-    ContactModalComponent,
     BrowseContentComponent,
     BrowseOpportunitiesComponent,
     BrowseVolunteersComponent,
