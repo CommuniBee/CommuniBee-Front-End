@@ -4,5 +4,5 @@ export interface GenericColumn {
   hideInTable?: boolean; // default is false
   cellRenderer?: (value: any) => string;
   modalRenderer?: (value: any) => string;
-  onClick?: (element: any, event:Event) => void;
+  onClick?: (element: any, event: Event) => void;
 }

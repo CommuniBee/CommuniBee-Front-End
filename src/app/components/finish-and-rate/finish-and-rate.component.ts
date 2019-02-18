@@ -2,8 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {
   OrganizationReview,
   VolunteeringEventModel
-} from "../../services/communibee-backend/volunteering-events/volunteering-event";
-import {AuthService} from "../../services/communibee-backend/auth/auth.service";
+} from '../../services/communibee-backend/volunteering-events/volunteering-event';
+import {AuthService} from '../../services/communibee-backend/auth/auth.service';
 
 @Component({
   selector: 'app-finish-and-rate',
@@ -34,7 +34,7 @@ export class FinishAndRateComponent implements OnInit {
   }
 
   changeEventRating(event: any): void {
-    this.reviewToEdit.rating = parseInt(event.target.value);
+    this.reviewToEdit.rating = +event.target.value;
   }
 
   private organizationReviewFromEvent(): void {

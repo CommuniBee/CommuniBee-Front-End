@@ -7,7 +7,7 @@ import {VolunteeringBaseModel} from '../../services/communibee-backend/common-mo
 import {GenericColumn} from '../generic-table/generic-column';
 import {offerRequestTableColumns} from '../../const/offer-request-table-columns/offer-request-table-columns';
 import {VolunteeringEventModel} from '../../services/communibee-backend/volunteering-events/volunteering-event';
-import {baseEventColumns} from "../../const/event-columns/event-columns";
+import {baseEventColumns} from '../../const/event-columns/event-columns';
 
 @Component({
   selector: 'app-dashboard-tabs',
@@ -73,18 +73,18 @@ export class DashboardTabsComponent implements OnInit {
       key: 'isDone',
       hebKey: 'סטטוס האירוע',
       cellRenderer: (isDone: boolean) => {
-        let buttonToDisplay: string = `<span class="btn btn-success shadow-none">דרג וסגור אירוע</span>`;
+        let buttonToDisplay = `<span class='btn btn-success shadow-none'>דרג וסגור אירוע</span>`;
         if (isDone) {
-          buttonToDisplay = `<span class="btn btn-primary shadow-none">דרג אירוע</span>`;
+          buttonToDisplay = `<span class='btn btn-primary shadow-none'>דרג אירוע</span>`;
         }
         return buttonToDisplay;
       },
       onClick: this.doneAndRateEvent.bind(this)
-    }
+    };
   }
 
-  private doneAndRateEvent(eventToFinish: VolunteeringEventModel, event: Event): void {
+  private doneAndRateEvent(eventToFinish: VolunteeringEventModel, domEvent: Event): void {
     this.eventToFinish = this.events.find((event) => eventToFinish._id === event._id);
-    event.stopPropagation();
+    domEvent.stopPropagation();
   }
 }

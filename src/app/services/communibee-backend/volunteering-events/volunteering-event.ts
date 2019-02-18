@@ -16,7 +16,7 @@ export interface VolunteeringEvent {
 export interface OrganizationReview {
   rating: number;
   description: string;
-  createdByUserId:string;
+  createdByUserId: string;
 }
 
 export interface VolunteeringEventModel extends BackendModel, VolunteeringEvent {

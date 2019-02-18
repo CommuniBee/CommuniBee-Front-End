@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {VolunteeringEventModel} from "../services/communibee-backend/volunteering-events/volunteering-event";
+import {VolunteeringEventModel} from '../services/communibee-backend/volunteering-events/volunteering-event';
 
 @Pipe({
   name: 'separateEvents'
