@@ -13,6 +13,7 @@ import { AboutComponent } from './components/about/about.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
+  {path: 'about', component: AboutComponent},
   {
     path: '',
     children: [
@@ -24,7 +25,6 @@ const routes: Routes = [
       {path: 'opportunities/add', component: AddVolunteeringOpportunityComponent},
       {path: 'volunteers/add', component: AddVolunteersComponent},
       {path: 'match', component: MatchComponent},
-      {path: 'about', component: AboutComponent}
     ],
     canActivateChild: [AuthService]
   }
