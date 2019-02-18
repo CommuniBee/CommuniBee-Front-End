@@ -55,10 +55,10 @@ import { SeparateEventsPipe } from './pipes/separate-events.pipe';
     AboutComponent,
     ModalComponent,
     FinishAndRateComponent,
-    SeparateEventsPipe
+    SeparateEventsPipe,
     TableColumnsPipe,
     RemoveTitleColumnPipe,
-    UpcomingToLatestPipe,
+    UpcomingToLatestPipe
   ],
   imports: [
     BrowserModule,
