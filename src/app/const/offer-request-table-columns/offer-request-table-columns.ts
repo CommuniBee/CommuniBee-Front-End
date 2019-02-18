@@ -14,8 +14,7 @@ export const offerRequestTableColumns: GenericColumn[] = [
   },
   {
     key: 'about',
-    hebKey: 'תיאור',
-    isTableColumn: true
+    hebKey: 'תיאור'
   },
   {
     key: 'organization',
@@ -34,8 +33,7 @@ export const offerRequestTableColumns: GenericColumn[] = [
       טלפון: ${value.phone}
       <br>
       אימייל: ${value.email}</span>`;
-    },
-    isTableColumn: true
+    }
   },
   {
     key: 'content',
@@ -47,8 +45,7 @@ export const offerRequestTableColumns: GenericColumn[] = [
   },
   {
     key: 'numberOfVolunteers',
-    hebKey: 'מספר המתנדבים',
-    isTableColumn: true
+    hebKey: 'מספר המתנדבים'
   },
   {
     key: 'kind',
