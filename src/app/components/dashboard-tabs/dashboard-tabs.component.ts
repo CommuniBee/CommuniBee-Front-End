@@ -39,7 +39,7 @@ export class DashboardTabsComponent implements OnInit {
   async ngOnInit() {
     this.organization = this.authService.getUserMetadata().organization;
     this.assignApplications();
-    //this.getAllEvents();
+    this.getAllEvents();
   }
 
   selectTab(index: number) {
@@ -56,9 +56,10 @@ export class DashboardTabsComponent implements OnInit {
   }
 
   async getAllEvents(): Promise<void> {
-    const allEvents: VolunteeringEventModel[] = await this.eventsService.getAll();
-
-    [this.futureEvents, this.historyEvents] = _.partition(allEvents, (event) => event.date > Date.now());
-    console.log(allEvents);
+    const allEvents: VolunteeringEventModel[] = (await this.eventsService.getAll())
+      .filter((event) => {
+        return [event.request.organization, event.offer.organization].includes(this.organization);
+      });
+    [this.historyEvents, this.futureEvents] = _.partition(allEvents, (event) => event.isDone);
   }
 }
