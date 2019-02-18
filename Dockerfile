@@ -11,5 +11,5 @@ COPY default.conf /etc/nginx/conf.d/
 COPY dockerfile-cmd.sh /
 
 COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
-EXPOSE 80 443
+EXPOSE 443
 CMD [ "sh", "dockerfile-cmd.sh" ]
