@@ -10,11 +10,9 @@
     </thead>
     <tbody>
     <tr *ngFor="let element of elements; let i = index"
-        data-toggle="modal"
-        data-target="#exampleModal"
         (click)="displayRow(element)">
       <th scope="row">{{i + 1}}</th>
-      <td *ngFor="let column of columns">
+      <td *ngFor="let column of columns" (click)="cellClicked(column.onClick, element, $event)">
         <app-cell-renderer [element]="element" [column]="column"></app-cell-renderer>
       </td>
     </tr>
@@ -22,27 +20,16 @@
   </table>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div *ngFor="let column of columns">
-          <span class="badge badge-secondary">{{column.hebKey}} :</span>
-          <span *ngIf="selectedElement[column.key]">
-            <span *ngIf="column.modalRenderer; else cellRenderer" [innerHTML]="column.modalRenderer(selectedElement[column.key])"></span>
+<app-modal *ngIf="selectedElement" (modalClosed)="modalClosed()">
+  <div *ngFor="let column of columns">
+    <span class="badge badge-secondary">{{column.hebKey}} :</span>
+    <span *ngIf="selectedElement[column.key] !== undefined">
+            <span *ngIf="column.modalRenderer; else cellRenderer"
+                  [innerHTML]="column.modalRenderer(selectedElement[column.key])"></span>
             <ng-template #cellRenderer>
               <app-cell-renderer [element]="selectedElement" [column]="column"></app-cell-renderer>
             </ng-template>
-          </span>
-        </div>
-      </div>
-    </div>
+    </span>
   </div>
-</div>
+</app-modal>
+

@@ -29,6 +29,9 @@ import {DashboardTabsComponent} from './components/dashboard-tabs/dashboard-tabs
 import { GenericTableComponent } from './components/generic-table/generic-table.component';
 import { CellRendererComponent } from './components/cell-renderer/cell-renderer.component';
 import { AboutComponent } from './components/about/about.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { FinishAndRateComponent } from './components/finish-and-rate/finish-and-rate.component';
+import { SeparateEventsPipe } from './pipes/separate-events.pipe';
 
 @NgModule({
   declarations: [
@@ -53,6 +56,9 @@ import { AboutComponent } from './components/about/about.component';
     GenericTableComponent,
     CellRendererComponent,
     AboutComponent,
+    ModalComponent,
+    FinishAndRateComponent,
+    SeparateEventsPipe
   ],
   imports: [
     BrowserModule,
