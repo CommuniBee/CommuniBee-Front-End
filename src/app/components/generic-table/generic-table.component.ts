@@ -15,6 +15,7 @@ export class GenericTableComponent {
   selectedElement: any;
 
   constructor() {
+    this.elements = [];
     this.selectedElement = {};
   }
 

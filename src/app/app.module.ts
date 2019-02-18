@@ -31,6 +31,7 @@ import { CellRendererComponent } from './components/cell-renderer/cell-renderer.
 import { AboutComponent } from './components/about/about.component';
 import { TableColumnsPipe } from './pipes/table-columns.pipe';
 import { RemoveTitleColumnPipe } from './pipes/remove-title-column.pipe';
+import { UpcomingToLatestPipe } from './pipes/upcoming-to-latest.pipe';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { RemoveTitleColumnPipe } from './pipes/remove-title-column.pipe';
     AboutComponent,
     TableColumnsPipe,
     RemoveTitleColumnPipe,
+    UpcomingToLatestPipe,
   ],
   imports: [
     BrowserModule,
