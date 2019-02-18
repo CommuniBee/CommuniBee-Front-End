@@ -17,7 +17,7 @@
               <i class="fas fa-home ml-2"></i>בית
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <a class="nav-link" routerLink="/about"><i class="fas fa-info ml-2"></i>עלינו</a>
         </li>
         <li class="nav-item">
@@ -27,7 +27,7 @@
         </li>
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <a routerLink="/match" href="#" class="nav-link" *ngIf="isAuthenticated() && isAllowedTo()">
-                <i class="far fa-calendar-check ml-2"></i>תיאום התנדבות
+                <i class="fas fa-calendar-check ml-2"></i>תיאום התנדבות
             </a>
         </li>
       </ul>
@@ -65,8 +65,6 @@
 
   </div>
 </nav>
-
-<app-contact-modal></app-contact-modal>
 
 <div class="modal fade" id="navModalContentUpload" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">

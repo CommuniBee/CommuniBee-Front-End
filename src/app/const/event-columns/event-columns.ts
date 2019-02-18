@@ -1,18 +1,14 @@
 import {GenericColumn} from '../../components/generic-table/generic-column';
 import * as moment from 'moment';
+import {OrganizationReview} from '../../services/communibee-backend/volunteering-events/volunteering-event';
 
-export const eventColumns: GenericColumn[] = [
+export const baseEventColumns: GenericColumn[] = [
   {
-    key: 'request',
+    key: 'title',
     hebKey: 'שם ההתנדבות',
     isTableColumn: true,
-    cellRenderer: (req: any) => req.title
-  },
-  {
-    key: 'request',
-    hebKey: 'ארגון',
-    isTableColumn: true,
-    cellRenderer: (req: any) => req.organization
+    isTitleColumn: () => true,
+    cellRenderer: (title: any) => title
   },
   {
     key: 'offer',
@@ -20,16 +16,21 @@ export const eventColumns: GenericColumn[] = [
     cellRenderer: (off: any) => off.content.title
   },
   {
-    key: 'offer',
-    hebKey: 'מבצע',
+    key: 'request',
+    hebKey: 'ארגון מארח',
     isTableColumn: true,
-    cellRenderer: (off: any) => off.organization
+    cellRenderer: (req: any) => req.organization
   },
   {
     key: 'request',
-    hebKey: 'נציג ארגון',
-    isTableColumn: true,
+    hebKey: 'נציג מארח',
     cellRenderer: (req: any) => req.contact.name
+  },
+  {
+    key: 'offer',
+    hebKey: 'ארגון מתנדב',
+    isTableColumn: true,
+    cellRenderer: (off: any) => off.organization
   },
   {
     key: 'offer',
@@ -38,9 +39,29 @@ export const eventColumns: GenericColumn[] = [
     cellRenderer: (off: any) => off.contact.name
   },
   {
+    key: 'offerReview',
+    hebKey: 'הערת מתנדב',
+    cellRenderer: (review: OrganizationReview) => review.description
+  },
+  {
+    key: 'offerReview',
+    hebKey: 'דירוג מתנדב',
+    cellRenderer: (review: OrganizationReview) => review.rating
+  },
+  {
+    key: 'requestReview',
+    hebKey: 'הערת מארח',
+    cellRenderer: (review: OrganizationReview) => review.description
+  },
+  {
+    key: 'requestReview',
+    hebKey: 'דירוג מארח',
+    cellRenderer: (review: OrganizationReview) => review.rating
+  },
+  {
     key: 'date',
     hebKey: 'תאריך',
     isTableColumn: true,
-    cellRenderer: (date: string) => moment(date).format('DD-MM-YYYY HH:mm')
+    cellRenderer: (date: string) => moment(date).format('DD-MM-YYYY')
   }
 ];

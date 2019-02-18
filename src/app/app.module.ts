@@ -10,10 +10,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BodyComponent } from './components/body/body.component';
 import { HomeComponent } from './components/home/home.component';
-import { ContactModalComponent } from './components/contact-modal/contact-modal.component';
 import { BrowseContentComponent } from './components/browse-content/browse-content.component';
-import { BrowseOpportunitiesComponent } from './components/browse-opportunities/browse-opportunities.component';
-import { BrowseVolunteersComponent } from './components/browse-volunteers/browse-volunteers.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AddVolunteeringOpportunityComponent } from './components/add-volunteering-opportunity/add-volunteering-opportunity.component';
 import { AddVolunteersComponent } from './components/add-volunteers/add-volunteers.component';
@@ -29,6 +26,12 @@ import {DashboardTabsComponent} from './components/dashboard-tabs/dashboard-tabs
 import { GenericTableComponent } from './components/generic-table/generic-table.component';
 import { CellRendererComponent } from './components/cell-renderer/cell-renderer.component';
 import { AboutComponent } from './components/about/about.component';
+import { TableColumnsPipe } from './pipes/table-columns.pipe';
+import { RemoveTitleColumnPipe } from './pipes/remove-title-column.pipe';
+import { UpcomingToLatestPipe } from './pipes/upcoming-to-latest.pipe';
+import { ModalComponent } from './components/modal/modal.component';
+import { FinishAndRateComponent } from './components/finish-and-rate/finish-and-rate.component';
+import { SeparateEventsPipe } from './pipes/separate-events.pipe';
 
 @NgModule({
   declarations: [
@@ -38,10 +41,7 @@ import { AboutComponent } from './components/about/about.component';
     FooterComponent,
     BodyComponent,
     HomeComponent,
-    ContactModalComponent,
     BrowseContentComponent,
-    BrowseOpportunitiesComponent,
-    BrowseVolunteersComponent,
     DashboardComponent,
     DashboardTabsComponent,
     AddVolunteeringOpportunityComponent,
@@ -53,6 +53,12 @@ import { AboutComponent } from './components/about/about.component';
     GenericTableComponent,
     CellRendererComponent,
     AboutComponent,
+    ModalComponent,
+    FinishAndRateComponent,
+    SeparateEventsPipe,
+    TableColumnsPipe,
+    RemoveTitleColumnPipe,
+    UpcomingToLatestPipe
   ],
   imports: [
     BrowserModule,

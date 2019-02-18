@@ -29,26 +29,26 @@
                             class="row card-header py-0 mx-0" aria-expanded="true" [attr.aria-controls]="'#collapse'+i" [attr.id]="'headingO'+i">
                            <div class="col-1 d-flex align-items-center justify-content-center">
                                 <i class="fas fa-plus-circle fa-2x pl-1" data-toggle="collapse" [attr.data-target]="'#collapse'+i"></i>
-                            </div>                            
+                            </div>
                             <div class="col-11">
                                 <div class="row"><h5>{{request.title}}</h5></div>
                                 <div class="row"><div class="card-subtitle">עבור {{request.organization}}</div></div>
                             </div>
-                        </div>                            
+                        </div>
                         <div [attr.id]="'collapse'+i" class="collapse" [attr.aria-labelledby]="'headingO'+i">
                             <div class="card-body m-1 py-0">
                                 <div class="mb-1 d-flex justify-content-between">
                                     <h6 class="mb-1">{{request.content.title}}</h6>
-                                    <div>רב פעמי: <i class="far fa-check-square" *ngIf="request.multiOccurrence"></i>
-                                                <i class="far fa-square" *ngIf="!request.multiOccurrence"></i>
+                                    <div>רב פעמי: <i class="fas fa-check-square" *ngIf="request.multiOccurrence"></i>
+                                                <i class="fas fa-square" *ngIf="!request.multiOccurrence"></i>
                                     </div>
                                 </div>
                                 <p class="mb-1">{{request.about | slice:0:3000}}</p>
                                 <div><span class="badge badge-success ml-1 mb-1" *ngFor="let region of request.regions;">{{region.name}}</span></div>
-                                <small>לתיאום יש לפנות ל- {{request.contact.name}}, {{request.contact.phone}}, {{request.contact.email}}</small> 
+                                <small>לתיאום יש לפנות ל- {{request.contact.name}}, {{request.contact.phone}}, {{request.contact.email}}</small>
                             </div>
                         </div>
-                    </div>                                                      
+                    </div>
                 </li>
             </ul>
         </div>
@@ -59,26 +59,26 @@
             <ul id="accordionO" class="list-group p-0 mx-0">
                 <li *ngFor="let offer of volunteeringOffers; index as i" class="list-group-item align-items-start p-0 m-0">
                     <div class="card p-0 m-0">
-                        <div (click)="onSelectOffer(offer)" [ngClass]="{'selected': selectedOffer===offer}" 
-                            class="row card-header py-0 mx-0" 
+                        <div (click)="onSelectOffer(offer)" [ngClass]="{'selected': selectedOffer===offer}"
+                            class="row card-header py-0 mx-0"
                             aria-expanded="true" [attr.aria-controls]="'#collapseO'+i" [attr.id]="'headingO'+i">
                            <div class="col-1 d-flex align-items-center justify-content-center">
                                 <i class="fas fa-plus-circle fa-2x pl-1" data-toggle="collapse" [attr.data-target]="'#collapseO'+i"></i>
-                            </div>                            
+                            </div>
                             <div class="col-11">
                                 <div class="row"><h5>{{offer.organization}}</h5></div>
                                 <div class="row"><div class="card-subtitle">מעוניין לבצע התנדבות על <b>{{offer.content.title}}</b></div></div>
                             </div>
-                        </div>                            
+                        </div>
                         <div [attr.id]="'collapseO'+i" class="collapse" [attr.aria-labelledby]="'headingO'+i">
                             <div class="card-body m-1 py-0">
                                 <div class="mb-1 d-flex justify-content-between">מספר מתנדבים: {{offer.numberOfVolunteers}}
-                                    <div>רב פעמי: <i class="far fa-check-square" *ngIf="offer.multiOccurrence"></i>
-                                                <i class="far fa-square" *ngIf="!offer.multiOccurrence"></i>
+                                    <div>רב פעמי: <i class="fas fa-check-square" *ngIf="offer.multiOccurrence"></i>
+                                                <i class="fas fa-square" *ngIf="!offer.multiOccurrence"></i>
                                     </div>
                                 </div>
                                 <div><span class="badge badge-success ml-1 mb-1" *ngFor="let region of offer.regions;">{{region.name}}</span></div>
-                                <small>לתיאום יש לפנות ל- {{offer.contact.name}}, {{offer.contact.phone}}, {{offer.contact.email}}</small> 
+                                <small>לתיאום יש לפנות ל- {{offer.contact.name}}, {{offer.contact.phone}}, {{offer.contact.email}}</small>
                             </div>
                         </div>
                     </div>
@@ -98,8 +98,8 @@
             </h4>
         </div>
     </div>
-    <div class="row">
-        <table class="table">
+    <div class="row table-responsive">
+        <table class="table table-fixed">
             <thead>
                 <tr>
                     <th scopse="col"></th>
@@ -134,7 +134,7 @@
     <div class="modal-content model-big rtl">
         <form [formGroup]="matchForm">
             <div class="modal-body text-center px-10 rtl">
-                
+
                 <button #closeBtn type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"></span>
                 </button>
@@ -152,7 +152,7 @@
                     <div class="input-group-inner">
                         <div class="input-group-prepend">
                             <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
-                                class="far fa-user-circle"></i></span>
+                                class="fas fa-user-circle"></i></span>
                         </div>
                         <input type="text" formControlName="title" class="form-control" aria-label="Title"
                             aria-describedby="inputGroupIconDefault"
@@ -173,7 +173,7 @@
                 <div class="form-group modal-footer d-flex justify-content-center pt-2 pb-5 rtl">
                     <button (click)="sendData()" [disabled]="!matchForm.valid" style="font-size: 1.3em;" class="btn btn-primary mb-2 shadow-none" data-dismiss="modal">העלה</button>
                 </div>
-            </div>          
+            </div>
        </form>
     </div>
   </div>
