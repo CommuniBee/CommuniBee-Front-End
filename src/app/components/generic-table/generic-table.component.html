@@ -33,7 +33,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <div *ngFor="let column of columns">
+        <div *ngFor="let column of columns | removeTitleColumn:selectedElement">
           <span *ngIf="selectedElement[column.key] !== undefined">
             <div class="container">
               <div class="row py-1">

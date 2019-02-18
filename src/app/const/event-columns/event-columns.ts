@@ -6,6 +6,7 @@ export const eventColumns: GenericColumn[] = [
     key: 'title',
     hebKey: 'שם ההתנדבות',
     isTableColumn: true,
+    isTitleColumn: () => true,
     cellRenderer: (title: any) => title
   },
   {

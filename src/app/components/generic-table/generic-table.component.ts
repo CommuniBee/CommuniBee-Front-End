@@ -29,7 +29,7 @@ export class GenericTableComponent {
         return (<VolunteeringEvent>this.selectedElement).title;
       case TableType.OFFERS_REQUESTS:
         const requestOrOffer: any = this.selectedElement;
-        return requestOrOffer.title || requestOrOffer.content.title;
+        return requestOrOffer.title || requestOrOffer.content ? requestOrOffer.content.title : '';
       default:
         return '';
     }

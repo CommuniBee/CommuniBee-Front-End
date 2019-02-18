@@ -10,7 +10,8 @@ export const offerRequestTableColumns: GenericColumn[] = [
   {
     key: 'title',
     hebKey: 'שם ההתנדבות',
-    isTableColumn: true
+    isTableColumn: true,
+    isTitleColumn: (offerOrRequest: any) => offerOrRequest.title
   },
   {
     key: 'about',
@@ -41,7 +42,8 @@ export const offerRequestTableColumns: GenericColumn[] = [
     cellRenderer: (value: ContentModel) => {
       return `${value.title}`;
     },
-    isTableColumn: true
+    isTableColumn: true,
+    isTitleColumn: (offerOrRequest: any) => !offerOrRequest.title
   },
   {
     key: 'numberOfVolunteers',
