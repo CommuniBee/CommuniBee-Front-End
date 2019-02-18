@@ -7,6 +7,6 @@ export const environment = {
     registerRedirectUri: 'http://localhost:4200/register?auth0_callback=true',
   },
   api: {
-    url: 'http://localhost:3000'
+    url: 'https://communibee-backend.mybluemix.net/'
   }
 };
