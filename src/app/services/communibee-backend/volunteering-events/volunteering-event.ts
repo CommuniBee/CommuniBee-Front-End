@@ -1,28 +1,11 @@
 import BackendModel from '../backend-model';
-
-export interface VolunteeringRequestOfferBase {
-  numberOfVolunteers: number;
-  contact: {
-    name: string;
-    phone: string;
-    email: string;
-  };
-  dateRange: {
-    from: Date;
-    to: Date;
-  };
-  availableWeekdays: number[];
-  timeRange: {
-    from: Date;
-    to: Date;
-  };
-  notes: string[];
-  createdByUserId: string;
-}
+import { VolunteeringRequestModel } from '../volunteering-requests/volunteering-request';
+import { VolunteeringOfferModel } from '../volunteering-offers/volunteering-offer';
 
 export interface VolunteeringEvent {
-  request: VolunteeringRequestOfferBase;
-  offer: VolunteeringRequestOfferBase;
+  title: string;
+  request: VolunteeringRequestModel;
+  offer: VolunteeringOfferModel;
   date: Date;
   createdByUserId: string;
 }

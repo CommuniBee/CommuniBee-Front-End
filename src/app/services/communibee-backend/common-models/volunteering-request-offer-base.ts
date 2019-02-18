@@ -12,6 +12,7 @@ export interface VolunteeringRequestOfferBase {
   };
   multiOccurrence: boolean;
   regions: [string];
+  isMatched: boolean;
   createdByUserId: string | User;
 }
 

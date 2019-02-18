@@ -26,6 +26,7 @@ import { StyleContactPipe } from './pipes/style-contact.pipe';
 import { WeekdayNamesPipe } from './pipes/weekday-names.pipe';
 import { NgSelectModule } from '@ng-select/ng-select';
 import {DashboardTabsComponent} from './components/dashboard-tabs/dashboard-tabs.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import {DashboardTabsComponent} from './components/dashboard-tabs/dashboard-tabs
     MatchComponent,
     StyleContactPipe,
     WeekdayNamesPipe,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
