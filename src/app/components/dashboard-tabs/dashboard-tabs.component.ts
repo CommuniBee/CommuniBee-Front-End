@@ -50,16 +50,17 @@ export class DashboardTabsComponent implements OnInit {
     const volRequests: VolunteeringBaseModel[] = await this.volunteeringRequestsService.getAll();
     const volOffers: VolunteeringBaseModel[] = await this.volunteeringOffersService.getAll();
     const allVolunteeringApplications: VolunteeringBaseModel[] = [...volRequests, ...volOffers];
-    this.offersAndRequests = allVolunteeringApplications.filter((application) => {
+    this.offersAndRequests = !this.authService.isManager() ? allVolunteeringApplications.filter((application) => {
       return this.organization === application.organization;
-    });
+    }) : allVolunteeringApplications;
   }
 
   async getAllEvents(): Promise<void> {
-    const allEvents: VolunteeringEventModel[] = (await this.eventsService.getAll())
-      .filter((event) => {
+    let allEvents: VolunteeringEventModel[] = await this.eventsService.getAll();
+    allEvents = !this.authService.isManager() ? allEvents.filter((event) => {
         return [event.request.organization, event.offer.organization].includes(this.organization);
-      });
+      }) : allEvents;
+
     [this.historyEvents, this.futureEvents] = _.partition(allEvents, (event) => event.isDone);
   }
 }
