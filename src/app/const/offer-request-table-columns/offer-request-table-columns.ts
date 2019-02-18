@@ -10,12 +10,12 @@ export const offerRequestTableColumns: GenericColumn[] = [
   {
     key: 'title',
     hebKey: 'שם ההתנדבות',
-    inTable: true
+    isTableColumn: true
   },
   {
     key: 'about',
     hebKey: 'תיאור',
-    inTable: true
+    isTableColumn: true
   },
   {
     key: 'organization',
@@ -35,7 +35,7 @@ export const offerRequestTableColumns: GenericColumn[] = [
       <br>
       אימייל: ${value.email}</span>`
     },
-    inTable: true
+    isTableColumn: true
   },
   {
     key: 'content',
@@ -43,12 +43,12 @@ export const offerRequestTableColumns: GenericColumn[] = [
     cellRenderer: (value: ContentModel) => {
       return `${value.title}`;
     },
-    inTable: true
+    isTableColumn: true
   },
   {
     key: 'numberOfVolunteers',
     hebKey: 'מספר המתנדבים',
-    inTable: true
+    isTableColumn: true
   },
   {
     key: 'kind',
@@ -56,6 +56,6 @@ export const offerRequestTableColumns: GenericColumn[] = [
     cellRenderer: (value: string) => {
       return value === OfferOrRequest.VolunteeringRequest ? 'בקשה' : 'הצעה';
     },
-    inTable:true
+    isTableColumn:true
   }
 ];

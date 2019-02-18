@@ -32,7 +32,6 @@ export class DashboardTabsComponent implements OnInit {
     this.offerRequestTableColumns = offerRequestTableColumns;
     this.eventColumns = eventColumns;
     this.volunteeringApplications = [];
-    this.offerRequestTableColumns = [];
     this.selectedTab = 0;
   }
 
@@ -56,8 +55,7 @@ export class DashboardTabsComponent implements OnInit {
   }
 
   async getAllEvents(): Promise<void> {
-    const allEvents: VolunteeringEventModel[] = (await this.eventsService.getAll())
-      .filter(event => event.request);
+    const allEvents: VolunteeringEventModel[] = await this.eventsService.getAll();
 
     [this.futureEvents, this.historyEvents] = _.partition(allEvents, (event) =>  event.date > Date.now());
     console.log(allEvents);

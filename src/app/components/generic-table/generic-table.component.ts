@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {GenericColumn} from "./generic-column";
+import {GenericColumn} from './generic-column';
 
 @Component({
   selector: 'app-generic-table',
@@ -10,6 +10,10 @@ export class GenericTableComponent {
   @Input() elements: any[];
   @Input() genericColumns: GenericColumn[];
   selectedElement: any;
+
+  constructor() {
+    this.selectedElement = {};
+  }
 
   displayRow(element: any) {
     this.selectedElement = element;
