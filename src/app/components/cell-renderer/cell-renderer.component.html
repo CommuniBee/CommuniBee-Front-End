@@ -1,10 +1,10 @@
-<span *ngIf="element[column.key]">
+<span *ngIf="element[column.key] as data">
   <span *ngIf="column.cellRenderer; else noRender">
-    {{column.cellRenderer(element[column.key])}}
+    {{column.cellRenderer(data)}}
   </span>
   <ng-template #noRender>
     <span>
-      {{element[column.key]}}
+      {{data}}
     </span>
   </ng-template>
 </span>
