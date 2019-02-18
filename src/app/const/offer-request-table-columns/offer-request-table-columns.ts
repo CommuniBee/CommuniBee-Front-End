@@ -28,7 +28,7 @@ export const offerRequestTableColumns: GenericColumn[] = [
       return `${value.name}`;
     },
     modalRenderer: (value: any) => {
-      return `<span style="white-space: pre-line">
+      return `<span style="white-space: pre">
       שם: ${value.name}
       <br>
       טלפון: ${value.phone}
@@ -56,6 +56,6 @@ export const offerRequestTableColumns: GenericColumn[] = [
     cellRenderer: (value: string) => {
       return value === OfferOrRequest.VolunteeringRequest ? 'בקשה' : 'הצעה';
     },
-    isTableColumn:true
+    isTableColumn: true
   }
 ];
