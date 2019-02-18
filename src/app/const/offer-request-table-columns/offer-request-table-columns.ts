@@ -9,17 +9,16 @@ export enum OfferOrRequest {
 export const offerRequestTableColumns: GenericColumn[] = [
   {
     key: 'title',
-    hebKey: 'שם ההתנדבות',
-    isTableColumn: true
+    hebKey: 'שם ההתנדבות'
   },
   {
     key: 'about',
-    hebKey: 'תיאור',
-    isTableColumn: true
+    hebKey: 'תיאור'
   },
   {
     key: 'organization',
-    hebKey: 'ארגון'
+    hebKey: 'ארגון',
+    hideInTable: true
   },
   {
     key: 'contact',
@@ -34,28 +33,24 @@ export const offerRequestTableColumns: GenericColumn[] = [
       טלפון: ${value.phone}
       <br>
       אימייל: ${value.email}</span>`;
-    },
-    isTableColumn: true
+    }
   },
   {
     key: 'content',
     hebKey: 'תוכן ההתנדבות',
     cellRenderer: (value: ContentModel) => {
       return `${value.title}`;
-    },
-    isTableColumn: true
+    }
   },
   {
     key: 'numberOfVolunteers',
-    hebKey: 'מספר המתנדבים',
-    isTableColumn: true
+    hebKey: 'מספר המתנדבים'
   },
   {
     key: 'kind',
     hebKey: 'סוג ההתנדבות',
     cellRenderer: (value: string) => {
       return value === OfferOrRequest.VolunteeringRequest ? 'בקשה' : 'הצעה';
-    },
-    isTableColumn: true
+    }
   }
 ];

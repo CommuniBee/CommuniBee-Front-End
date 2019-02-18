@@ -1,0 +1,27 @@
+<div class="rate-container">
+  <form>
+    <label>דרג את האירוע</label>
+    <fieldset class="rating" (change)="changeEventRating($event)">
+      <input type="radio" [checked]="reviewToEdit.rating ===5" id="star5" name="rating" value="5"/>
+      <label class="full" for="star5"
+             title="Awesome - 5 stars"></label>
+      <input type="radio" [checked]="reviewToEdit.rating ===4" id="star4" name="rating" value="4"/>
+      <label class="full" for="star4"
+             title="Pretty good - 4 stars"></label>
+      <input type="radio" [checked]="reviewToEdit.rating ===3" id="star3" name="rating" value="3"/>
+      <label class="full" for="star3"
+             title="Meh - 3 stars"></label>
+      <input type="radio" [checked]="reviewToEdit.rating ===2" id="star2" name="rating" value="2"/>
+      <label class="full" for="star2"
+             title="Kinda bad - 2 stars"></label>
+      <input type="radio" [checked]="reviewToEdit.rating ===1" id="star1" name="rating" value="1"/>
+      <label class="full" for="star1"
+             title="Sucks big time - 1 star"></label>
+    </fieldset>
+
+    <textarea [(ngModel)]="reviewToEdit.description" [ngModelOptions]="{standalone: true}"
+              placeholder="אנא כתוב תיאור קצר על האירוע" style=""></textarea>
+
+    <button type="button" class="btn btn-primary confirm-button" (click)="finishEvent()">אשר</button>
+  </form>
+</div>

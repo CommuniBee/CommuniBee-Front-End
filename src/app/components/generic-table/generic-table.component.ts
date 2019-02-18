@@ -12,11 +12,17 @@ export class GenericTableComponent {
   @Input() columns: GenericColumn[];
   selectedElement: any;
 
-  constructor() {
-    this.selectedElement = {};
-  }
-
   displayRow(element: any) {
     this.selectedElement = element;
+  }
+
+  modalClosed(): void {
+    this.selectedElement = undefined;
+  }
+
+  cellClicked(callback: (element: any, event: any) => void, element: any, event: any): void {
+    if (callback) {
+      callback(element, event);
+    }
   }
 }

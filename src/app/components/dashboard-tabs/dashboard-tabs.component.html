@@ -11,15 +11,19 @@
          id="future"
          role="tabpanel"
          aria-labelledby="nav-home-tab">
-      <app-generic-table [uniqueTableName]="'futureEventsTable'" [elements]="futureEvents" [columns]="eventColumns"></app-generic-table>
+      <app-generic-table [elements]="events | separateEvents" [columns]="eventsColumns"></app-generic-table>
     </div>
     <div class="tab-pane fade" id="requests" role="tabpanel"
          aria-labelledby="nav-profile-tab">
-      <app-generic-table [uniqueTableName]="'offersRequestsTable'" [elements]="offersAndRequests" [columns]="offerRequestTableColumns"></app-generic-table>
+      <app-generic-table [elements]="offersAndRequests" [columns]="offerRequestTableColumns"></app-generic-table>
     </div>
     <div class="tab-pane fade" id="history" role="tabpanel"
          aria-labelledby="nav-contact-tab">
-      <app-generic-table [uniqueTableName]="'historyEventsTable'" [elements]="historyEvents" [columns]="eventColumns"></app-generic-table>
+      <app-generic-table [elements]="events | separateEvents:true" [columns]="eventsColumns"></app-generic-table>
     </div>
   </div>
+
+  <app-modal *ngIf="eventToFinish" (modalClosed)="modalClosed()">
+    <app-finish-and-rate [event]="eventToFinish" (confirm)="finishAndRate()"></app-finish-and-rate>
+  </app-modal>
 </div>
