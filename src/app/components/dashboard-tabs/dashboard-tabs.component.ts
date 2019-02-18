@@ -52,7 +52,7 @@ export class DashboardTabsComponent implements OnInit {
   }
 
   async getAllEvents(): Promise<void> {
-    let allEvents: VolunteeringEventModel[] = await this.eventsService.getAll();
+    const allEvents: VolunteeringEventModel[] = await this.eventsService.getAll();
     this.events = !this.authService.isManager() ? allEvents.filter((event) => {
       return [event.request.organization, event.offer.organization].includes(this.organization);
     }) : allEvents;

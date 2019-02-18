@@ -1,5 +1,6 @@
 import {GenericColumn} from '../../components/generic-table/generic-column';
 import * as moment from 'moment';
+import {OrganizationReview} from '../../services/communibee-backend/volunteering-events/volunteering-event';
 
 export const baseEventColumns: GenericColumn[] = [
   {
@@ -36,6 +37,26 @@ export const baseEventColumns: GenericColumn[] = [
     hebKey: 'נציג מתנדב',
     isTableColumn: true,
     cellRenderer: (off: any) => off.contact.name
+  },
+  {
+    key: 'offerReview',
+    hebKey: 'הערת מתנדב',
+    cellRenderer: (review: OrganizationReview) => review.description
+  },
+  {
+    key: 'offerReview',
+    hebKey: 'דירוג מתנדב',
+    cellRenderer: (review: OrganizationReview) => review.rating
+  },
+  {
+    key: 'requestReview',
+    hebKey: 'הערת מארח',
+    cellRenderer: (review: OrganizationReview) => review.description
+  },
+  {
+    key: 'requestReview',
+    hebKey: 'דירוג מארח',
+    cellRenderer: (review: OrganizationReview) => review.rating
   },
   {
     key: 'date',

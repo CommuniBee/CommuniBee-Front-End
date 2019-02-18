@@ -69,7 +69,7 @@ export const offerRequestTableColumns: GenericColumn[] = [
     key: 'regions',
     hebKey: 'איזורים',
     modalRenderer: (value: { name: string, region: string }[]) => {
-      let regionsHTML: string = '  ';
+      let regionsHTML = '  ';
 
       for (const region of value) {
         regionsHTML += `<span class="badge badge-success ml-1 mb-1">${region.name}</span>`;
