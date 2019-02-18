@@ -64,5 +64,17 @@ export const offerRequestTableColumns: GenericColumn[] = [
     modalRenderer: (value: boolean) => {
       return ` <i class="far ${value ? 'fa-check-square' : 'fa-square'}"></i>`;
     }
+  },
+  {
+    key: 'regions',
+    hebKey: 'איזורים',
+    modalRenderer: (value: { name: string, region: string }[]) => {
+      let regionsHTML: string = '  ';
+
+      for (const region of value) {
+        regionsHTML += `<span class="badge badge-success ml-1 mb-1">${region.name}</span>`;
+      }
+      return regionsHTML;
+    }
   }
 ];
