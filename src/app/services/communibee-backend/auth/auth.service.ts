@@ -1,16 +1,15 @@
-import {Injectable} from '@angular/core';
-import {CanActivateChild, Router} from '@angular/router';
-import {HttpBackend, HttpClient} from '@angular/common/http';
-import {tokenNotExpired} from 'angular2-jwt';
-import {Auth0Lock} from 'auth0-lock';
-import {retry} from 'rxjs/operators';
-import {environment} from '../../../../environments/environment';
-import {UserProfile} from './user-profile';
-import {getCommunibeeApiUrl} from '../../../../configuration';
-import {path as subRegionsPath} from '../subregion/subregion.service';
-import {SubRegionsModel} from '../subregion/subregion';
-import {AppMetadata} from './app-metadata';
-import {UserMetadata} from './user-metadata';
+import { Injectable } from '@angular/core';
+import { CanActivateChild, Router } from '@angular/router';
+import { HttpBackend, HttpClient } from '@angular/common/http';
+import { tokenNotExpired } from 'angular2-jwt';
+import { Auth0Lock } from 'auth0-lock';
+import { retry } from 'rxjs/operators';
+import { environment } from '../../../../environments/environment';
+import { UserProfile } from './user-profile';
+import { path as subRegionsPath } from '../subregion/subregion.service';
+import { SubRegionsModel } from '../subregion/subregion';
+import { AppMetadata } from './app-metadata';
+import { UserMetadata } from './user-metadata';
 
 @Injectable()
 export class AuthService implements CanActivateChild {
@@ -72,7 +71,7 @@ export class AuthService implements CanActivateChild {
 
   constructor(private router: Router, httpBackend: HttpBackend) {
     const httpClient = new HttpClient(httpBackend);
-    httpClient.get<SubRegionsModel[]>(`${getCommunibeeApiUrl()}/${subRegionsPath}`).pipe(
+    httpClient.get<SubRegionsModel[]>(`${environment.api.url}/${subRegionsPath}`).pipe(
       retry(3),
     ).subscribe((subRegionsResponse: SubRegionsModel[]) => {
 
