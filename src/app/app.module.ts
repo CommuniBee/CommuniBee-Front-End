@@ -29,6 +29,7 @@ import {DashboardTabsComponent} from './components/dashboard-tabs/dashboard-tabs
 import { GenericTableComponent } from './components/generic-table/generic-table.component';
 import { CellRendererComponent } from './components/cell-renderer/cell-renderer.component';
 import { AboutComponent } from './components/about/about.component';
+import { TableColumnsPipe } from './pipes/table-columns.pipe';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { AboutComponent } from './components/about/about.component';
     GenericTableComponent,
     CellRendererComponent,
     AboutComponent,
+    TableColumnsPipe,
   ],
   imports: [
     BrowserModule,

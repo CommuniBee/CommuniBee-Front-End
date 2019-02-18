@@ -3,7 +3,7 @@
     <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
-      <th scope=col *ngFor="let column of columns">
+      <th scope=col *ngFor="let column of columns | tableColumns">
         {{column.hebKey}}
       </th>
     </tr>
@@ -14,7 +14,7 @@
         [attr.data-target]="'#' + uniqueTableName"
         (click)="displayRow(element)">
       <th scope="row">{{i + 1}}</th>
-      <td *ngFor="let column of columns">
+      <td *ngFor="let column of columns | tableColumns">
         <app-cell-renderer [element]="element" [column]="column"></app-cell-renderer>
       </td>
     </tr>
