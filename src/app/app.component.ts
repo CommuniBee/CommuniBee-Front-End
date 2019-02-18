@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from './services/communibee-backend/auth/auth.service';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +7,4 @@ import {AuthService} from './services/communibee-backend/auth/auth.service';
 })
 export class AppComponent {
   title = 'CommuniBee';
-
-  constructor() {}
 }
