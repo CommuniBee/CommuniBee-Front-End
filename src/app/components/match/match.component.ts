@@ -82,7 +82,7 @@ export class MatchComponent implements OnInit {
     this.volunteeringEvent = {
       title: event.title,
       offer: event.offer,
-      request: event.reques
+      request: event.request
     } as any;
     this.volunteeringEvent.date = new Date( event.eventDate.year,
         event.eventDate.month - 1,

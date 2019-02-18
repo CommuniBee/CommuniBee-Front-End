@@ -7,6 +7,7 @@ import {GenericColumn} from './generic-column';
   styleUrls: ['./generic-table.component.scss']
 })
 export class GenericTableComponent {
+  @Input() uniqueTableName: string;
   @Input() elements: any[];
   @Input() columns: GenericColumn[];
   selectedElement: any;
