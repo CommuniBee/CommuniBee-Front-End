@@ -1,0 +1,10 @@
+<span *ngIf="element[column.key] as data">
+  <span *ngIf="column.cellRenderer; else noRender">
+    {{column.cellRenderer(data)}}
+  </span>
+  <ng-template #noRender>
+    <span>
+      {{data}}
+    </span>
+  </ng-template>
+</span>

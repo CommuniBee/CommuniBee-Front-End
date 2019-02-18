@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { CanActivateChild, Router } from '@angular/router';
 import { HttpBackend, HttpClient } from '@angular/common/http';
 import { tokenNotExpired } from 'angular2-jwt';
 import { Auth0Lock } from 'auth0-lock';
@@ -12,7 +12,7 @@ import { AppMetadata } from './app-metadata';
 import { UserMetadata } from './user-metadata';
 
 @Injectable()
-export class AuthService {
+export class AuthService implements CanActivateChild {
 
   baseLockOptions = {
     theme: {
@@ -70,9 +70,7 @@ export class AuthService {
   );
 
   constructor(private router: Router, httpBackend: HttpBackend) {
-
     const httpClient = new HttpClient(httpBackend);
-
     httpClient.get<SubRegionsModel[]>(`${environment.api.url}/${subRegionsPath}`).pipe(
       retry(3),
     ).subscribe((subRegionsResponse: SubRegionsModel[]) => {
@@ -129,6 +127,14 @@ export class AuthService {
     return this.getCustomField('app_metadata');
   }
 
+  canActivateChild() {
+    const logged: boolean = !!this.isAuthenticated() || !!this.getIdToken();
+    if (!logged) {
+      this.router.navigate(['/home']);
+    }
+    return logged;
+  }
+
   public getUserMetadata(): UserMetadata {
     return this.getCustomField('user_metadata');
   }
@@ -169,8 +175,7 @@ export class AuthService {
   public logout(): void {
     localStorage.removeItem('profile');
     localStorage.removeItem('token');
-
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
   }
 
   isAuthenticated(): boolean {
