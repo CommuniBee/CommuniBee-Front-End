@@ -12,6 +12,7 @@ import {AuthService} from './services/communibee-backend/auth/auth.service';
 import { AboutComponent } from './components/about/about.component';
 
 const routes: Routes = [
+  {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
   {path: 'about', component: AboutComponent},
   {
