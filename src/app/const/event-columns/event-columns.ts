@@ -22,7 +22,6 @@ export const eventColumns: GenericColumn[] = [
   {
     key: 'request',
     hebKey: 'נציג מארח',
-    isTableColumn: true,
     cellRenderer: (req: any) => req.contact.name
   },
   {
@@ -34,7 +33,6 @@ export const eventColumns: GenericColumn[] = [
   {
     key: 'offer',
     hebKey: 'נציג מתנדב',
-    isTableColumn: true,
     cellRenderer: (off: any) => off.contact.name
   },
   {
