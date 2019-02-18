@@ -15,7 +15,8 @@ export const offerRequestTableColumns: GenericColumn[] = [
   },
   {
     key: 'about',
-    hebKey: 'תיאור'
+    hebKey: 'תיאור',
+    isTableColumn: true
   },
   {
     key: 'organization',

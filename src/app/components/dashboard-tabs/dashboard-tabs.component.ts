@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import * as _ from 'lodash';
 import {VolunteeringEventsService} from '../../services/communibee-backend/volunteering-events/volunteering-events.service';
 import {AuthService} from '../../services/communibee-backend/auth/auth.service';
 import {VolunteeringRequestsService} from '../../services/communibee-backend/volunteering-requests/volunteering-requests.service';
@@ -7,8 +6,8 @@ import {VolunteeringOffersService} from '../../services/communibee-backend/volun
 import {VolunteeringBaseModel} from '../../services/communibee-backend/common-models/volunteering-request-offer-base';
 import {GenericColumn} from '../generic-table/generic-column';
 import {offerRequestTableColumns} from '../../const/offer-request-table-columns/offer-request-table-columns';
-import {eventColumns} from '../../const/event-columns/event-columns';
 import {VolunteeringEventModel} from '../../services/communibee-backend/volunteering-events/volunteering-event';
+import {baseEventColumns} from '../../const/event-columns/event-columns';
 
 @Component({
   selector: 'app-dashboard-tabs',
@@ -18,21 +17,18 @@ import {VolunteeringEventModel} from '../../services/communibee-backend/voluntee
 export class DashboardTabsComponent implements OnInit {
   organization: string;
   offersAndRequests: VolunteeringBaseModel[];
-  futureEvents: VolunteeringEventModel[];
-  historyEvents: VolunteeringEventModel[];
-  offerRequestTableColumns: GenericColumn[];
-  eventColumns: GenericColumn[];
+  events: VolunteeringEventModel[];
+  readonly offerRequestTableColumns: GenericColumn[] = offerRequestTableColumns;
+  readonly eventsColumns = [...baseEventColumns, this.extraEventsColumns()];
   selectedTab: number;
+  eventToFinish: VolunteeringEventModel;
 
   constructor(private authService: AuthService,
               private volunteeringRequestsService: VolunteeringRequestsService,
               private volunteeringOffersService: VolunteeringOffersService,
               private eventsService: VolunteeringEventsService) {
-    this.offerRequestTableColumns = offerRequestTableColumns;
-    this.eventColumns = eventColumns;
     this.offersAndRequests = [];
-    this.futureEvents = [];
-    this.historyEvents = [];
+    this.events = [];
     this.selectedTab = 0;
   }
 
@@ -57,10 +53,38 @@ export class DashboardTabsComponent implements OnInit {
 
   async getAllEvents(): Promise<void> {
     let allEvents: VolunteeringEventModel[] = await this.eventsService.getAll();
-    allEvents = !this.authService.isManager() ? allEvents.filter((event) => {
+    this.events = !this.authService.isManager() ? allEvents.filter((event) => {
         return [event.request.organization, event.offer.organization].includes(this.organization);
       }) : allEvents;
+  }
 
-    [this.historyEvents, this.futureEvents] = _.partition(allEvents, (event) => event.isDone);
+  modalClosed(): void {
+    this.eventToFinish = undefined;
+  }
+
+  async finishAndRate() {
+    await this.eventsService.finishAndRateEvent(this.eventToFinish);
+    this.eventToFinish = undefined;
+    this.events = [...this.events];
+  }
+
+  private extraEventsColumns(): GenericColumn {
+    return {
+      key: 'isDone',
+      hebKey: 'סטטוס האירוע',
+      cellRenderer: (isDone: boolean) => {
+        let buttonToDisplay = `<span class='btn btn-success shadow-none'>דרג וסגור אירוע</span>`;
+        if (isDone) {
+          buttonToDisplay = `<span class='btn btn-primary shadow-none'>דרג אירוע</span>`;
+        }
+        return buttonToDisplay;
+      },
+      onClick: this.doneAndRateEvent.bind(this)
+    };
+  }
+
+  private doneAndRateEvent(eventToFinish: VolunteeringEventModel, domEvent: Event): void {
+    this.eventToFinish = this.events.find((event) => eventToFinish._id === event._id);
+    domEvent.stopPropagation();
   }
 }

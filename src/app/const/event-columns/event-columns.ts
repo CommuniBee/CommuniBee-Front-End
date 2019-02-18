@@ -1,7 +1,7 @@
 import {GenericColumn} from '../../components/generic-table/generic-column';
 import * as moment from 'moment';
 
-export const eventColumns: GenericColumn[] = [
+export const baseEventColumns: GenericColumn[] = [
   {
     key: 'title',
     hebKey: 'שם ההתנדבות',
@@ -34,6 +34,7 @@ export const eventColumns: GenericColumn[] = [
   {
     key: 'offer',
     hebKey: 'נציג מתנדב',
+    isTableColumn: true,
     cellRenderer: (off: any) => off.contact.name
   },
   {

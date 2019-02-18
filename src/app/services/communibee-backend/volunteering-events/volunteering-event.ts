@@ -9,6 +9,14 @@ export interface VolunteeringEvent {
   date: Date;
   createdByUserId: string;
   isDone: boolean;
+  requestReview: OrganizationReview;
+  offerReview: OrganizationReview;
+}
+
+export interface OrganizationReview {
+  rating: number;
+  description: string;
+  createdByUserId: string;
 }
 
 export interface VolunteeringEventModel extends BackendModel, VolunteeringEvent {

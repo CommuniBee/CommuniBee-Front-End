@@ -5,4 +5,5 @@ export interface GenericColumn {
   isTitleColumn?: (obj: any) => boolean;
   cellRenderer?: (value: any) => string;
   modalRenderer?: (value: any) => string;
+  onClick?: (element: any, event: Event) => void;
 }

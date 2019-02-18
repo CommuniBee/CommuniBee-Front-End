@@ -19,7 +19,7 @@
           <div class="input-group-inner">
             <div class="input-group-prepend">
               <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
-                class="far fa-user-circle"></i></span>
+                class="fas fa-user-circle"></i></span>
             </div>
             <input type="text" formControlName="organization" class="form-control" aria-label="Username"
                    aria-describedby="inputGroupIconDefault"
@@ -37,7 +37,7 @@
               <div class="input-group-inner">
                 <div class="input-group-prepend">
               <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
-                class="far fa-user"></i></span>
+                class="fas fa-user"></i></span>
                 </div>
                 <input type="text" formControlName="name" class="form-control" aria-label="Username"
                        aria-describedby="inputGroupIconDefault"
@@ -51,7 +51,7 @@
               <div class="input-group-inner">
                 <div class="input-group-prepend">
               <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
-                class="far fa-phone"></i></span>
+                class="fas fa-phone"></i></span>
                 </div>
                 <input type="text" formControlName="phone" class="form-control" aria-label="Username"
                        aria-describedby="inputGroupIconDefault"
@@ -65,7 +65,7 @@
               <div class="input-group-inner">
                 <div class="input-group-prepend">
               <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
-                class="far fa-at"></i></span>
+                class="fas fa-at"></i></span>
                 </div>
                 <input type="text" formControlName="email" class="form-control" aria-label="Username"
                        aria-describedby="inputGroupIconDefault"
@@ -84,7 +84,7 @@
           <div class="input-group-inner">
             <div class="input-group-prepend">
               <span class="input-group-text input-group-icon" id="inputGroup2"><i
-                class="far fa-users-class"></i></span>
+                class="fas fa-users"></i></span>
             </div>
             <input type="number" formControlName="numberOfVolunteers" class="form-control" aria-label="Username"
                    aria-describedby="inputGroup2"
@@ -97,8 +97,8 @@
           <h4 class="secondary-header mt-2 mb-0">
             תוכן להעברה
           </h4>
-          <ng-select class="custom input-group shadow-none" placeholder="בחירת תוכן..." 
-                required autoCorrect formControlName="availableContent" [items]="contentList" 
+          <ng-select class="custom input-group shadow-none" placeholder="בחירת תוכן..."
+                required autoCorrect formControlName="availableContent" [items]="contentList"
                 bindLabel="title" bindValue="_id">
           </ng-select>
         </div>
@@ -106,7 +106,7 @@
             <button (click)="openContentModal()" class="btn btn-primary mb-0 shadow-none" style="font-size: 1.2em;"
                     type="button" id="iputGroupSearchDefault">
             העלה תוכן
-            <i class="fas fa-books"></i>
+            <i class="fas fa-book"></i>
             </button>
         </div>
 
@@ -120,8 +120,8 @@
         <h4 class="secondary-header mt-2 mb-0">
           איזורים בארץ
         </h4>
-        <ng-select class="custom input-group shadow-none" placeholder="איזורי התנדבות אפשריים" 
-            required autoCorrect formControlName="regions" [items]="subRegions" 
+        <ng-select class="custom input-group shadow-none" placeholder="איזורי התנדבות אפשריים"
+            required autoCorrect formControlName="regions" [items]="subRegions"
             bindLabel="name" bindValue="_id" [selectableGroupAsModel]="false" [closeOnSelect]="false" [groupBy]="groupByRegion" [selectableGroup]="true" [multiple]="true">
         </ng-select>
 
