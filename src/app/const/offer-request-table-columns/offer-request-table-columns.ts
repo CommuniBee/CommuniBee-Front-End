@@ -33,7 +33,7 @@ export const offerRequestTableColumns: GenericColumn[] = [
       <br>
       טלפון: ${value.phone}
       <br>
-      אימייל: ${value.email}</span>`
+      אימייל: ${value.email}</span>`;
     },
     isTableColumn: true
   },

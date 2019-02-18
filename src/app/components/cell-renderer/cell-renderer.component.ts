@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {GenericColumn} from "../generic-table/generic-column";
+import {GenericColumn} from '../generic-table/generic-column';
 
 @Component({
   selector: 'app-cell-renderer',
