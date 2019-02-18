@@ -1,115 +1,180 @@
-<div class="comp-container" style="min-height: 100%; display: flow-root;">
+<div class="comp-container rtl" style="min-height: 100%; display: flow-root;">
   <div class="container" style="text-align: right;">
-
     <div class="row justify-content-center mt-3">
-
       <div class="col rtl">
         <h2 style="display: inline;">
           תיאום התנדבות
         </h2>
-
-        <div class="input-group mb-1">
-        <h4 class="secondary-header mt-2 mb-0">
-            בחירת בקשת התנדבות
-        </h4>
-        <table class="table rtl table-sm table-hover" dir="rtl">
-          <thead class="thead">
-          <tr>
-            <th scope="col">שם</th>
-            <th scope="col">מספר מתנדבים</th>
-            <th scope="col">איש קשר</th>
-            <th scope="col">ימות השבוע</th>
-            <th scope="col">מיקום</th>
-            <th scope="col">מספר מופעים</th>
-            <th scope="col">איזור</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let request of volunteeringRequests"
-              [class.selected]="request === selectedRequest"
-              (click)="onSelectRequest(request)">
-            <td>{{request.title}}</td>
-            <td>{{request.numberOfVolunteers}}</td>
-            <td>{{request.contact | styleContact}}</td>
-            <td>{{request.availableWeekdays | weekdayNames | join: ', '}}</td>
-            <td>{{request.location}}</td>
-            <td>{{request.numberOfOccurrences}}</td>
-            <td>{{request.region}}</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-
-        <div class="input-group mb-1">
-          <h4 class="secondary-header mt-2 mb-0">
-            בחירת הצעת התנדבות
-          </h4>
-          <table class="table rtl table-sm table-hover" dir="rtl">
-            <thead class="thead">
-            <tr>
-              <th scope="col">שם</th>
-              <th scope="col">מספר מתנדבים</th>
-              <th scope="col">איש קשר</th>
-              <th scope="col">ימות השבוע</th>
-              <th scope="col">איזורים</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let offer of volunteeringOffers"
-                [class.selected]="offer === selectedOffer"
-                (click)="onSelectOffer(offer)">
-              <td>{{offer.title}}</td>
-              <td>{{offer.numberOfVolunteers}}</td>
-              <td>{{offer.contact | styleContact}}</td>
-              <td>{{offer.availableWeekdays | weekdayNames | join: ', '}}</td>
-              <td>{{offer.regions | join: ', '}}</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="input-group mb-1">
-          <h4 class="secondary-header mt-2 mb-0">
-            תאריך
-          </h4>
-          <div class="input-group-inner">
-            <ngb-datepicker [(ngModel)]="date"
-                            [ngModelOptions]="{ standalone: true }"
-                            (ngModelChange)="updateEventTime()"></ngb-datepicker>
-          </div>
-
-        </div>
-
-        <div class="input-group mb-1">
-          <h4 class="secondary-header mt-2 mb-0">
-            שעה
-          </h4>
-          <div class="input-group-inner">
-            <ngb-timepicker [(ngModel)]="time"
-                            [ngModelOptions]="{ standalone: true }"
-                            (ngModelChange)="updateEventTime()"
-                            [spinners]="false"
-                            [size]="'small'"></ngb-timepicker>
-          </div>
-        </div>
-
-        <form [formGroup]="matchForm" (submit)="sendData()">
-          <input type="hidden" formControlName="request" [(ngModel)]="selectedRequest._id">
-          <input type="hidden" formControlName="offer" [(ngModel)]="selectedOffer._id">
-          <input type="hidden" formControlName="date" [(ngModel)]="eventDate">
-
-          <div class="input-group mb-1 mt-3">
-            <button [disabled]="!matchForm.valid"
-                    type="submit"
-                    style="font-size: 1.3em;"
-                    [ngClass]="{'btn-outline-primary': matchForm.valid, 'btn-outline-danger': !matchForm.valid}"
-                    class="btn shadow-none">תאם
-            </button>
-          </div>
-        </form>
-
       </div>
     </div>
+    <div class="row">
+        <div class="col-5">
+            <h4 class="secondary-header mt-2 mb-0">
+                בחירת בקשת התנדבות
+            </h4>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-5">
+            <h4 class="secondary-header mt-2 mb-0">
+                בחירת הצעת התנדבות
+            </h4>
+        </div>
+    </div>
+    <div class="row mb-1">
+        <div class="col-5">
+            <ul id="accordion" class="list-group p-0 mx-0">
+                <li *ngFor="let request of volunteeringRequests; index as i" class="list-group-item align-items-start p-0 m-0">
+                    <div class="card p-0 m-0">
+                        <div (click)="onSelectRequest(request)" [ngClass]="{'selected': selectedRequest===request}"
+                            class="row card-header py-0 mx-0" aria-expanded="true" [attr.aria-controls]="'#collapse'+i" [attr.id]="'headingO'+i">
+                           <div class="col-1 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-plus-circle fa-2x pl-1" data-toggle="collapse" [attr.data-target]="'#collapse'+i"></i>
+                            </div>                            
+                            <div class="col-11">
+                                <div class="row"><h5>{{request.title}}</h5></div>
+                                <div class="row"><div class="card-subtitle">עבור {{request.organization}}</div></div>
+                            </div>
+                        </div>                            
+                        <div [attr.id]="'collapse'+i" class="collapse" [attr.aria-labelledby]="'headingO'+i">
+                            <div class="card-body m-1 py-0">
+                                <div class="mb-1 d-flex justify-content-between">
+                                    <h6 class="mb-1">{{request.content.title}}</h6>
+                                    <div>רב פעמי: <i class="far fa-check-square" *ngIf="request.multiOccurrence"></i>
+                                                <i class="far fa-square" *ngIf="!request.multiOccurrence"></i>
+                                    </div>
+                                </div>
+                                <p class="mb-1">{{request.about | slice:0:3000}}</p>
+                                <div><span class="badge badge-success ml-1 mb-1" *ngFor="let region of request.regions;">{{region.name}}</span></div>
+                                <small>לתיאום יש לפנות ל- {{request.contact.name}}, {{request.contact.phone}}, {{request.contact.email}}</small> 
+                            </div>
+                        </div>
+                    </div>                                                      
+                </li>
+            </ul>
+        </div>
+        <div class="col-2 d-flex align-items-center justify-content-center">
+            <button class="btn btn-primary mb-0 shadow-none" (click)="openMatchFormModal()">שידוך</button>
+        </div>
+        <div class="col-5">
+            <ul id="accordionO" class="list-group p-0 mx-0">
+                <li *ngFor="let offer of volunteeringOffers; index as i" class="list-group-item align-items-start p-0 m-0">
+                    <div class="card p-0 m-0">
+                        <div (click)="onSelectOffer(offer)" [ngClass]="{'selected': selectedOffer===offer}" 
+                            class="row card-header py-0 mx-0" 
+                            aria-expanded="true" [attr.aria-controls]="'#collapseO'+i" [attr.id]="'headingO'+i">
+                           <div class="col-1 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-plus-circle fa-2x pl-1" data-toggle="collapse" [attr.data-target]="'#collapseO'+i"></i>
+                            </div>                            
+                            <div class="col-11">
+                                <div class="row"><h5>{{offer.organization}}</h5></div>
+                                <div class="row"><div class="card-subtitle">מעוניין לבצע התנדבות על <b>{{offer.content.title}}</b></div></div>
+                            </div>
+                        </div>                            
+                        <div [attr.id]="'collapseO'+i" class="collapse" [attr.aria-labelledby]="'headingO'+i">
+                            <div class="card-body m-1 py-0">
+                                <div class="mb-1 d-flex justify-content-between">מספר מתנדבים: {{offer.numberOfVolunteers}}
+                                    <div>רב פעמי: <i class="far fa-check-square" *ngIf="offer.multiOccurrence"></i>
+                                                <i class="far fa-square" *ngIf="!offer.multiOccurrence"></i>
+                                    </div>
+                                </div>
+                                <div><span class="badge badge-success ml-1 mb-1" *ngFor="let region of offer.regions;">{{region.name}}</span></div>
+                                <small>לתיאום יש לפנות ל- {{offer.contact.name}}, {{offer.contact.phone}}, {{offer.contact.email}}</small> 
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <hr class="my-4">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h4 class="secondary-header mt-2 mb-0">
+                אירועי התנדבות עתידיים
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scopse="col"></th>
+                    <th scope="col">שם אירוע</th>
+                    <th scope="col">ארגון מבקש</th>
+                    <th scope="col">ארגון מתנדב</th>
+                    <th scope="col">תאריך ההתנדבות</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let event of plannedEvents; index as i">
+                    <td><button class="btn btn-secondary shadow-none" (click)="cancelEvent(event)">ביטול אירוע</button></td>
+                    <td>{{event.title}}</td>
+                    <td>
+                        {{event.request.organization}}
+                        <p>איש קשר: {{event.request.contact.name}} {{event.request.contact.phone}}, {{event.request.contact.email}} </p>
+                    </td>
+                    <td>
+                        {{event.offer.organization}}
+                        <p>איש קשר: {{event.offer.contact.name}} {{event.offer.contact.phone}}, {{event.offer.contact.email}} </p>
+                    </td>
+                    <td>{{event.date | date:'dd/MM/yyyy'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>
+</div>
 
+<div class="modal fade" id="modalMatchForm" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content model-big rtl">
+        <form [formGroup]="matchForm">
+            <div class="modal-body text-center px-10 rtl">
+                
+                <button #closeBtn type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+
+                <img class="mt-2 mb-4" src="../assets/images/modal-info-icon.png" alt="Information">
+                <h4 class="section-title-4 text-center font-weight-800 text-uppercase mb-4 pb-1">
+                    יצירת אירוע התנדבותי
+                   <div class="title-divider-round"></div>
+                </h4>
+
+                <div class="input-group mb-3">
+                    <h4 class="secondary-header mt-2 mb-0">
+                        שם אירוע *
+                    </h4>
+                    <div class="input-group-inner">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
+                                class="far fa-user-circle"></i></span>
+                        </div>
+                        <input type="text" formControlName="title" class="form-control" aria-label="Title"
+                            aria-describedby="inputGroupIconDefault"
+                            placeholder="שם אירוע...">
+                        <div class="input-focus-bg"></div>
+                    </div>
+                </div>
+                <div class="input-group mb-1">
+                    <h4 class="secondary-header mt-2 mb-0">
+                        תאריך
+                    </h4>
+                    <div class="input-group-inner">
+                        <ngb-datepicker formControlName="eventDate"></ngb-datepicker>
+                    </div>
+                </div>
+                <p class="text-danger text-center mt-3" *ngIf="!matchForm.valid">אנא מלאו את כל הפרטים הנדרשים (מסומן ב-*).</p>
+
+                <div class="form-group modal-footer d-flex justify-content-center pt-2 pb-5 rtl">
+                    <button (click)="sendData()" [disabled]="!matchForm.valid" style="font-size: 1.3em;" class="btn btn-primary mb-2 shadow-none" data-dismiss="modal">העלה</button>
+                </div>
+            </div>          
+       </form>
+    </div>
   </div>
 </div>

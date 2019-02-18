@@ -14,7 +14,11 @@ export class BackendHttpService {
   }
 
   get(path: string, query?: string): Promise<any> {
-    return this.http.get(`${this.url}/${path}?${query}`).pipe(
+    let fullURL = `${this.url}/${path}?${query}`;
+    if ( query == null ) {
+      fullURL = `${this.url}/${path}`;
+    }
+    return this.http.get(fullURL).pipe(
       retry(3),
     ).toPromise();
   }

@@ -47,16 +47,16 @@ export class AddVolunteersComponent implements OnInit {
 
   initForm() {
     this.myForm = this.fb.group({
-      organization: ['', Validators.required],
+      organization: [this.auth.getUserOrganization(), Validators.required],
       poc: this.fb.group({
-        name: ['', Validators.required],
+        name: [this.auth.getUserName(), Validators.required],
         phone: ['', Validators.required],
-        email: ['', Validators.email],
+        email: [this.auth.getUserEmail(), [Validators.required, Validators.email]],
       }),
       numberOfVolunteers: ['', Validators.min(1)],
       availableContent: [''],
       multiOccurrence: [false],
-      regions: [null],
+      regions: [[this.auth.getUserLocation()]],
     });
   }
 
