@@ -19,7 +19,7 @@
                 <div class="input-group-inner">
                     <div class="input-group-prepend">
                     <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
-                        class="far fa-user-circle"></i></span>
+                        class="fas fa-user-circle"></i></span>
                     </div>
                     <input type="text" formControlName="organization" class="form-control" aria-label="Username"
                         aria-describedby="inputGroupIconDefault"
@@ -37,7 +37,7 @@
                     <div class="input-group-inner">
                         <div class="input-group-prepend">
                     <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
-                        class="far fa-user"></i></span>
+                        class="fas fa-user"></i></span>
                         </div>
                         <input type="text" formControlName="name" class="form-control" aria-label="Username"
                             aria-describedby="inputGroupIconDefault"
@@ -51,7 +51,7 @@
                     <div class="input-group-inner">
                         <div class="input-group-prepend">
                     <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
-                        class="far fa-phone"></i></span>
+                        class="fas fa-phone"></i></span>
                         </div>
                         <input type="text" formControlName="phone" class="form-control" aria-label="Username"
                             aria-describedby="inputGroupIconDefault"
@@ -65,7 +65,7 @@
                     <div class="input-group-inner">
                         <div class="input-group-prepend">
                     <span class="input-group-text input-group-icon" id="inputGroupIconDefault"><i
-                        class="far fa-at"></i></span>
+                        class="fas fa-at"></i></span>
                         </div>
                         <input type="text" formControlName="email" class="form-control" aria-label="Username"
                             aria-describedby="inputGroupIconDefault"
@@ -82,18 +82,18 @@
                 </h4>
                 <input formControlName="title" type="text" class="form-control mb-3"  aria-describedby="inputDefault" placeholder="כותרת..." />
             </div>
-            
+
             <div class="form-group">
                 <h4 class="secondary-header text-right mt-2 mb-0">
                     תיאור *
-                </h4>        
+                </h4>
                 <textarea formControlName="information" maxlength="200" required="true" class="form-control mb-3" id="contentInformation" aria-describedby="inputDefault" placeholder="תיאור של נושא ההתנדבות..." ></textarea>
             </div>
-            
+
             <div class="form-group">
                 <h4 class="secondary-header text-right mt-2 mb-0">
                     קטגוריה *
-                </h4>         
+                </h4>
                 <select id="category" class="custom-select mb-3" formControlName="category" >
                     <option *ngFor="let item of categories" [value]="item._id">{{item.name}}</option>
                 </select>
@@ -101,7 +101,7 @@
             <div class="form-group">
                 <h4 class="secondary-header text-right mt-2 mb-0">
                     קובץ לטעינה *
-                </h4> 
+                </h4>
                 <div class="custom-file mb-3">
                     <input type="file" class="custom-file-input" id="fileBrowser" (change)="onFileChange($event)"
                             accept="application/pdf, .doc, .docx, .ppt, .pptx,"/>

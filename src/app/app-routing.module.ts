@@ -14,11 +14,11 @@ import { AboutComponent } from './components/about/about.component';
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'about', component: AboutComponent},
+  {path: 'browse/content', component: BrowseContentComponent},
   {
     path: '',
     children: [
       {path: '', component: DashboardComponent},
-      {path: 'browse/content', component: BrowseContentComponent},
       {path: 'browse/volunteers', component: BrowseVolunteersComponent},
       {path: 'browse/opportunities', component: BrowseOpportunitiesComponent},
       {path: 'dashboard', component: DashboardComponent},
