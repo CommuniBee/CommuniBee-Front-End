@@ -8,7 +8,7 @@ import {GenericColumn} from './generic-column';
 })
 export class GenericTableComponent {
   @Input() elements: any[];
-  @Input() genericColumns: GenericColumn[];
+  @Input() columns: GenericColumn[];
   selectedElement: any;
 
   constructor() {

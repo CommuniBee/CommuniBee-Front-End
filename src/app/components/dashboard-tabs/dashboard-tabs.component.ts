@@ -17,12 +17,11 @@ import {VolunteeringEventModel} from '../../services/communibee-backend/voluntee
 })
 export class DashboardTabsComponent implements OnInit {
   organization: string;
-  volunteeringApplications: VolunteeringBaseModel[];
+  offersAndRequests: VolunteeringBaseModel[];
   futureEvents: VolunteeringEventModel[];
   historyEvents: VolunteeringEventModel[];
   offerRequestTableColumns: GenericColumn[];
   eventColumns: GenericColumn[];
-
   selectedTab: number;
 
   constructor(private authService: AuthService,
@@ -31,14 +30,16 @@ export class DashboardTabsComponent implements OnInit {
               private eventsService: VolunteeringEventsService) {
     this.offerRequestTableColumns = offerRequestTableColumns;
     this.eventColumns = eventColumns;
-    this.volunteeringApplications = [];
+    this.offersAndRequests = [];
+    this.futureEvents = [];
+    this.historyEvents = [];
     this.selectedTab = 0;
   }
 
   async ngOnInit() {
     this.organization = this.authService.getUserMetadata().organization;
     this.assignApplications();
-    this.getAllEvents();
+    //this.getAllEvents();
   }
 
   selectTab(index: number) {
@@ -49,7 +50,7 @@ export class DashboardTabsComponent implements OnInit {
     const volRequests: VolunteeringBaseModel[] = await this.volunteeringRequestsService.getAll();
     const volOffers: VolunteeringBaseModel[] = await this.volunteeringOffersService.getAll();
     const allVolunteeringApplications: VolunteeringBaseModel[] = [...volRequests, ...volOffers];
-    this.volunteeringApplications = allVolunteeringApplications.filter((application) => {
+    this.offersAndRequests = allVolunteeringApplications.filter((application) => {
       return this.organization === application.organization;
     });
   }
@@ -57,7 +58,7 @@ export class DashboardTabsComponent implements OnInit {
   async getAllEvents(): Promise<void> {
     const allEvents: VolunteeringEventModel[] = await this.eventsService.getAll();
 
-    [this.futureEvents, this.historyEvents] = _.partition(allEvents, (event) =>  event.date > Date.now());
+    [this.futureEvents, this.historyEvents] = _.partition(allEvents, (event) => event.date > Date.now());
     console.log(allEvents);
   }
 }
